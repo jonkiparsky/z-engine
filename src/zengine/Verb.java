@@ -4,9 +4,9 @@ public abstract class Verb extends Grammar
 {
 	String s;
 	
-	Noun noun = null;	
-	PPhrase prepPhrase = null;
-	Direction dir = null;
+	protected Noun noun = null;	
+	protected PPhrase prepPhrase = null;
+	protected Direction dir = null;
 
 	public Verb()
 	{
