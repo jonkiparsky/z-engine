@@ -1,4 +1,4 @@
-package zengine.directions;
+package grammar;
 
 import zengine.Direction;
 public class West extends Direction

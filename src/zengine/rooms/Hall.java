@@ -1,6 +1,6 @@
 package zengine.rooms;
 
-import zengine.nouns.Flashlight;
+import grammar.Flashlight;
 import zengine.Room;
 
 /**

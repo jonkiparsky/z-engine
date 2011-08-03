@@ -1,4 +1,4 @@
-package zengine.nouns;
+package grammar;
 
 import zengine.Noun;
 

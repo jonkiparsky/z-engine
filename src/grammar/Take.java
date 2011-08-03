@@ -1,17 +1,18 @@
-package zengine;
+package grammar;
+
 
 import zengine.*;
 
-public class Turn extends Verb
+public class Take extends Verb
 
 
 {
 
-	public Turn()
+	public Take()
 	{
-		super ("TURN");
+		super ("TAKE");
 	}
-	public Turn(Grammar g)
+	public Take(Grammar g)
 	{
 		
 	}
@@ -29,7 +30,6 @@ public class Turn extends Verb
 	}
 	public void execute()
 	{
-		
 		ZEngineMain.state.take(noun);
 	}	
 
