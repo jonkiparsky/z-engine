@@ -154,7 +154,7 @@ gram = tokenise("take");
 		Class c; 
 		Grammar g=null;
 		try{
-		c = Class.forName("zengine."+input);
+		c = Class.forName("zengine.grammar."+input);
 		g = (Grammar)c.newInstance();
 		}
 		catch (Exception e)
