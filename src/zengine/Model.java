@@ -1,8 +1,8 @@
 package zengine;
 
 import java.util.*;
-import zengine.rooms.Hall;
-import zengine.rooms.LivingRoom;
+import zengine.grammar.Hall;
+import zengine.grammar.LivingRoom;
 /**
 * The state of the game as it stands
 */
