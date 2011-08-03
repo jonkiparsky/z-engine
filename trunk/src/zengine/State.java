@@ -74,7 +74,7 @@ public class State
         for (String s: inventory.keySet())
         {
                     if (!inventory.get(s).plural)
-                        System.out.println("You have a " + s + ".\n");
+                        System.out.println("You have a " + s + ".");
                     else
             System.out.println("You have "+s+".");
                     System.out.println(inventory.get(s).itemDescription());

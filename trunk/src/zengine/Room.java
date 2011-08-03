@@ -44,7 +44,10 @@ public abstract class Room
 	{
 		StringBuilder sb = new StringBuilder();
 		sb.append(this.description+"\n");
-		sb.append("You can see exits to the "+ this.listExits());	
+                if (exits.size() == 1)
+                    sb.append("You can see an exit to the " + this.listExits() + "\n");
+                else
+                    sb.append("You can see exits to the "+ this.listExits() + "\n");	
 		sb.append(listItems());
 	
 		return sb.toString();
@@ -64,29 +67,52 @@ public abstract class Room
 
     public String listItems()
     {
-        StringBuilder sb = new StringBuilder("There is ");
-                if (items.isEmpty())
-                    sb.append("nothing");
-        for (String item: items.keySet())
-        {
+            int itemCount = items.size();
+            StringBuilder sb = new StringBuilder("There is ");
+                    if (items.isEmpty())
+                            sb.append("nothing");
+            for (String item: items.keySet())
+            {
                     if (!items.get(item).plural())
-                        sb.append("a ");
-                    if (items.size() == 1)
-                        sb.append(item);
+                            sb.append("a ");
+                    if (itemCount == 1)
+                            sb.append(item);    
+                    else if (itemCount == 2)
+                    {
+                            sb.append(item + " and ");
+                            itemCount--;
+                    }
                     else
-            sb.append(item).append(", ");
-        }
-        sb.append(" here");
-                return sb.toString();
+                    {
+                            sb.append(item + ", ");
+                            // counts down as items are appended, so last item is always prefixed by and.
+                            itemCount--;
+                    }
+            }
+            sb.append(" here");
+            return sb.toString();
     }
 	public String listExits()
 	{
 		StringBuilder sb = new StringBuilder();
-		for(String s: exits.keySet())
-		{	
-			sb.append(s+",");
-		}
-	
+                int roomCount = exits.size();
+                for (String s : exits.keySet()) 
+                {
+                        if (roomCount == 1)
+                                sb.append(s);
+                        else if (roomCount == 2)
+                        {
+                                sb.append(s + " and ");
+                                roomCount--;
+                        }
+                        else
+                        {
+                                sb.append(s + ", ");
+                                // Same use as for listItems()
+                                roomCount--;
+                        }
+                }
+                
 		return sb.toString();
 	}
 	
