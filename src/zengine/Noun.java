@@ -3,6 +3,7 @@ package zengine;
 public abstract class Noun extends Grammar
 {
 	protected String s;
+        protected String desc;
 	protected String state;
 	protected boolean plural;
 
@@ -10,6 +11,7 @@ public abstract class Noun extends Grammar
 	{
 		super();
 		this.s=s;
+                desc = "";
 	}
 
 	public boolean plural()
@@ -36,9 +38,9 @@ public abstract class Noun extends Grammar
 	{
 		String itemDescription = s;
 		if (state != null)
-			s+="\nThe "+ s+ " is " + state;
+			desc+="The "+ s+ " is " + state;
 	
-		return (s);
+		return (desc);
 	}
 
 
