@@ -4,7 +4,7 @@ import java.util.*;
 import zengine.grammar.Hall;
 public class State
 {
-	 Room current_loc;
+	public  Room current_loc;
 	private HashMap<String,Noun> inventory;
 	Room tester;
 
