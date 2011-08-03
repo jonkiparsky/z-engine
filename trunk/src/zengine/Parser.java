@@ -4,8 +4,7 @@ import java.lang.reflect.*;
 import java.util.HashMap;
 import java.lang.Class;
 import java.util.Scanner;
-import zengine.rooms.*;
-import zengine.verbs.*;
+import zengine.grammar.*;
 
 public class Parser
 {
