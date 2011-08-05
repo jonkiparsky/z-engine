@@ -7,6 +7,11 @@ If there's an actual bug, it should go in the bug tracking.
 
 = Notes =
 
+*8/4/2011 (EDT) - jpk:* TO DO - logging. Would be nice to be able to log errors and not have to get the whole stack trace on an exception. 
+
+
+*8/4/2011 (EDT) - jpk:* Interesting. I'll let it bubble around a bit. Technically, the "it" should be able to pick up the best NP in the available context and apply it to the PPhrase. 
+
 *8/5/2011 - i.Snowblind:* Possible implementation of Prepositional Phrases. Essentially, through using 3 phrase types (Noun Phrase, Preposition Phrase, Prepositional Noun (wording?) Phrase), the parser should be able to determine context of prepositions. Example -- "Turn on the flashlight" would be a Noun Phrase, but "Put flashlight on the table" would be a Prepositional Noun Phrase + a Preposition Phrase, split in to "Put flashlight" and "on the table". In theory, this should work. This doesn't include Preposition stranding though ("Take sword and kill troll with it", 'it' being the stranded preposition), so may need changing if this is to be included.
 
 *8/4/2011 - jon.kiparsky:* Unit testing might be a good idea, but so far it hasn't risen to the top of my stack. This is always the problem with unit testing: you never get to it until you're well into things. Not sure what the tests would test, though, because I don't have requirements. 
