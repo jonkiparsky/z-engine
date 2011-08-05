@@ -1,0 +1,10 @@
+#summary Unstructured considerations in reverse chronological order
+
+= Introduction =
+Following this section, jot down thoughts, ideas, potential hurdles, possible features as they come to you. Dating and signing them would be helpful.
+If there's an actual bug, it should go in the bug tracking. 
+
+
+= Notes =
+
+8/4/2011: Unit testing might be a good idea, but so far it hasn't risen to the top of my stack. This is always the problem. 
