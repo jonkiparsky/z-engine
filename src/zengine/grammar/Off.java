@@ -1,4 +1,6 @@
-package zengine;
+package zengine.grammar;
+
+import zengine.Preposition;
 
 /**
 * represents an off preposition or state

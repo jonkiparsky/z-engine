@@ -1,6 +1,8 @@
 package zengine;
 
-
+/*
+ * Change so that it holds Phrases instead?
+ */
 import zengine.grammar.*;
 import java.util.ArrayList;
 

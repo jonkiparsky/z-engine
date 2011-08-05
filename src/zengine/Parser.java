@@ -45,7 +45,7 @@ public class Parser
 
 
 	/**
-	*	There are currently two methods for accepting a move. Make the 
+	*	There are currently three methods for accepting a move. Make the 
 	*	appropriate change in ZEngineMain
 	*	
 	*	This one recognizes good words used wrongly and non-words, and reacts
@@ -62,7 +62,7 @@ public class Parser
 		} while (input.length() == 0);
 		
 		String[] move = input.split("\\W");
-		Sentence sentence = new Sentence();
+                Sentence sentence = new Sentence();
 		for (String word: move)
 		{
 			Grammar g = tokenise(word);
@@ -88,10 +88,24 @@ public class Parser
 		}
 	}
 
-	/**
-	*	There are currently two methods for accepting a move. Make the 
+	/*
+	*	There are currently three methods for accepting a move. Make the 
 	*	appropriate change in ZEngineMain
+         * 
+         *      movePhrase() used to test phrases.
 	*/
+        
+        public void movePhrase()
+        {
+                System.out.print(">> ");
+                String[] move = in.nextLine().split(" ");
+                ArrayList<Grammar> gram = new ArrayList<Grammar>();
+                for (String s : move)
+                        gram.add(tokenise(s));
+                NPhrase phrase = new NPhrase(move, gram);
+                System.out.println(phrase.toString());
+        }
+        
 	public void move()
 	{
 		
