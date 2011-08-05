@@ -1,4 +1,6 @@
-package zengine;
+package zengine.grammar;
+
+import zengine.*;
 
 public class On extends Preposition
 {

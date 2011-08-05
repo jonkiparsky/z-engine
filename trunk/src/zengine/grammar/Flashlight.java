@@ -12,6 +12,6 @@ public class Flashlight extends Noun
 		super ("FLASHLIGHT");
 		plural = false;
 		state = "off";
-		acceptable.add(None.class);
+		//acceptable.add(None.class);
 	}	
 }

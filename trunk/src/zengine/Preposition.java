@@ -1,6 +1,6 @@
 package zengine;
 
-abstract class Preposition extends Grammar
+public abstract class Preposition extends Grammar
 {
 	String s;
 
