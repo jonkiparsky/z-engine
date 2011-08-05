@@ -1,0 +1,28 @@
+#summary So everything is centralized.
+
+= Formatting =
+
+*Feature To Implement*
+
+*Current Status:* Not Started / In Development / In Testing / Done
+
+*Date Started:* 01/01/2011
+
+*By:* //sign
+
+*Other Details:*
+
+----
+
+
+= To-Do List =
+
+*Logging System*
+
+*Current Status:* Not Started
+
+*Date Started:*
+
+*By:*
+
+*Other Details:* So that error messages don't contain whole stack traces with exceptions. Makes debugging easier.
