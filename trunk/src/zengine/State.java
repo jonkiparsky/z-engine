@@ -59,6 +59,34 @@ public class State
 		}
 		else current_loc.drop(n);
 	}
+        
+        public void turn (Noun i, Preposition p)
+        {
+                if (inventory.containsKey(i.s))
+                {
+                        // Can only be turned on or off
+                        if ((p.getClass() == zengine.grammar.On.class) || 
+                            (p.getClass() == zengine.grammar.Off.class))
+                        {
+                                if (!i.state.equals(p.toString()))
+                                {
+                                        i.state = p.s;
+                                        System.out.println(i.itemDescription());
+                                        return;
+                                }
+                                System.out.println(i + " is already " + p.toString());
+                        }
+                        else
+                            System.out.println("You can't do that to " + i);
+                }
+                else
+                {
+                    if (!i.plural)
+                        System.out.println("You don't have a " + i + " in your inventory.");
+                    else
+                        System.out.println("You don't have " + i + " in your inventory.");
+                }
+        }
 
 /*	
 	public void inventory()

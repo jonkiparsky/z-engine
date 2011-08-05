@@ -80,6 +80,15 @@ public class NPhrase extends Grammar
                 return false;
         }
         
+        public void execute()
+        {
+            if (verb.accept(noun))
+                    if (verb.getClass() == zengine.grammar.Turn.class)
+                            verb.execute(prep);
+                    else
+                            verb.execute();
+        }
+        
         public boolean accept (ArrayList<Grammar> g)
         {
                 for (Grammar gram : g)

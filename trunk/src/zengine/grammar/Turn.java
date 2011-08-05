@@ -27,11 +27,11 @@ public class Turn extends Verb
 
 		else return false;
 	}
-	public void execute()
+	public void execute(Preposition prep)
 	{
 		
-		ZEngineMain.state.take(noun);
-	}	
+		ZEngineMain.state.turn(noun, prep);
+	}
 
 }
 
