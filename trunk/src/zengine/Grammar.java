@@ -2,6 +2,7 @@ package zengine;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
 * Base class for grammar items
@@ -11,16 +12,29 @@ public abstract class Grammar
 	protected boolean error;
 	protected String name;
 	protected ArrayList<Grammar> frame;
-	protected Class acceptable;	
+	protected ArrayList<Class> acceptable;
+	protected HashMap<String, Grammar> complements;
+		//complements might not be the right word...
 
 	public Grammar()
 	{
 		error = false;	
 		this.frame = new ArrayList<Grammar>();
+		this.acceptable = new ArrayList<Class>();
+		this.complements = new HashMap<String, Grammar>();
 	}
 	public  boolean accept(Grammar g)
 	{
-		return  acceptable.isAssignableFrom(g.getClass());			
+		for (Class c : acceptable)
+		{
+			if  (c.isAssignableFrom(g.getClass()))
+			{
+				complements.put (c.getName(), g);
+				return true;
+			}			
+		}	
+		return false;
+		
 	}
 
 	protected void execute()
