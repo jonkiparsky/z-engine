@@ -13,7 +13,7 @@ public class Inventory extends Verb
 	public Inventory()
 	{
 		super ("INVENTORY");
-		acceptable = null;
+		acceptable.add(None.class);
 
 	}
 /*

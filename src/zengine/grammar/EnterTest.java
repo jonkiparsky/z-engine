@@ -12,7 +12,7 @@ public class EnterTest extends Verb
 	public EnterTest()
 	{
 		super("ENTERTEST");
-		acceptable = None.class;
+		acceptable.add(None.class);
 	}
 
 

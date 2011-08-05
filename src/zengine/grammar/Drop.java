@@ -15,7 +15,7 @@ public class Drop extends Verb
 	public Drop()
 	{
 		super ("DROP");
-		this.acceptable = Noun.class;
+		this.acceptable.add(Noun.class);
 	}
 	public Drop(Grammar g)
 	{

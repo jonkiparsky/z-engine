@@ -13,7 +13,7 @@ public class Go extends Verb
 	public Go()
 	{
 		super("GO");
-		acceptable = Direction.class;
+		acceptable.add( Direction.class);
 	}
 	public Go(Grammar g)
 	{
@@ -22,7 +22,11 @@ public class Go extends Verb
 	
 	public void execute()
 	{
-		if (direction==null)
+	
+		direction = (Direction)complements.get("Direction");
+
+
+			if (direction==null)
 		{
 			System.out.println("I don't know how to do that");
 			return;
@@ -38,8 +42,10 @@ public class Go extends Verb
 		}
 	}
 
+/*
 	public boolean accept(Grammar g)
 	{
+	
 		if (!super.accept(g))
 		{
 			return false;
@@ -48,7 +54,7 @@ public class Go extends Verb
 			return true;
 	
 	}
-
+*/
 // below are to be deleted
 /*	public Go(Direction d)
 	{
