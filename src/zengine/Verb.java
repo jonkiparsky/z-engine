@@ -27,6 +27,11 @@ public abstract class Verb extends Grammar
 	{
 		System.out.println("Don't know how to do "+s);
 	}
+        
+        public void execute(Preposition prep)
+        {
+            
+        }
 	
 	public String toString()
 	{

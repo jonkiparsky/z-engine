@@ -103,7 +103,7 @@ public class Parser
                 for (String s : move)
                         gram.add(tokenise(s));
                 NPhrase phrase = new NPhrase(move, gram);
-                System.out.println(phrase.toString());
+                phrase.execute();
         }
         
 	public void move()
