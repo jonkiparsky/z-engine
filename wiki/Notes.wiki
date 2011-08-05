@@ -7,6 +7,8 @@ If there's an actual bug, it should go in the bug tracking.
 
 = Notes =
 
+*8/5/2011 (GMT) - Snow:* So far, Phrases for Nouns works okay, from the little I've tested it. It doesn't even matter which order you have input, so Turn On Flashlight and Turn Flashlight On will both work. Although, so will Flashlight On Turn, so that will need to be fixed. There's likely more errors that will need to be handled that I haven't found yet as well. Next step is to try and incorporate PPhrases so that you can add on to the NPhrases to make sure it works as planned.
+
 *8/4/2011 (EDT) - jpk:* TO DO - logging. Would be nice to be able to log errors and not have to get the whole stack trace on an exception. 
 
 
