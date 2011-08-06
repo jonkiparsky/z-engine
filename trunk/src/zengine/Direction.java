@@ -6,12 +6,12 @@ import zengine.grammar.Go;
 */
 public abstract class Direction extends Grammar
 {
-	String s;
+	String name;
 
-	public Direction(String s )
+	public Direction(String name)
 	{
 		super();
-		this.s=s;
+		this.name=name;
 
 		this.acceptable.add(None.class);
 	}
