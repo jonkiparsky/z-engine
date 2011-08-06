@@ -21,10 +21,8 @@ public class Go extends Verb
 	}
 	
 	public void execute()
-	{
-	
-		direction = (Direction)complements.get("Direction");
-
+        {
+                direction = (Direction) complements.get("zengine.Direction");
 
 			if (direction==null)
 		{
