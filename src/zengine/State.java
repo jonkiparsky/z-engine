@@ -88,15 +88,6 @@ public class State
                 }
         }
 
-/*	
-	public void inventory()
-	{
-		for (String s: inventory.keySet())
-		{
-			System.out.println("You have "+s+". "+inventory.get(s).itemDescription());
-		}
-	}
-*/
     public void inventory()
     {
         for (String s: inventory.keySet())
