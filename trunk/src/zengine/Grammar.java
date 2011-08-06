@@ -25,11 +25,11 @@ public abstract class Grammar
 	}
 	public  boolean accept(Grammar g)
 	{
-		for (Class c : acceptable)
+		for (Class c : this.acceptable)
 		{
 			if  (c.isAssignableFrom(g.getClass()))
 			{
-				complements.put (c.getName(), g);
+				this.complements.put (c.getName(), g);
 				return true;
 			}			
 		}	

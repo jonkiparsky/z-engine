@@ -29,6 +29,7 @@ public class ZEngineMain
 			parser.test();
 		}
 		while (true) 
- 			parser.movePhrase();	
+ 		//	 parser.movePhrase();
+			parser.makeMove();	
 	}
 }

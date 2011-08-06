@@ -10,44 +10,64 @@ public class Sentence extends Grammar
 {
 	private Grammar current;
 
-	public Sentence()
+	private Sentence(Class c, Grammar g)
 	{
 		super();
 		acceptable.add(Verb.class);
-		acceptable.add(Direction.class);		
-		current = this;
+		acceptable.add(Direction.class);
+		current = g;
+		complements.put(c.getName(), g);
+		System.out.println("initiated Sentence with "+g.toString());
 	}
 
 
+	protected static Sentence getSentence(Grammar g)
+	{
+			if (Verb.class.isAssignableFrom(g.getClass()))
+			{
+				return new Sentence(Verb.class,g);
+			}
+			if (Direction.class.isAssignableFrom(g.getClass()))
+			{
+				return new Sentence(Direction.class, g);
+			}
+
+		return null;
+	}
+
 	public boolean accept(Grammar g)
 	{
-		if (current == this)
+		StringBuffer sb= new StringBuffer();
+		for(String s: complements.keySet())
 		{
-			for (Class c : acceptable)
-	      {
-   	      if  (c.isAssignableFrom(g.getClass()))
-      	   {
-         	   complements.put(c.getName(),g);
-					current = g;
-            	return true;
-    	    	}
-      	}
-      return false;
+			sb.append(complements.get(s).toString());
+		}
+	
+		System.out.println("Sentence.accept("+g.toString()+") complements = "+
+			sb.toString()+ " current = " +current);
+			
+		if (current == null) return false;
+
+		boolean accepted = current.accept(g); 
+
+		
+
+	 	if (accepted)
+		{
+			System.out.println("accepted " + g.toString());
+			System.out.println(g.getClass().toString());
+			current=g;
+			System.out.println("Result = true");
+			return true;
+			
 
 		}
 		else 
-		{
-		 	if (current.accept(g))
-			{
-				current=g;
-				return true;
-			}
-			else 
-			{	
-				return false;
-			}
-		}	
-	
+		{	
+			System.out.println("Result = false");
+			return false;
+		}
+
 	}
 		
 	protected void execute()

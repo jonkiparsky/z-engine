@@ -55,6 +55,8 @@ public class Parser
 	public void makeMove()
 	{
 		String input;
+		
+		StringBuffer tokens = new StringBuffer();
 		do
 		{
 			System.out.print(">> ");
@@ -62,10 +64,29 @@ public class Parser
 		} while (input.length() == 0);
 		
 		String[] move = input.split("\\W");
-                Sentence sentence = new Sentence();
-		for (String word: move)
+		
+      Sentence sentence = Sentence.getSentence(tokenise(move[0]));
+		
+		if (sentence == null)
+		{
+			error ("error 1");
+			return;
+		}
+
+		if (move.length <2) 
+		{
+			sentence.execute();
+			return;
+		}
+	
+		String[] m = new String[move.length - 1];		
+		System.arraycopy(move, 1, m, 0, move.length - 1);
+				
+		for (String word: m)
 		{
 			Grammar g = tokenise(word);
+			tokens.append(g.toString());
+			tokens.append(", ");
 			if (g == null) 
 			{
 				parseFail(word);
@@ -78,14 +99,17 @@ public class Parser
 				break;
 			}
 		}
-		if (sentence.accept(new None()))
+		if (sentence.accept(tokenise("None")))
 		{
+			System.out.println(tokens.toString());
+			
 			sentence.execute();
 		}
 		else
 		{
-			error("premature end of input");
+			error("premature end of input: " + tokens.toString());
 		}
+
 	}
 
 	/*
@@ -300,6 +324,11 @@ gram = tokenise("take");
 		g = tokenise("flashlight");
 		if (gram.accept(g))
 			gram.execute();
+
+
+		gram = tokenise("North");
+		g = tokenise("none");
+		error("North.accept(none) returns: "+gram.accept(g));
 
 
 /*
