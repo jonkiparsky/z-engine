@@ -10,23 +10,13 @@ public class Turn extends Verb
 	public Turn()
 	{
 		super ("TURN");
+		acceptable.add(Noun.class);
 	}
 	public Turn(Grammar g)
 	{
 		
 	}
 
-	public boolean accept(Grammar g)
-	{
-		if (g instanceof Noun)
-		{
-			this.noun = (Noun) g;
-			return true;
-			
-		}
-
-		else return false;
-	}
 	public void execute(Preposition prep)
 	{
 		
