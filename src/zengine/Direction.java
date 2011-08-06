@@ -18,7 +18,7 @@ public abstract class Direction extends Grammar
 	
 	public String toString()
 	{
-		return s;
+		return name;
 	}
 
 	public void execute()
