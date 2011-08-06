@@ -10,29 +10,28 @@ public abstract class Noun extends Grammar
 	public Noun(String s)
 	{
 		super();
-		this.s=s;
-                desc = "";
-                //acceptable.add(None.class);
+		this.s=s;	
+		desc = "";
 	}
 
 	public boolean plural()
 	{
 		return plural;
 	}
-
+/*
 	public boolean accept(Grammar g)
 	{
-                /*for (Class c : acceptable)
+                for (Class c : acceptable)
                 {
                         if (g.getClass() == c)
                             return true;
                 }
-                return false;*/
+                return false;
                 if (super.accept(g))
                     return true;
                 return false;
 	}
-
+*/
 	public String getState()
 	{
 		return state;
