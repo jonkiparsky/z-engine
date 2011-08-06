@@ -17,6 +17,28 @@
 
 = To-Do List =
 
+
+*Abbreviations*
+
+*Current Status:* Not Started 
+
+*Date Started:* 
+
+*By:* //sign
+
+*Other Details:* Abbreviations for common commands. 'n' for north, 't' for take, etc.
+
+
+*Externalize strings*
+
+*Current Status:* Not Started 
+
+*Date Started:*
+
+*By:* //sign
+
+*Other Details:* No literal strings should be stored in source code.
+
 *Logging System*
 
 *Current Status:* Not Started
