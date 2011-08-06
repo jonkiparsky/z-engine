@@ -15,16 +15,16 @@ public class Go extends Verb
 		super("GO");
 		acceptable.add( Direction.class);
 	}
-	public Go(Grammar g)
+	public Go(Direction g)
 	{
-
+		super("GO");
+			this.complements.put(Direction.class.getName(), g);
 	}
 	
 	public void execute()
 	{
 
-	
-		direction = (Direction)complements.get("zengine.Direction");
+			direction = (Direction)complements.get("zengine.Direction");
 
 			if (direction==null)
 		{
