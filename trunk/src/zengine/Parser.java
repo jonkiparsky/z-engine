@@ -16,14 +16,21 @@ public class Parser
         
         ArrayList<String> validWords;
 
+	/**
+	* The no-arg constructor returns a Parser prepared to accept 
+	* input from STDIN
+	*/
 	public Parser()
 	{
 		error = false;
 		in = new Scanner(System.in);
-                initWords();
-                
+                initWords();           
 	}	
 
+	/**
+	* Creates a parser on a particular String. This may be a candidate for
+	* deletion, although it could be useful for testing.
+	*/
 	public Parser(String command)
 	{
 		error = false;
@@ -129,7 +136,9 @@ public class Parser
                 NPhrase phrase = new NPhrase(move, gram);
                 phrase.execute();
         }
-        
+       
+
+		// delete? 
 	public void move()
 	{
 		
@@ -154,6 +163,8 @@ public class Parser
                 } while (move.length >= 2);
 	}
         
+		// delete?
+
         private ArrayList<String> updateBuffer(String[] move)
         {
                 ArrayList<String> newMove = new ArrayList<String>();
@@ -178,36 +189,7 @@ public class Parser
         }
 
 
-	public Verb parse(String verb, String complement)
-	{
-		Verb ret=null;
-		Grammar v = tokenise(verb);
-		Grammar c = tokenise(complement);
-		try{
-		 ret = (Verb)v.getClass().getConstructor(c.getClass().
-						getSuperclass()).newInstance(c);
-		}
 
-		catch (Exception e)
-		{
-			System.out.println("Parse fuckup!");
-			e.printStackTrace();
-
-	
-		}
-
-		return ret;
-	}
-
-
-	/**
-	* Attempting to force a Grammar item into its base class
-	* This definitively does not work.
-	*/
-	private <T> T  forceType(T word)
-	{
-		return word;
-	}
 
 	public void parseFail(String s)
 	{
@@ -225,7 +207,8 @@ public class Parser
 		Class c; 
 		Grammar g=null;
 		try {
-                        //if (input == "None")
+							// simpler to just put "None" in grammar package? -jpk
+						
                         if (input.equals("None"))
                         {
                                 c = Class.forName("zengine."+input);
