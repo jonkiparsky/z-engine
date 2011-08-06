@@ -21,8 +21,10 @@ public class Go extends Verb
 	}
 	
 	public void execute()
-        {
-                direction = (Direction) complements.get("zengine.Direction");
+	{
+
+	
+		direction = (Direction)complements.get("zengine.Direction");
 
 			if (direction==null)
 		{
@@ -30,6 +32,8 @@ public class Go extends Verb
 			return;
 		}
 
+		
+		
 		if (ZEngineMain.state.current_loc.getExit(direction) == null)
 		{	
 			System.out.println("I can't see an exit that way");
@@ -40,39 +44,6 @@ public class Go extends Verb
 		}
 	}
 
-/*
-	public boolean accept(Grammar g)
-	{
-	
-		if (!super.accept(g))
-		{
-			return false;
-		}
-			this.direction=(Direction) g;
-			return true;
-	
-	}
-*/
-// below are to be deleted
-/*	public Go(Direction d)
-	{
-		super ("GO");
-		this.direction = d;
-	}
-*/
-/*	public Go(Grammar g)
-	{
-		this.direction=null;
-	}
-
-*/
-
-/*	public void put(Direction token)
-	{
-		System.out.println("Called into Go!");	
-			this.direction = token;
-	}
-*/
 
 
 }

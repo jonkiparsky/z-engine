@@ -9,7 +9,7 @@ public class ZEngineMain
 
 	public static void main(String[] args)
 	{
-		//if (args.length> 0) test = true;
+		if (args.length> 0) test = true;
                 test = true;
 		System.out.println("test = " +test);
 		ZEngineMain main = new ZEngineMain();

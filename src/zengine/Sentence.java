@@ -60,7 +60,14 @@ public class Sentence extends Grammar
 			System.out.println("accepted " + g.toString());
 			System.out.println(g.getClass().toString());
 			current=g;
-			System.out.println("Result = true");
+
+			sb= new StringBuffer();
+      	for(String s: complements.keySet())
+      	{
+        		 sb.append(complements.get(s).toString());
+      	}
+
+			System.out.println("Result = true. Complements = "+ sb.toString());
 			return true;
 			
 
