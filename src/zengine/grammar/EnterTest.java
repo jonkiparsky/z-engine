@@ -6,17 +6,17 @@ import zengine.*;
 /**
 * Run a self-test, as defined in Parser.  
 */
-public class EnterTest extends Verb
+public class Entertest extends Verb
 {
 	
-	public EnterTest()
+	public Entertest()
 	{
 		super("ENTERTEST");
 		acceptable.add(None.class);
 	}
 
 
-	public EnterTest(Grammar g)
+	public Entertest(Grammar g)
 	{
 
 	}
