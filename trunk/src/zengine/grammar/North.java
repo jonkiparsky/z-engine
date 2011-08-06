@@ -7,7 +7,6 @@ public class North extends Direction
 	public North()
 	{
 		super ("NORTH");
-
 		acceptable.add(None.class);
 	}
 

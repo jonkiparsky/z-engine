@@ -6,5 +6,6 @@ public class West extends Direction
 	public West()
 	{
 		super ("WEST");
+		acceptable.add(None.class);
 	}
 }
