@@ -65,7 +65,7 @@ public class Parser
 		
 		String[] move = input.split("\\W");
 		
-      Sentence sentence = Sentence.getSentence(tokenise(move[0]));
+                Sentence sentence = Sentence.getSentence(tokenise(move[0]));
 		
 		if (sentence == null)
 		{
@@ -80,7 +80,7 @@ public class Parser
 		}
 	
 		String[] m = new String[move.length - 1];		
-		System.arraycopy(move, 1, m, 0, move.length - 1);
+		System.arraycopy(move, 1, m, 0, m.length);
 				
 		for (String word: m)
 		{
@@ -224,10 +224,19 @@ public class Parser
 		input = correctCase(input);
 		Class c; 
 		Grammar g=null;
-		try{
-		c = Class.forName("zengine.grammar."+input);
-		g = (Grammar)c.newInstance();
-		}
+		try {
+                        //if (input == "None")
+                        if (input.equals("None"))
+                        {
+                                c = Class.forName("zengine."+input);
+                                g = (Grammar)c.newInstance();
+                        }
+                        else
+                        {
+                                c = Class.forName("zengine.grammar." + input);
+                                g = (Grammar) c.newInstance();
+                        }
+                }
 		catch (Exception e)
 		{
 			error = true;

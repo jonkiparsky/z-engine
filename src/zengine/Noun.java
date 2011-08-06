@@ -12,6 +12,7 @@ public abstract class Noun extends Grammar
 		super();
 		this.s=s;
                 desc = "";
+                //acceptable.add(None.class);
 	}
 
 	public boolean plural()
@@ -21,7 +22,15 @@ public abstract class Noun extends Grammar
 
 	public boolean accept(Grammar g)
 	{
-		return false;
+                /*for (Class c : acceptable)
+                {
+                        if (g.getClass() == c)
+                            return true;
+                }
+                return false;*/
+                if (super.accept(g))
+                    return true;
+                return false;
 	}
 
 	public String getState()

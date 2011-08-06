@@ -22,6 +22,7 @@ public abstract class Grammar
 		this.frame = new ArrayList<Grammar>();
 		this.acceptable = new ArrayList<Class>();
 		this.complements = new HashMap<String, Grammar>();
+                acceptable.add(None.class);
 	}
 	public  boolean accept(Grammar g)
 	{

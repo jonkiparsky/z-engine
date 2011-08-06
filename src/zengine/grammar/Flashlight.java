@@ -12,6 +12,6 @@ public class Flashlight extends Noun
 		super ("FLASHLIGHT");
 		plural = false;
 		state = "OFF";
-		//acceptable.add(None.class);
+		acceptable.add(zengine.None.class);
 	}	
 }

@@ -129,13 +129,13 @@ public abstract class Room
 	public Noun take(Noun n)
 	{
 			
-		n  = items.get(n.toString());		
+		n  = items.remove(n.toString());		
 		return n;
 	}
 
 	public void drop(Noun n)
 	{
-		items.put (n.toString(), n);
+		items.put(n.toString(), n);
 	}
 
 	public String toString()

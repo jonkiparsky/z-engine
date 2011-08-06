@@ -38,8 +38,11 @@ public class Sentence extends Grammar
 	public boolean accept(Grammar g)
 	{
 		StringBuffer sb= new StringBuffer();
+                
+                boolean accepted = current.accept(g);
 		for(String s: complements.keySet())
 		{
+                        
 			sb.append(complements.get(s).toString());
 		}
 	
@@ -48,7 +51,7 @@ public class Sentence extends Grammar
 			
 		if (current == null) return false;
 
-		boolean accepted = current.accept(g); 
+		//boolean accepted = current.accept(g); 
 
 		
 
