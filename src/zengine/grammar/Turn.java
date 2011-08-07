@@ -3,24 +3,34 @@ package zengine.grammar;
 import zengine.*;
 
 public class Turn extends Verb
-
-
 {
-
+        Preposition prep;
+        
 	public Turn()
 	{
 		super ("TURN");
-		acceptable.add(Noun.class);
+		acceptable.add(Preposition.class);
 	}
-	public Turn(Grammar g)
+        
+        public Turn(Grammar g)
+        {
+            
+        }
+        
+	public boolean accept(Grammar g)
 	{
-		
+		if (g instanceof Preposition)
+                {
+                        prep = (Preposition) g;
+                        return true;
+                }
+                return false;
 	}
 
-	public void execute(Preposition prep)
+	public void execute()
 	{
 		
-		ZEngineMain.state.turn(noun, prep);
+		ZEngineMain.state.turn(prep);
 	}
 
 }

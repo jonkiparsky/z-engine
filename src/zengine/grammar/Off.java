@@ -10,6 +10,7 @@ public class Off extends Preposition
 	public Off()
 	{
 		super ("OFF");
+                acceptable.add(zengine.Noun.class);
 	}
 
 }

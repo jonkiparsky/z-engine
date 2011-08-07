@@ -12,7 +12,7 @@ public class Kitchen extends Room
         {
                 super("Kitchen");
                 description = "You are in a kitchen.";
-                items.put("KNIFE", new Knife());
+                items.put("KNIFE", new Knife());    
         }
         
         public void setExits()
