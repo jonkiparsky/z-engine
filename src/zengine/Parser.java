@@ -1,17 +1,21 @@
-    package zengine;
+package zengine;
 
 import java.lang.reflect.*;
 import java.util.HashMap;
 import java.lang.Class;
 import java.util.Scanner;
+import java.util.Properties;
 import zengine.grammar.*;
+import zengine.properties.PropertyLoader;
 
 public class Parser
 {
 	private boolean error;
 	Scanner scan;
 	Scanner in;
-        
+	private Properties macros;
+
+       
 	/**
 	* The no-arg constructor returns a Parser prepared to accept 
 	* input from STDIN
@@ -20,7 +24,7 @@ public class Parser
 	{
 		error = false;
 		in = new Scanner(System.in);
-          
+      loadProperties();
 	}	
 
 	/**
@@ -31,6 +35,8 @@ public class Parser
 	{
 		error = false;
 		scan = new Scanner(command);
+	
+		loadProperties();
 	}
 
 	/**
@@ -54,10 +60,14 @@ public class Parser
 		
 		String[] move = input.split("\\W");
 		
-		Grammar token = tokenise(move[0]);
+		String first = move[0];
+		if (macros.get(first) != null)
+			first =(String) macros.get(first);
+				
+		Grammar token = tokenise(first);
 		if (token==null) 
 		{	
-
+			
 			error ("I don't recognize that word - see parser.makeMove");
 			return;
 		}
@@ -154,8 +164,9 @@ public class Parser
                 }
 		catch (ClassNotFoundException cnfe)
 		{
-			error = true;
-			System.out.println("I don't know what "+input+" means!");
+				System.out.println("I don't know what "+input+" means!");
+				error = true;
+			
 		}
 		catch (InstantiationException ie)
 		{	
@@ -192,6 +203,16 @@ public class Parser
 	{
 		System.out.println(s);
 	}	
+
+	private void loadProperties()
+	{
+
+		String macrosFileName= "macros";
+		macros = PropertyLoader.getProperties(macrosFileName);
+		System.out.println(macros.get("l"));
+
+	}
+
 
 	public void test()
 	{
