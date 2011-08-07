@@ -12,7 +12,7 @@ public class Flashlight extends Noun
 	{
 		super ("FLASHLIGHT");
 		plural = false;
-		super.setState(new Off());
+		setState(new Off());
 		acceptable.add(zengine.None.class);
 	}
         

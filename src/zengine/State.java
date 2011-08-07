@@ -99,5 +99,11 @@ public class State
 	{	
 		current_loc.search();
 	}
+        
+        public void quit()
+        {
+                System.out.println("Goodbye!");
+                System.exit(0);
+        }
 
 }
