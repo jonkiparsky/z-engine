@@ -14,6 +14,7 @@ public abstract class Room
 	Room startRoom;
 	
 	protected ArrayList<Noun> hiddenObjects;
+	protected ArrayList<Direction> hiddenExits;
 	
 	public Room (String name)
 	{
@@ -21,6 +22,7 @@ public abstract class Room
 		exits=new HashMap<String, Room>();
 		items = new HashMap<String, Noun>();
 		this.hiddenObjects = new ArrayList<Noun>();
+		this.hiddenExits = new ArrayList<Noun>();
 	}
 
 	public Room getExit(String direction)
@@ -134,6 +136,12 @@ public abstract class Room
 		{
 			System.out.println("A careful search of the room reveals nothing...");
 		}
+		for (Direction d: hiddenExits)
+		{
+			exits.put(d.toString(), n);
+			System.out.println("You find an exit to the  "+d.toString()+"!");
+		}
+		hiddenExits.clear();
 		for (Noun n: hiddenObjects)
 		{
 			items.put(n.toString(), n);

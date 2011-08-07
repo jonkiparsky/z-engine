@@ -82,7 +82,11 @@ public class Parser
 		for (String word: m)
 		{
 			Grammar g = tokenise(word);
-			if (error) break;
+			if (error) 
+			{
+				error = false;
+				break;
+			}
 			tokens.append(g.toString());
 			tokens.append(", ");
 			if (g == null) 
@@ -101,6 +105,7 @@ public class Parser
 		if (error)
 		{
 			error("I don't know what that word means: see parser.makeMove");
+			error= false;
 			return;
 		}
 		
