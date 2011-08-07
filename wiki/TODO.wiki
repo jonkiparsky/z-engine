@@ -26,6 +26,8 @@
 
 *Other Details:* Implement handling of invalid input so that it doesn't produce run-time errors.
 
+----
+
 *Abbreviations*
 
 *Current Status:* Not Started 
@@ -36,6 +38,7 @@
 
 *Other Details:* Abbreviations for common commands. 'n' for north, 't' for take, etc.
 
+----
 
 *Externalize strings*
 
@@ -46,6 +49,8 @@
 *By:* //sign
 
 *Other Details:* No literal strings should be stored in source code.
+
+----
 
 *Logging System*
 
