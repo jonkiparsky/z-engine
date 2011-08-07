@@ -20,6 +20,7 @@ public class Hall extends Room
 	public void setExits()
 	{
 		setExit("NORTH", Room.getRoom("LivingRoom"));
+                setExit("SOUTH", Room.getRoom("Kitchen"));
 	}
 
 
