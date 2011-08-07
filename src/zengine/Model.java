@@ -4,6 +4,8 @@ import java.util.*;
 import zengine.grammar.Hall;
 import zengine.grammar.LivingRoom;
 import zengine.grammar.Kitchen;
+import zengine.grammar.Cellar;
+import zengine.grammar.Attic;
 /**
 * The state of the game as it stands
 */
@@ -27,6 +29,8 @@ public class Model
 		rooms.put("Hall", new Hall());
 		rooms.put("LivingRoom", new LivingRoom());
                 rooms.put("Kitchen", new Kitchen());
+                rooms.put("Cellar", new Cellar());
+                rooms.put("Attic", new Attic());
 
 		for (String s : rooms.keySet())
 		{

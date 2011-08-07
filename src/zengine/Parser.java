@@ -122,12 +122,6 @@ public class Parser
 
 	}
 
-	/*
-	*	There are currently three methods for accepting a move. Make the 
-	*	appropriate change in ZEngineMain
-         * 
-         *      movePhrase() used to test phrases.
-	*/
         
 	public void parseFail(String s)
 	{
@@ -271,13 +265,6 @@ gram = tokenise("take");
 		error("North.accept(none) returns: "+gram.accept(g));
 
 
-/*
-		System.out.println(">>entertest flash");	
-		gram = tokenise("entertest");
-		g = tokenise("flashlight");
-		if (gram.accept(g))
-			gram.execute();
-*/
 		g = tokenise("inventory");
 		g.execute();
 }
