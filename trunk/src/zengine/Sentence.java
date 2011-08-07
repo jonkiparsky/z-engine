@@ -82,9 +82,6 @@ public class Sentence extends Grammar
 		
 	protected void execute()
 	{
-
-		//there's got to be a better way to do this
-
 		for (String s: complements.keySet())
 		{
 			complements.get(s).execute();

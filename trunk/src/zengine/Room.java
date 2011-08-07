@@ -14,11 +14,6 @@ public abstract class Room
 	Room startRoom;
 
 	
-	private void test()
-	{
-		
-	}
-
 	public Room (String name)
 	{
 		this.name = name;
@@ -53,18 +48,6 @@ public abstract class Room
 		return sb.toString();
 	}
 	
-	/*public String listItems()
-	{
-		StringBuilder sb = new StringBuilder("There is ");
-		for (String item: items.keySet())
-		{
-			sb.append(item+", ");
-		}
-		sb.append(" here");
-		return sb.toString();
-	}
-*/
-
     public String listItems()
     {
             int itemCount = items.size();
@@ -85,7 +68,7 @@ public abstract class Room
                     else
                     {
                             sb.append(item + ", ");
-                            // counts down as items are appended, so last item is always prefixed by and.
+         // counts down as items are appended, so last item is always prefixed by and.
                             itemCount--;
                     }
             }
@@ -146,11 +129,3 @@ public abstract class Room
 
 
 
-/*
-class TesterRoom extends Room
-{
-	protected TesterRoom()
-	{
-		super("Tester");
-	}
-}*/
