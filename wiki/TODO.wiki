@@ -11,7 +11,7 @@
 *By:* //sign
 
 *Other Details:*
-
+= To-Do List =
 ----
 *Long/short descriptions*
 
@@ -24,9 +24,6 @@
 *Other Details:* Many games have two levels of description, where the first is a short description  ("You are in an office") and the latter is a more detailed description ("The walls are covered with pictures of a happy family, and there is a desk with lots of papers on it. One picture looks especially large and suggestive of something behind it")
 --------
 
-
-
-= To-Do List =
 *Invalid Input*
 
 *Current Status:* Done
