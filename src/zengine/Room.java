@@ -12,13 +12,15 @@ public abstract class Room
 	protected State state;		
 	protected String description;
 	Room startRoom;
-
+	
+	protected ArrayList<Noun> hiddenObjects;
 	
 	public Room (String name)
 	{
 		this.name = name;
 		exits=new HashMap<String, Room>();
 		items = new HashMap<String, Noun>();
+		this.hiddenObjects = new ArrayList<Noun>();
 	}
 
 	public Room getExit(String direction)
@@ -125,6 +127,22 @@ public abstract class Room
 	{
 		return this.name;
 	}
+	
+	public void search()
+	{
+		if (hiddenObjects.size() == 0)
+		{
+			System.out.println("A careful search of the room reveals nothing...");
+		}
+		for (Noun n: hiddenObjects)
+		{
+			items.put(n.toString(), n);
+			System.out.println("You find a "+n.toString()+"!");
+		}
+		hiddenObjects.clear();
+		
+	}
+	
 }
 
 

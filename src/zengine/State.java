@@ -92,4 +92,9 @@ public class State
     	}
 	}
 
+	public void search()
+	{	
+		current_loc.search();
+	}
+
 }

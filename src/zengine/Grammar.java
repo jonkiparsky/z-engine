@@ -42,24 +42,11 @@ public abstract class Grammar
 	{
 		System.out.println("Can't execute "+ this.name);
 	}
-/*	
-	protected Grammar expect (Grammar parent, Grammar expected)
+
+	public String toString()
 	{
-		return null;
+		return name;
 	}
-*/		
-/*	public void put(Grammar g)
-	{
-		System.out.println("called Grammar.put(): "+g.toString());
-		ZEngineMain.parser.parseFail(g);
-	}
-*/
-/*
-	protected boolean endOfString()
-	{
-		return true;
-	}
-*/
 	
 }
 

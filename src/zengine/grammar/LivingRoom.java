@@ -14,6 +14,7 @@ public class LivingRoom extends Room
    {
       super("Living Room");
 		description= "You are in the living room.";
+		hiddenObjects.add(new Banana());
    }
 	
 	public void setExits()
