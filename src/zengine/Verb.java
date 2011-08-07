@@ -2,7 +2,6 @@ package zengine;
 
 public abstract class Verb extends Grammar
 {
-	String s;
 	
 	protected Noun noun = null;	
 	protected PPhrase prepPhrase = null;
@@ -14,9 +13,9 @@ public abstract class Verb extends Grammar
 	}
 
 
-	public Verb(String s)
+	public Verb(String name)
 	{
-		this.s = s;
+		this.name = name;
 	}
 	
 	public Verb(Grammar g)
@@ -25,7 +24,7 @@ public abstract class Verb extends Grammar
 	
 	public void execute()
 	{
-		System.out.println("Don't know how to do "+s);
+		System.out.println("Don't know how to do "+name);
 	}
         
         public void execute(Preposition prep)
@@ -35,7 +34,7 @@ public abstract class Verb extends Grammar
 	
 	public String toString()
 	{
-		return (s);
+		return (name);
 	}
 
 

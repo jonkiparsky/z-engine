@@ -2,15 +2,14 @@ package zengine;
 
 public abstract class Noun extends Grammar
 {
-	protected String s;
-        protected String desc;
+	protected String desc;
 	protected String state;
 	protected boolean plural;
 
 	public Noun(String s)
 	{
 		super();
-		this.s=s;	
+		this.name = name;
 		desc = "";
 	}
 
@@ -18,20 +17,7 @@ public abstract class Noun extends Grammar
 	{
 		return plural;
 	}
-/*
-	public boolean accept(Grammar g)
-	{
-                for (Class c : acceptable)
-                {
-                        if (g.getClass() == c)
-                            return true;
-                }
-                return false;
-                if (super.accept(g))
-                    return true;
-                return false;
-	}
-*/
+
 	public String getState()
 	{
 		return state;
@@ -39,14 +25,13 @@ public abstract class Noun extends Grammar
 	
 	public String toString()
 	{
-		return s;
+		return name;
 	}
 
 	public String itemDescription()
 	{
-		String itemDescription = s;
 		if (state != null)
-			desc+="The "+ s+ " is " + state;
+			desc+="The "+ name + " is " + state;
 	
 		return (desc);
 	}

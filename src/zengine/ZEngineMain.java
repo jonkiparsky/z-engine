@@ -1,4 +1,10 @@
 package zengine;
+
+
+/**
+* Kickoff class for Z-Engine. This class does nothing but start the game; no
+* working code should lodge here.
+*/
 public class ZEngineMain
 {
 	Model model;
