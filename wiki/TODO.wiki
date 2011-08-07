@@ -16,7 +16,15 @@
 
 
 = To-Do List =
+*Invalid Input*
 
+*Current Status:* Not Started
+
+*Date Started:*
+
+*By:* //sign
+
+*Other Details:* Implement handling of invalid input so that it doesn't produce run-time errors.
 
 *Abbreviations*
 
