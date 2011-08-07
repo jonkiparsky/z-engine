@@ -2,23 +2,27 @@ package zengine;
 
 public abstract class Preposition extends Grammar
 {
-	String s;
-
+        Noun noun;
 
 	public Preposition(String s)
 	{
 		super();
-		this.s=s;
+		name = s;
 	}
 
 	public boolean accept(Grammar g)
 	{
-		return false;
+                if (g instanceof Noun)
+                {
+                        noun = (Noun) g;
+                        return true;
+                }
+                return false;
 	}
 
 	public String toString()
 	{
-		return s;
+		return name;
 	}
 
 
