@@ -25,8 +25,6 @@ public class Model
 	private static void loadActions()
 	{
 		rooms.put("Hall", new Hall());
-
-
 		rooms.put("LivingRoom", new LivingRoom());
                 rooms.put("Kitchen", new Kitchen());
 
