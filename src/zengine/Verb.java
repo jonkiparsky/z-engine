@@ -4,7 +4,6 @@ public abstract class Verb extends Grammar
 {
 	
 	protected Noun noun = null;	
-	protected PPhrase prepPhrase = null;
 	protected Direction dir = null;
 
 	public Verb()

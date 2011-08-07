@@ -31,8 +31,6 @@ public class Sentence extends Grammar
 			{
 				return new Sentence(Direction.class, g);
 			}
-                        if (Preposition.class.isAssignableFrom(g.getClass()))
-                            return new Sentence(Preposition.class, g);
 
 		return null;
 	}

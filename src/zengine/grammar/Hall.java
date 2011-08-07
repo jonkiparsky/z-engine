@@ -14,6 +14,7 @@ public class Hall extends Room
    {
       super ("Hall");
 	 	description ="You are in a hallway";
+                longDescription = "You are in a long, narrow hallway. There are ornate windows covering the walls, with armor statues between each.";
 		items.put("FLASHLIGHT", new Flashlight());
    }
 

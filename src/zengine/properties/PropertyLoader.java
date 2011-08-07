@@ -12,9 +12,9 @@ public class PropertyLoader {
 
  	public static Class<?> loaderLocation;
   	private static Map<String, Properties> propertiesMap;
-  	private static String propertyLocation = "src/zengine/properties/{0}.properties";
+  	private static String propertyLocation = "C:/users/dan/my documents/netbeansprojects/zengine/src/zengine/properties/{0}.properties";
 
-  	public PropertyLoader() {
+  	public PropertyLoader() {   
   		 propertiesMap = new TreeMap<String, Properties>();
   	}
 

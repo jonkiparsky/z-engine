@@ -34,8 +34,7 @@ public abstract class Grammar
 				return true;
 			}			
 		}	
-		return false;
-		
+		return false;		
 	}
 
 	protected void execute()

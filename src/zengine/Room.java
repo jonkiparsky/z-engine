@@ -6,12 +6,18 @@ import java.lang.Class;
 
 public abstract class Room
 {
-	
+        /**
+        * Used to determine what the player has done in the room. 
+        */
+        enum PlayerInteractionState { NOT_ENTERED, NEW_ENTERED, PREV_ENTERED }
+    
 	protected String name;
 	public HashMap<String, Room> exits;
 	public HashMap<String, Noun> items;
 	protected State state;		
 	protected String description;
+        protected String longDescription;
+        protected PlayerInteractionState interactState;
 	Room startRoom;
 	
 	protected ArrayList<Noun> hiddenObjects;
@@ -20,6 +26,7 @@ public abstract class Room
 	public Room (String name)
 	{
 		this.name = name;
+                interactState = PlayerInteractionState.NOT_ENTERED;
 		exits=new HashMap<String, Room>();
 		items = new HashMap<String, Noun>();
 		this.hiddenObjects = new ArrayList<Noun>();
@@ -58,12 +65,25 @@ public abstract class Room
 	
 	/**
 	* Constructs and returns a user-facing (formatted) String describing the
-	* room, including any objects present and visible.
+	* room, including any objects present and visible. Description varies
+        * based on interactState.
 	*/
 	public String description()
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.description+"\n");
+                switch (interactState)
+                {
+                    case NOT_ENTERED:
+                                if (longDescription != null)
+                                        sb.append(this.longDescription + "\n");
+                                else
+                                        sb.append(description + "\n");
+                                break;
+                    case NEW_ENTERED:
+                    case PREV_ENTERED:
+                                sb.append(this.description + "\n");
+                                break;
+                }
 		if (exits.size() == 0)
 		{
 			sb.append("You can't see any way out.");
@@ -210,7 +230,7 @@ public abstract class Room
 			for (String s: hiddenExits.keySet())
 			{
 				System.out.println("*");
-				exits.put(s, hiddenExits.get(s));
+                                setExit(s, hiddenExits.get(s));
 				System.out.println("You find an exit leading "+s.toString()+"!");
 				System.out.println(exits.get(s));
 			hiddenExits.clear();
