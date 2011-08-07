@@ -19,12 +19,6 @@ public class Turn extends Verb
         
 	public boolean accept(Grammar g)
 	{
-		/*if (g instanceof Preposition)
-                {
-                        prep = (Preposition) g;
-                        return true;
-                }
-                return false;*/
                 if (super.accept(g))
                 {
                         prep = (Preposition) g;

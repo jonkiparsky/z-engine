@@ -56,23 +56,24 @@ public class State
 	}
 	
 	public void turn (Preposition prep)
-	{
+	{  
+                Noun noun = prep.noun;
 		if (inventory.containsKey(prep.noun.name))
 		{
-                        if (prep.noun.state != prep.name)
+                        noun = inventory.get(prep.noun.name);
+                        if (noun.state != prep.name)
                         {
-                                prep.noun.state = prep.name;
-                                System.out.println(prep.noun.itemDescription());
+                                noun.setState(prep);
                         }
-                        else
-                                System.out.println(prep.noun.name + " is already " + prep.name);
+                        else if (noun.state == prep.name)
+                                System.out.println(noun.name + " is already " + prep.name);
                 }
                 else
                 {
-                        if (!prep.noun.plural)
-                                System.out.println("You don't have a " + prep.noun.name);
+                        if (!noun.plural)
+                                System.out.println("You don't have a " + noun.name);
                         else
-                                System.out.println("You don't have " + prep.noun.name);
+                                System.out.println("You don't have " + noun.name);
                 }
 	}
 
@@ -83,6 +84,8 @@ public class State
 			if (!inventory.get(s).plural)
 			{
 				System.out.println("You have a " + s + ".");
+                                if (inventory.get(s).state != null)
+                                    System.out.println(inventory.get(s).itemDescription());
 			}
 			else
 			{

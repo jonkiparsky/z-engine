@@ -22,6 +22,12 @@ public abstract class Noun extends Grammar
 	{
 		return state;
 	}
+        
+        
+        public void setState(Preposition prep)
+        {
+                System.out.println("You can't set " + name + " status to " + prep.name);
+        }
 	
 	public String toString()
 	{
@@ -31,7 +37,7 @@ public abstract class Noun extends Grammar
 	public String itemDescription()
 	{
 		if (state != null)
-			desc+="The "+ name + " is " + state;
+			desc = "The "+ name + " is " + state;
 	
 		return (desc);
 	}
