@@ -4,7 +4,7 @@ import zengine.Direction;
 
 public class Northeast extends Direction
 {
-	public Northeasteast(
+	public Northeast()
 
 	{
 		super ("NORTHEAST");
