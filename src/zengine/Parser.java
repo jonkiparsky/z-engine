@@ -72,7 +72,15 @@ public class Parser
 		
 		String[] move = input.split("\\W");
 		
-                Sentence sentence = Sentence.getSentence(tokenise(move[0]));
+		Grammar token = tokenise(move[0]);
+		if (token==null) 
+		{	
+
+			error ("I don't recognize that word - see parser.makeMove");
+			return;
+		}
+		
+		Sentence sentence = Sentence.getSentence(token);
 		
 		if (sentence == null)
 		{
@@ -92,6 +100,7 @@ public class Parser
 		for (String word: m)
 		{
 			Grammar g = tokenise(word);
+			if (error) break;
 			tokens.append(g.toString());
 			tokens.append(", ");
 			if (g == null) 
@@ -106,6 +115,13 @@ public class Parser
 				break;
 			}
 		}
+		
+		if (error)
+		{
+			error("I don't know what that word means: see parser.makeMove");
+			return;
+		}
+		
 		if (sentence.accept(tokenise("None")))
 		{
 			System.out.println(tokens.toString());
@@ -220,10 +236,20 @@ public class Parser
                                 g = (Grammar) c.newInstance();
                         }
                 }
-		catch (Exception e)
+		catch (ClassNotFoundException cnfe)
 		{
 			error = true;
-			System.out.println(e.toString());
+			System.out.println("I don't know what "+input+" means!");
+		}
+		catch (InstantiationException ie)
+		{	
+			error = true;
+			System.out.println("error: "+ ie.getMessage());
+		}
+		catch (IllegalAccessException iae)
+		{
+			error = true;
+			System.out.println("error: "+ iae.getMessage());
 		}
 		
 		return g;
