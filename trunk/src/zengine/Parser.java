@@ -4,7 +4,6 @@ import java.lang.reflect.*;
 import java.util.HashMap;
 import java.lang.Class;
 import java.util.Scanner;
-import java.util.ArrayList;
 import zengine.grammar.*;
 
 public class Parser
@@ -13,9 +12,6 @@ public class Parser
 	Scanner scan;
 	Scanner in;
         
-        
-        ArrayList<String> validWords;
-
 	/**
 	* The no-arg constructor returns a Parser prepared to accept 
 	* input from STDIN
@@ -24,7 +20,7 @@ public class Parser
 	{
 		error = false;
 		in = new Scanner(System.in);
-                initWords();           
+          
 	}	
 
 	/**
@@ -35,21 +31,7 @@ public class Parser
 	{
 		error = false;
 		scan = new Scanner(command);
-                initWords();
 	}
-        
-        private void initWords()
-        {
-            validWords = new ArrayList<String>();
-                validWords.add("go");
-                validWords.add("north");
-                validWords.add("south");
-                validWords.add("east");
-                validWords.add("west");
-                validWords.add("take");
-                validWords.add("flashlight");
-        }
-
 
 	/**
 	*	There are currently three methods for accepting a move. Make the 
@@ -142,71 +124,6 @@ public class Parser
          *      movePhrase() used to test phrases.
 	*/
         
-        public void movePhrase()
-        {
-                System.out.print(">> ");
-                String[] move = in.nextLine().split(" ");
-                ArrayList<Grammar> gram = new ArrayList<Grammar>();
-                for (String s : move)
-                        gram.add(tokenise(s));
-                NPhrase phrase = new NPhrase(move, gram);
-                phrase.execute();
-        }
-       
-
-		// delete? 
-	public void move()
-	{
-		
-		System.out.print(">> ");
-		String[] move = in.nextLine().split(" ");
-                ArrayList<String> moveBuffer = updateBuffer(move);
-                moveBuffer = validateBuffer(moveBuffer);
-                do
-                {
-                        Grammar g = tokenise(move[0]);
-                        if (g.accept(tokenise(move[1])))
-                        {
-                                g.execute();
-                        }
-                        move = new String[moveBuffer.size()];
-                        if (moveBuffer.size() >= 2)
-                        {
-                            //move = new String[moveBuffer.size()];
-                            move[0] = moveBuffer.remove(0);
-                            move[1] = moveBuffer.remove(0);
-                        }
-                } while (move.length >= 2);
-	}
-        
-		// delete?
-
-        private ArrayList<String> updateBuffer(String[] move)
-        {
-                ArrayList<String> newMove = new ArrayList<String>();
-                if (move.length >= 2)
-                {
-                        for (int i = 2; i != move.length; i++)
-                            newMove.add(move[i]);
-                }
-                return newMove;
-        }
-        
-        private ArrayList<String> validateBuffer(ArrayList<String> moveBuffer)
-        {
-                ArrayList<String> copy = (ArrayList<String>) moveBuffer.clone();
-                Grammar g = null;
-                for (String s : moveBuffer)
-                {
-                        if (!validWords.contains(s))
-                            copy.remove(s);
-                }
-                return copy;
-        }
-
-
-
-
 	public void parseFail(String s)
 	{
 		error("I don't know what "+s+" means");
