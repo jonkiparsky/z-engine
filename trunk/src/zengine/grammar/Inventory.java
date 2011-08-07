@@ -16,13 +16,7 @@ public class Inventory extends Verb
 		acceptable.add(None.class);
 
 	}
-/*
-	public boolean accept(Grammar g)
-	{
-		return false;
-		
-	}
-*/
+	
 	public void execute()
 	{
 		ZEngineMain.state.inventory();
