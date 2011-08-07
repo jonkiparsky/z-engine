@@ -29,11 +29,11 @@
 = To-Do List =
 *Invalid Input*
 
-*Current Status:* Not Started
+*Current Status:* Done
 
-*Date Started:*
+*Date Started:*8/6
 
-*By:* //sign
+*By:* jpk
 
 *Other Details:* Implement handling of invalid input so that it doesn't produce run-time errors.
 
