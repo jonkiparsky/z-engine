@@ -4,9 +4,12 @@ package zengine.grammar;
 import zengine.*;
 
 public class Take extends Verb
-
-
 {
+        public static String desc;
+        static
+        {
+                desc = " - Take\nUsage: Take (ITEM)\nExample: Take Flashlight\nDescription: Takes an item from the room you're in";
+        }
 
 	public Take()
 	{

@@ -22,7 +22,7 @@ public abstract class Room
 		exits=new HashMap<String, Room>();
 		items = new HashMap<String, Noun>();
 		this.hiddenObjects = new ArrayList<Noun>();
-		this.hiddenExits = new ArrayList<Noun>();
+		this.hiddenExits = new ArrayList<Direction>();
 	}
 
 	public Room getExit(String direction)
@@ -138,7 +138,7 @@ public abstract class Room
 		}
 		for (Direction d: hiddenExits)
 		{
-			exits.put(d.toString(), n);
+			exits.put(d.toString(), getExit(d));
 			System.out.println("You find an exit to the  "+d.toString()+"!");
 		}
 		hiddenExits.clear();

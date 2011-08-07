@@ -105,5 +105,12 @@ public class State
                 System.out.println("Goodbye!");
                 System.exit(0);
         }
+        
+        public void help()
+        {
+                System.out.println(zengine.grammar.Go.desc);
+                System.out.println(zengine.grammar.Quit.desc);
+                System.out.println(zengine.grammar.Take.desc);
+        }
 
 }
