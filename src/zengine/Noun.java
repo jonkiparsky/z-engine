@@ -6,7 +6,7 @@ public abstract class Noun extends Grammar
 	protected String state;
 	protected boolean plural;
 
-	public Noun(String s)
+	public Noun(String name)
 	{
 		super();
 		this.name = name;

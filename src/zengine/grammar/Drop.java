@@ -1,7 +1,5 @@
 package zengine.grammar;
      
-
-
 import zengine.*;
 
 /**
@@ -11,7 +9,6 @@ public class Drop extends Verb
 
 
 {
-
 	public Drop()
 	{
 		super ("DROP");
