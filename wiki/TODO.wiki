@@ -38,13 +38,16 @@
 
 *Abbreviations*
 
-*Current Status:* Not Started 
+*Current Status:* Done
 
-*Date Started:* 
+*Date Started:* 7 August
 
-*By:* //sign
+*By:* jpk
 
 *Other Details:* Abbreviations for common commands. 'n' for north, 't' for take, etc.
+
+Implemented by a properties file, macros.properties, so easy to customize for new games
+Properties files useful for externalizing strings.
 
 ----
 
