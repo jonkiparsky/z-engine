@@ -1,3 +1,4 @@
+
 package zengine;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public abstract class Room
 	Room startRoom;
 	
 	protected ArrayList<Noun> hiddenObjects;
-	protected ArrayList<Direction> hiddenExits;
+	protected HashMap<String,Room> hiddenExits;
 	
 	public Room (String name)
 	{
@@ -22,7 +23,7 @@ public abstract class Room
 		exits=new HashMap<String, Room>();
 		items = new HashMap<String, Noun>();
 		this.hiddenObjects = new ArrayList<Noun>();
-		this.hiddenExits = new ArrayList<Direction>();
+		this.hiddenExits = new HashMap<String, Room>();
 	}
 
 	public Room getExit(String direction)
@@ -132,16 +133,22 @@ public abstract class Room
 	
 	public void search()
 	{
-		if (hiddenObjects.size() == 0)
+		if ((hiddenObjects.size() == 0) && (hiddenExits.size() == 0))
 		{
 			System.out.println("A careful search of the room reveals nothing...");
+			return;
 		}
-		for (Direction d: hiddenExits)
+
+
+		for (String s: hiddenExits.keySet())
 		{
-			exits.put(d.toString(), getExit(d));
-			System.out.println("You find an exit to the  "+d.toString()+"!");
+			//exits.put(s, hiddenExits.get(s));
+			setExit(s, hiddenExits.get(s));
+			System.out.println("You find an exit leading "+s.toString()+"!");
 		}
 		hiddenExits.clear();
+
+
 		for (Noun n: hiddenObjects)
 		{
 			items.put(n.toString(), n);
