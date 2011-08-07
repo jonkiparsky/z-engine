@@ -9,6 +9,12 @@ import zengine.*;
 public class Go extends Verb
 {
 	Direction direction;
+        public static String desc;
+        
+        static
+        {
+                desc = "- Go\nUsage: Go (DIRECTION)\nExample: Go North\nDescription: Go through the exit to a direction specified";
+        }
 	
 	public Go()
 	{

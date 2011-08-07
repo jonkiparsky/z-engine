@@ -8,7 +8,7 @@ import java.util.HashMap;
 * Base class for grammar items
 */
 public abstract class Grammar
-{
+{    
 	protected boolean error;
 	protected String name;
 	protected ArrayList<Grammar> frame;
