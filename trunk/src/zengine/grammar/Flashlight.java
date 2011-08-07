@@ -1,11 +1,10 @@
 package zengine.grammar;
 
 import zengine.Noun;
+import zengine.None;
+import zengine.Grammar;
 import zengine.Preposition;
 
-/**
-* Represents a Flashlight object
-*/
 public class Flashlight extends Noun
 {
 	public Flashlight()
@@ -15,6 +14,17 @@ public class Flashlight extends Noun
 		setState(new Off());
 		acceptable.add(zengine.None.class);
 	}
+        
+        public boolean accept(Grammar g)
+        {
+                if (super.accept(g))
+                {
+                        if (g.getClass() != None.class)
+                            prep = (Preposition) g;
+                        return true;
+                }
+                return false;
+        }
         
         public void setState(zengine.Preposition prep)
         {

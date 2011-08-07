@@ -24,7 +24,7 @@ public class Parser
 	{
 		error = false;
 		in = new Scanner(System.in);
-      loadProperties();
+                loadProperties();
 	}	
 
 	/**

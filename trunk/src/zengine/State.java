@@ -2,6 +2,7 @@ package zengine;
 
 import java.util.*;
 import zengine.grammar.Hall;
+import zengine.Room;
 public class State
 {
 	public  Room current_loc;
@@ -23,7 +24,18 @@ public class State
 		
 		System.out.println(">> Go "+ d.toString());
 		current_loc = current_loc.getExit(d);
-		look();
+                look();
+                switch (current_loc.interactState)
+                {
+                    case NOT_ENTERED:
+                                current_loc.interactState = Room.PlayerInteractionState.NEW_ENTERED;
+                                break;
+                    case NEW_ENTERED:
+                                current_loc.interactState = Room.PlayerInteractionState.PREV_ENTERED;
+                                break;
+                    case PREV_ENTERED:
+                                break;
+                }
 	}
 
 	public void look()
@@ -55,6 +67,7 @@ public class State
 		else current_loc.drop(n);
 	}
 	
+        // For Turn On/Off Flashlight
 	public void turn (Preposition prep)
 	{  
                 Noun noun = prep.noun;
@@ -76,6 +89,27 @@ public class State
                                 System.out.println("You don't have " + noun.name);
                 }
 	}
+        
+        //For Turn Flashlight On/Off
+        public void turn(Noun n)
+        {
+                    Preposition p = n.prep;
+                    if (inventory.containsKey(n.name))
+                    {
+                            Noun noun = n;
+                            if (noun.state != p.name)
+                                    noun.setState(p);
+                            else if (noun.state == p.name)
+                                    System.out.print(noun.name + " is already " + p.name);
+                    }
+                    else
+                    {
+                            if (!n.plural)
+                                    System.out.println("You don't have a " + n.name);
+                            else
+                                    System.out.println("You don't have " + n.name);
+                    }
+        }
 
 	public void inventory()
 	{

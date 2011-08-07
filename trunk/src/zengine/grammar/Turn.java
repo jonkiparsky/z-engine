@@ -5,11 +5,13 @@ import zengine.*;
 public class Turn extends Verb
 {
         Preposition prep;
+        Noun noun;
         
 	public Turn()
 	{
 		super ("TURN");
 		acceptable.add(Preposition.class);
+                acceptable.add(zengine.grammar.Flashlight.class);
 	}
         
         public Turn(Grammar g)
@@ -19,9 +21,14 @@ public class Turn extends Verb
         
 	public boolean accept(Grammar g)
 	{
-                if (super.accept(g))
+                if (Preposition.class.isAssignableFrom(g.getClass()))
                 {
                         prep = (Preposition) g;
+                        return true;
+                }
+                else if (Noun.class.isAssignableFrom(g.getClass()))
+                {
+                        noun = (Noun) g;
                         return true;
                 }
                 return false;
@@ -29,8 +36,10 @@ public class Turn extends Verb
 
 	public void execute()
 	{
-		
-		ZEngineMain.state.turn(prep);
+                if (prep != null)
+                    ZEngineMain.state.turn(prep);
+                else
+                    ZEngineMain.state.turn(noun);
 	}
 
 }

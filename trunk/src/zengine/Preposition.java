@@ -12,9 +12,10 @@ public abstract class Preposition extends Grammar
 
 	public boolean accept(Grammar g)
 	{
-                if (g instanceof Noun)
+                if (super.accept(g))
                 {
-                        noun = (Noun) g;
+                        if (g instanceof Noun)
+                                noun = (Noun) g;
                         return true;
                 }
                 return false;
