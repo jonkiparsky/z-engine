@@ -9,7 +9,7 @@ public abstract class Noun extends Grammar
 	public Noun(String name)
 	{
 		super();
-		this.name = s;
+		this.name = name;
 		desc = "";
 	}
 
