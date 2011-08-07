@@ -3,6 +3,7 @@ package zengine;
 import java.util.*;
 import zengine.grammar.Hall;
 import zengine.grammar.LivingRoom;
+import zengine.grammar.Kitchen;
 /**
 * The state of the game as it stands
 */
@@ -27,6 +28,7 @@ public class Model
 
 
 		rooms.put("LivingRoom", new LivingRoom());
+                rooms.put("Kitchen", new Kitchen());
 
 		for (String s : rooms.keySet())
 		{
