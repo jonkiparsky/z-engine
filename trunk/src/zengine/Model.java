@@ -6,14 +6,19 @@ import zengine.grammar.LivingRoom;
 import zengine.grammar.Kitchen;
 import zengine.grammar.Cellar;
 import zengine.grammar.Attic;
+
+import zengine.properties.PropertyLoader;
+
+
 /**
-* The state of the game as it stands
+* The state of the game at any given moment. 
 */
 public class Model
 {
 
 	private static HashMap<String, Room> rooms;	
-	
+	private static String roomPackage = "zengine.grammar";
+			
 	static
 	{
 		rooms = new HashMap<String, Room>();
@@ -24,25 +29,41 @@ public class Model
 		loadActions();
 	}
 
+	/**
+	*	Initialize rooms semidynamically. Reads rooms from list in
+	*	resources.properties. Really dynamic is possible, but would require rooms
+	*	in separate package. 
+	*/
 	private static void loadActions()
 	{
-		rooms.put("Hall", new Hall());
-		rooms.put("LivingRoom", new LivingRoom());
-                rooms.put("Kitchen", new Kitchen());
-                rooms.put("Cellar", new Cellar());
-                rooms.put("Attic", new Attic());
+		Parser p = new Parser();
 
-		for (String s : rooms.keySet())
+		Properties resources = PropertyLoader.getProperties("resources");
+		String list = (String)resources.get("rooms");
+		for (String s: list.split(","))
+		{
+			rooms.put(s, makeRoom(s));			
+		
+		}
+
+	for (String s : rooms.keySet())
 		{
 			rooms.get(s).setExits();
 		}
+
+
+	
 	}
+
+	/**
+	* Load a room given its class name
+	*/
 
    private static Room makeRoom(String name)
    {
       System.out.println("called makeRoom: " + name);
       try{
-      Class c = Class.forName(name);
+      Class c = Class.forName("zengine.grammar."+name);
       return (Room)c.newInstance();
       }
       catch (Exception e)
