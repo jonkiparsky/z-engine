@@ -67,10 +67,12 @@ Properties files useful for externalizing strings.
 
 *Logging System*
 
-*Current Status:* Not Started
+*Current Status:* Started
 
-*Date Started:*
+*Date Started:* 8 August
 
-*By:*
+*By:* jpk
 
 *Other Details:* So that error messages don't contain whole stack traces with exceptions. Makes debugging easier.
+
+Reviewing logging, at least. It'll be a few days before anything turns up here. 
