@@ -113,6 +113,11 @@ public class State
 
 	public void inventory()
 	{
+		if (inventory.size()==0)
+		{
+		System.out.println("You are unburdened by material goods.");
+		
+		}
 		for (String s: inventory.keySet())
 		{ 
 			if (!inventory.get(s).plural)
