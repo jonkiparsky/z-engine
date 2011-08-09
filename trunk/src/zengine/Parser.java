@@ -149,7 +149,7 @@ public class Parser
 		Class c; 
 		Grammar g = null;
 		try {
-     		c = Class.forName("zengine.rooms." + input);
+     		c = Class.forName("zengine.grammar." + input);
         	g = (Grammar) c.newInstance();
    	}
 		catch (ClassNotFoundException cnfe)
@@ -206,74 +206,6 @@ public class Parser
 		System.out.println("Parse Test");
 		System.out.println("---------");
 	
-		Grammar g = tokenise("inventory");
-		g.execute();
-
-		System.out.println(">>Go north");	
-		Grammar gram = tokenise("Go");
-		g = tokenise("north");
-		if (gram.accept(g))
-			gram.execute();
-
-		System.out.println(">>take flash");	
-gram = tokenise("take");
-		g = tokenise("flashlight");
-		if (gram.accept(g))
-			gram.execute();
-	
-		System.out.println(">>take north");	
-gram = tokenise("take");
-		g = tokenise("north");
-		if (gram.accept(g))
-			gram.execute();
-
-			
-
-		System.out.println(">>Go south");	
-		gram = tokenise("Go");
-		g = tokenise("south");
-		if (gram.accept(g))
-			gram.execute();
-		
-	
-		System.out.println(">>take flash");	
-		gram = tokenise("take");
-		g = tokenise("flashlight");
-		if (gram.accept(g))
-			gram.execute();
-
-		System.out.println(">>drop flash");	
-		gram = tokenise("drop");
-		g = tokenise("flashlight");
-		if (gram.accept(g))
-			gram.execute();
-
-		System.out.println(">>Go north");	
-		gram = tokenise("Go");
-		g = tokenise("north");
-		if (gram.accept(g))
-			gram.execute();
-
-		System.out.println(">>Go south");	
-		gram = tokenise("Go");
-		g = tokenise("south");
-		if (gram.accept(g))
-			gram.execute();
-
-		System.out.println(">>drop flash");	
-		gram = tokenise("drop");
-		g = tokenise("flashlight");
-		if (gram.accept(g))
-			gram.execute();
-
-
-		gram = tokenise("North");
-		g = tokenise("none");
-		error("North.accept(none) returns: "+gram.accept(g));
-
-
-		g = tokenise("inventory");
-		g.execute();
-}
+	}
 
 }
