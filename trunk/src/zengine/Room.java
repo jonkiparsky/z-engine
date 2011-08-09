@@ -229,10 +229,8 @@ public abstract class Room
 		{
 			for (String s: hiddenExits.keySet())
 			{
-				System.out.println("*");
-                                setExit(s, hiddenExits.get(s));
+      		setExit(s, hiddenExits.get(s));
 				System.out.println("You find an exit leading "+s.toString()+"!");
-				System.out.println(exits.get(s));
 			hiddenExits.clear();
 			}
 	
@@ -247,12 +245,6 @@ public abstract class Room
 			hiddenObjects.clear();
 		}
 		
-		System.out.println("Exits:\n-----");
-		for (String s: exits.keySet())
-		{
-			System.out.println(s);
-			System.out.println(exits.get(s));
-		}
 		
 	}
 	
