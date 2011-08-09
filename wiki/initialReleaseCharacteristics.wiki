@@ -27,4 +27,14 @@ Things I'm not very worried about for 0.1:
   # end-user satisfaction: This is for developers to play with, we shouldn't get too hung up trying to make it shiny at the expense of things we care about. (though any misfeatures should be entered on the bug list, and prioritized correctly)
   # perfection: this will be a 0.1 release after all... should be good, but perfect is maybe not needed just yet
   # speed: I'm also in no rush to push something. I'd like to make a build available when it's worth doing, not "by next Thursday". 
+
+= Additional =
+
+Maybe putting together a tutorial on how to use it for 0.1 would be good. I'm not sure whether doing this early will be good or not, but I imagine it will be easier to extend as features are added, than doing it once there is a lot to cover. 
+
+Javadocs would be easier than other documentation I imagine.
+
+RE: extension of commands. I think it would be good to have a base of standard commands, and then allow users to extend and add their own based on their needs. Say, for example, one designer wants a medieval setting, so there's torches, swords, etc. They'd set alight to the torch. But another designer wasn't to do a sci-fi, so he'd have commands that are unique.
+
+
   
