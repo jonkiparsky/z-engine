@@ -33,6 +33,25 @@ public abstract class Room
 		this.hiddenExits = new HashMap<String, Room>();
 	}
 
+	/**
+	*  Called when entering a Room. Always call super.enter() when overriding, or
+	*  Bad Things will happen. 
+	*/
+	public void enter()
+	{
+		switch (interactState)
+      {
+         case NOT_ENTERED:
+            interactState = PlayerInteractionState.NEW_ENTERED;
+            break;
+         case NEW_ENTERED:
+            interactState = PlayerInteractionState.PREV_ENTERED;
+            break;
+          case PREV_ENTERED:
+            break;
+      }
+
+	}
 
 	/**
 	* Asks this room if it has an exit in the named direction
