@@ -7,7 +7,7 @@ public class North extends Direction
 	public North()
 	{
 		super ("NORTH");
-		acceptable.add(zengine.None.class);
+		acceptable.add(None.class);
 	}
 
 

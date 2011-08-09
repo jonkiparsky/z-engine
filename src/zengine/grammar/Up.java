@@ -7,7 +7,7 @@ public class Up extends Direction
 	public Up()
 	{
 		super ("UP");
-		acceptable.add(zengine.None.class);
+		acceptable.add(None.class);
 	}
 
 

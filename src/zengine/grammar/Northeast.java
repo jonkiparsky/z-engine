@@ -8,7 +8,7 @@ public class Northeast extends Direction
 
 	{
 		super ("NORTHEAST");
-		acceptable.add(zengine.None.class);
+		acceptable.add(None.class);
 	}
 
 

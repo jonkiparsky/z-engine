@@ -151,16 +151,16 @@ public class Parser
 		try {
 							// simpler to just put "None" in grammar package? -jpk
 						
-                        if (input.equals("None"))
+   /*                     if (input.equals("None"))
                         {
                                 c = Class.forName("zengine."+input);
                                 g = (Grammar)c.newInstance();
                         }
                         else
-                        {
+                        {*/
                                 c = Class.forName("zengine.grammar." + input);
                                 g = (Grammar) c.newInstance();
-                        }
+                //        }
                 }
 		catch (ClassNotFoundException cnfe)
 		{
@@ -194,11 +194,6 @@ public class Parser
 		return this;
 	}
 
-	public boolean endOfString()
-	{
-		return !scan.hasNext();
-	}
-
 	private void error(String s)
 	{
 		System.out.println(s);
@@ -206,10 +201,11 @@ public class Parser
 
 	private void loadProperties()
 	{
+			// hidden literal string buried in the code
+			// "macros" is the partial name of the file containing abbreviated
+			// command names.
 
-		String macrosFileName= "macros";
-		macros = PropertyLoader.getProperties(macrosFileName);
-		System.out.println(macros.get("l"));
+		macros = PropertyLoader.getProperties("macros");
 
 	}
 

@@ -6,6 +6,6 @@ public class West extends Direction
 	public West()
 	{
 		super ("WEST");
-		acceptable.add(zengine.None.class);
+		acceptable.add(None.class);
 	}
 }

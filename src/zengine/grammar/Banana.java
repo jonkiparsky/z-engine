@@ -12,6 +12,6 @@ public class Banana extends Noun
         {
                 super("BANANA");
                 plural = false;
-                acceptable.add(zengine.None.class);
+                acceptable.add(None.class);
         }
 }

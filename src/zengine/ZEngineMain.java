@@ -27,14 +27,13 @@ public class ZEngineMain
 		model = new Model();
 		state = new State();
 		parser = new Parser();			
-		System.out.println("instantiated model and state");
 
 		if (test)
 		{
 			parser.test();
 		}
+		
 		while (true) 
- 		//	 parser.movePhrase();
 			parser.makeMove();	
 	}
 }

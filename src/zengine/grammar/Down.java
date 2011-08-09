@@ -7,7 +7,7 @@ public class Down extends Direction
 	public Down()
 	{
 		super ("DOWN");
-		acceptable.add(zengine.None.class);
+		acceptable.add(None.class);
 	}
 
 
