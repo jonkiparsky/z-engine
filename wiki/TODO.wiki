@@ -13,6 +13,27 @@
 *Other Details:*
 = To-Do List =
 ----
+*Debug Mode*
+
+*Current Status:* Not Started
+
+*Date Started:*
+
+*By:*
+
+*Other Details:* So that designers are able to use commands to debug. Example would be to view layout of the game currently, listing all rooms and objects in the, with states. This will be expanded to include events and triggers. Other commands can be implemented for Debug mode.
+----
+*Restructure Packaging:*
+
+*Current Status:* In Development
+
+*Date Started:* 08/08/2011
+
+*By:* Snow
+
+*Other Details:* To restructure the source so that Engine and Game objects are separate. New structure will mean that designers can implement mechanics without needing to write code in the Engine source. Will allow for easier expansion.
+
+----
 *Long/short descriptions*
 
 *Current Status:* Done
