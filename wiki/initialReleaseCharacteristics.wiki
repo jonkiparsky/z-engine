@@ -34,7 +34,7 @@ Maybe putting together a tutorial on how to use it for 0.1 would be good. I'm no
 
 Javadocs would be easier than other documentation I imagine.
 
-RE: extension of commands. I think it would be good to have a base of standard commands, and then allow users to extend and add their own based on their needs. Say, for example, one designer wants a medieval setting, so there's torches, swords, etc. They'd set alight to the torch. But another designer wasn't to do a sci-fi, so he'd have commands that are unique.
+RE: extension of commands. I think it would be good to have a base of standard commands, and then allow users to extend and add their own based on their needs. Say, for example, one designer wants a medieval setting, so there's torches, swords, etc. They'd set alight to the torch. But another designer wants to do a sci-fi, so he'd have commands that are unique.
 
 
   
