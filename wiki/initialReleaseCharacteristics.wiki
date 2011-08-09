@@ -19,6 +19,8 @@ Please edit this for better clarity or better concordance with your own ideas. A
   # effective javadoc or other documentation, which means
   # exposing only the methods we want to expose, might have to review access on some methods
   # core "kernel" commands available to allow developers to customize their interface. We don't need to be completist about it, but this is worth some serious thought. For example, we have a go() method which allows the game to transfer a player to an adjacent room. What if Dougie the Designer wants to teleport a character to an arbitrary room? This kernel could be a lot of fun to develop, but it should be done carefully, and with some discussion. I suggest entering either use cases ("we should enable teleporting") or exposed methods (move()) as "enhancements" on the issues list
+  # tutorial
+  # small sample game which exercises the features
 
 
 = Non-critical features for 0.1 =
@@ -36,5 +38,23 @@ Javadocs would be easier than other documentation I imagine.
 
 RE: extension of commands. I think it would be good to have a base of standard commands, and then allow users to extend and add their own based on their needs. Say, for example, one designer wants a medieval setting, so there's torches, swords, etc. They'd set alight to the torch. But another designer wants to do a sci-fi, so he'd have commands that are unique.
 
+Agreed: the designer should have a small set of default commands (listed below) and a flexible set of tools to manipulate the environment. 
 
-  
+==Default command list:==
+  * directions
+  * go
+  * take
+  * drop 
+  * inventory
+  * search
+  * etc.
+
+==API hooks==
+  * getInventory() : returns List of items in player's possession
+  * move(Room r): transfer to a given room
+  * echo():  Display a message
+  * roomContents(): returns List of visible items in the room
+  * roomExits(): returns List of visible exits
+  * etc.
+
+It seems likely that we'd end up rewriting the default commands in terms of this API, so formatting of the "inventory" command would move out of the State and into Inventory.java. For example, inventory.execute() would getInventory(), do the formatting and build a String, and do an echo() to put the information on the screen. 
