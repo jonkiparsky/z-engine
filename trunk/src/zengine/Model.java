@@ -57,9 +57,8 @@ public class Model
 
    private static Room makeRoom(String name)
    {
-      System.out.println("called makeRoom: " + name);
       try{
-      Class c = Class.forName("zengine.grammar."+name);
+      Class c = Class.forName("zengine.rooms."+name);
       return (Room)c.newInstance();
       }
       catch (Exception e)

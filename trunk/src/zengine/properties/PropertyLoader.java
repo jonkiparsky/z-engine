@@ -39,11 +39,7 @@ public class PropertyLoader {
  public static Properties loadPropertyFile(String filename) {
 	Properties props = new Properties();
 
-	System.out.println("Trying to load " + 
-			MessageFormat.format(propertyLocation,filename));
   	try {
-
-		//File f = new File("src/zengine/properties/macros.properties");
 		File f = new File(MessageFormat.format(propertyLocation,filename));
 		FileInputStream fis = new FileInputStream(f);
 

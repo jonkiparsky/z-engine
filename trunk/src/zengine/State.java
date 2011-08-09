@@ -1,7 +1,7 @@
 package zengine;
 
 import java.util.*;
-import zengine.grammar.Hall;
+import zengine.rooms.Hall;
 import zengine.Room;
 public class State
 {

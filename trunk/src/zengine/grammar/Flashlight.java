@@ -1,9 +1,8 @@
 package zengine.grammar;
 
-import zengine.Noun;
-import zengine.None;
 import zengine.Grammar;
 import zengine.Preposition;
+import zengine.Noun;
 
 public class Flashlight extends Noun
 {
@@ -12,7 +11,7 @@ public class Flashlight extends Noun
 		super ("FLASHLIGHT");
 		plural = false;
 		setState(new Off());
-		acceptable.add(zengine.None.class);
+		acceptable.add(None.class);
 	}
         
         public boolean accept(Grammar g)

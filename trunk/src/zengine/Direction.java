@@ -1,5 +1,6 @@
 package zengine;
 import zengine.grammar.Go;
+import zengine.grammar.None;
 
 /**
 * Abstract class representing the grammatical class of directions
@@ -21,6 +22,11 @@ public abstract class Direction extends Grammar
 		return name;
 	}
 
+	
+	/**
+	* A user may enter a direction name to go in that direction; this execute()
+	* method allows that functionality.
+	*/
 	public void execute()
 	{
 		System.out.println("Executing " +this.getClass().getName());

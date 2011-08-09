@@ -3,6 +3,7 @@ package zengine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import zengine.grammar.None;
 
 /**
 * Base class for grammar items
