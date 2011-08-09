@@ -147,21 +147,11 @@ public class Parser
 	{
 		input = correctCase(input);
 		Class c; 
-		Grammar g=null;
+		Grammar g = null;
 		try {
-							// simpler to just put "None" in grammar package? -jpk
-						
-   /*                     if (input.equals("None"))
-                        {
-                                c = Class.forName("zengine."+input);
-                                g = (Grammar)c.newInstance();
-                        }
-                        else
-                        {*/
-                                c = Class.forName("zengine.grammar." + input);
-                                g = (Grammar) c.newInstance();
-                //        }
-                }
+     		c = Class.forName("zengine.rooms." + input);
+        	g = (Grammar) c.newInstance();
+   	}
 		catch (ClassNotFoundException cnfe)
 		{
 				System.out.println("I don't know what "+input+" means!");
