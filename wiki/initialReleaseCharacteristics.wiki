@@ -6,10 +6,10 @@ It's easier to work towards a defined target, so this page should help us define
 Please edit this for better clarity or better concordance with your own ideas. Also, please rewrite any first-person or second-person reference you find. This should end up as a statement of policy, not of opinion. :)
 
 = Goals of 0.1 Release =
-* a build of the code that an interested game writer could use to develop a minimal game, and an interested programmer could use to study our use of reflection in parsing
-* a benchmark release: the minimal build
-* useful practice in assembling a build - we'll probably do some things wrong, we might as well do them wrong sooner rather than later.
-* if it attracts interested parties, great
+  * a build of the code that an interested game writer could use to develop a minimal game, and an interested programmer could use to study our use of reflection in parsing
+  * a benchmark release: the minimal build
+  * useful practice in assembling a build - we'll probably do some things wrong, we might as well do them wrong sooner rather than later.
+  * if it attracts interested parties, great
 
 = Desired features =
 
@@ -24,8 +24,7 @@ Please edit this for better clarity or better concordance with your own ideas. A
 = Non-critical features for 0.1 =
 Things I'm not very worried about for 0.1:
 
-  # end-user satisfaction: This is for developers to play with, we shouldn't get too hung up trying to make it shiny at the expense of things we care about. 
-(though any misfeatures should be entered on the bug list, and prioritized correctly)
+  # end-user satisfaction: This is for developers to play with, we shouldn't get too hung up trying to make it shiny at the expense of things we care about. (though any misfeatures should be entered on the bug list, and prioritized correctly)
   # perfection: this will be a 0.1 release after all... should be good, but perfect is maybe not needed just yet
   # speed: I'm also in no rush to push something. I'd like to make a build available when it's worth doing, not "by next Thursday". 
   
