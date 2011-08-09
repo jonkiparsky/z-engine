@@ -1,0 +1,31 @@
+#summary What should release 0.1 look like?
+
+= Introduction =
+
+It's easier to work towards a defined target, so this page should help us define that target
+Please edit this for better clarity or better concordance with your own ideas. Also, please rewrite any first-person or second-person reference you find. This should end up as a statement of policy, not of opinion. :)
+
+= Goals of 0.1 Release =
+* a build of the code that an interested game writer could use to develop a minimal game, and an interested programmer could use to study our use of reflection in parsing
+* a benchmark release: the minimal build
+* useful practice in assembling a build - we'll probably do some things wrong, we might as well do them wrong sooner rather than later.
+* if it attracts interested parties, great
+
+= Desired features =
+
+(for discussion: please edit, whether to expand on the point or to disagree, or whatever)
+
+  # package structure that's easy to work with
+  # effective javadoc or other documentation, which means
+  # exposing only the methods we want to expose, might have to review access on some methods
+  # core "kernel" commands available to allow developers to customize their interface. We don't need to be completist about it, but this is worth some serious thought. For example, we have a go() method which allows the game to transfer a player to an adjacent room. What if Dougie the Designer wants to teleport a character to an arbitrary room? This kernel could be a lot of fun to develop, but it should be done carefully, and with some discussion. I suggest entering either use cases ("we should enable teleporting") or exposed methods (move()) as "enhancements" on the issues list
+
+
+= Non-critical features for 0.1 =
+Things I'm not very worried about for 0.1:
+
+  # end-user satisfaction: This is for developers to play with, we shouldn't get too hung up trying to make it shiny at the expense of things we care about. 
+(though any misfeatures should be entered on the bug list, and prioritized correctly)
+  # perfection: this will be a 0.1 release after all... should be good, but perfect is maybe not needed just yet
+  # speed: I'm also in no rush to push something. I'd like to make a build available when it's worth doing, not "by next Thursday". 
+  
