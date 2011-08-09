@@ -6,6 +6,7 @@ If there's an actual bug, it should go in the bug tracking.
 
 
 = Notes =
+*8/8/2011 (EDT) - jpk:* I'd suggest that items which require discussion get their own page ie, for debug mode: what does debug mode look like? Does it tie in with logging? Do we have different debug modes for developing the engine and for game designers? All of this can be discussed on a separate page, and the discussion will be preserved in the page history - email discussion is useful, but ephemeral. Items which don't require such substantial discussion can just go on the bug list, and if you don't like the way I implement it you can go in and tweak it. Which is another sort of discussion, and is also preserved in the repo.
 
 *8/8/2011 (GMT) - Snow:* I think that tracking the TODO list in the Issues system would probably be a good thing. It provides a place to provide feedback and discussion on the specific topic in a centralized place, and keeps track of progress as well. Possibly do away with TODO list and just use the issues system?
 
