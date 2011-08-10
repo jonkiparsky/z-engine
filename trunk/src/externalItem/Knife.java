@@ -1,6 +1,7 @@
-package zengine.grammar;
+package externalItem;
 
 import zengine.Noun;
+import zengine.grammar.None;
 
 public class Knife extends Noun
 {

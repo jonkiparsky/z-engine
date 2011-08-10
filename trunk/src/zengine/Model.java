@@ -1,7 +1,7 @@
 package zengine;
 
 import java.util.*;
-import zengine.rooms.*;
+//import zengine.rooms.*;
 import zengine.properties.PropertyLoader;
 import java.io.File;
 
@@ -12,18 +12,20 @@ public class Model
 {
 
 	private static HashMap<String, Room> rooms;	
-	private static String roomPackage = "zengine.rooms";
+	private static String roomPackage;
+        private static String itemPackage;
 			
 	static
 	{
 		rooms = new HashMap<String, Room>();
 	}
-		
-	public Model()
-	{
-		loadActions();
-	}
-
+        
+        public static void init(String roomPackage, String itemPackage)
+        {
+                Model.roomPackage = roomPackage + ".";
+                Model.itemPackage = itemPackage + "."; 
+                loadActions();
+        }
 	/**
 	* 	Load rooms dynamically, by reading contents of "rooms" directory. 
 	*	All rooms will be loaded and placed in a hashmap, which can be accessed by
@@ -31,7 +33,7 @@ public class Model
 	*/
 	private static void loadActions()
 	{
-		String pathToRooms = "src/zengine/rooms";
+		String pathToRooms = "src/externalRoom";
 
 		File roomsDir = new File(pathToRooms);
 		
@@ -55,23 +57,38 @@ public class Model
 	* Load a room given its class name
 	*/
 
-   private static Room makeRoom(String name)
-   {
-      try{
-      Class c = Class.forName("zengine.rooms."+name);
-      return (Room)c.newInstance();
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace();
-         return null;
-      }
+        private static Room makeRoom(String name)
+        {
+                try
+                {
+                        Class c = Class.forName(roomPackage + name);
+                        return (Room)c.newInstance();
+                }
+                catch (Exception e)
+                {
+                        e.printStackTrace();
+                        return null;
+                }
    
 	}
-	public static Room getRoom(String name)
+        
+        public static void createRoom(String name)
+        {
+                rooms.put(name, makeRoom(name));
+        }
+	
+        public static Room getRoom(String name)
 	{
 		return rooms.get(name);
 	}
-
-
+        
+        public static String getRoomPackage()
+        {
+                return roomPackage;
+        }
+        
+        public static String getItemPackage()
+        {
+                return itemPackage;
+        }
 }

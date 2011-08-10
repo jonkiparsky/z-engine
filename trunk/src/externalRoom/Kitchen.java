@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zengine.rooms;
+package externalRoom;
 
 import zengine.Room;
-import zengine.grammar.Knife;
+import externalItem.*;
 
 public class Kitchen extends Room 
 {
@@ -22,6 +22,7 @@ public class Kitchen extends Room
         {
                 setExit("NORTH", Room.getRoom("Hall"));
                 setExit("UP", Room.getRoom("Attic"));
+                setExit("EAST", Room.getRoom("Garden"));
                 hiddenExits.put("DOWN", Room.getRoom("Cellar"));
         }
 }

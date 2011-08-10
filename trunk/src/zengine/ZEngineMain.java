@@ -7,7 +7,6 @@ package zengine;
 */
 public class ZEngineMain
 {
-	Model model;
 	public static State state;
 	public static Parser parser;	
 
@@ -21,7 +20,7 @@ public class ZEngineMain
 
 	private void start()
 	{
-		model = new Model();
+		Model.init("externalRoom", "externalItem");
 		state = new State();
 		parser = new Parser();			
 

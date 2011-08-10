@@ -1,6 +1,6 @@
-package zengine.rooms;
+package externalRoom;
 
-import zengine.grammar.Flashlight;
+import externalItem.Flashlight;
 import zengine.Room;
 
 /**
