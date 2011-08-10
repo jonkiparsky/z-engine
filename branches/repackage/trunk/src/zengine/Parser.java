@@ -15,6 +15,8 @@ public class Parser
 	Scanner in;
 	private Properties macros;
 
+        private static String verbPackage;
+        private static String prepPackage;
        
 	/**
 	* The no-arg constructor returns a Parser prepared to accept 
@@ -25,7 +27,16 @@ public class Parser
 		error = false;
 		in = new Scanner(System.in);
                 loadProperties();
-	}	
+	}
+        
+        public Parser(String verbPackage, String prepPackage)
+        {
+                error = false;
+                loadProperties();
+                in = new Scanner(System.in);
+                this.verbPackage = verbPackage + ".";
+                this.prepPackage = prepPackage + ".";
+        }
 
 	/**
 	* Creates a parser on a particular String. This may be a candidate for
@@ -156,7 +167,7 @@ public class Parser
 		catch (ClassNotFoundException cnfe)
 		{
 				//System.out.println("I don't know what "+input+" means!");
-                                return externTokenise(input);			
+                                return externTokenise(input, Model.getItemPackage());			
 		}
 		catch (InstantiationException ie)
 		{	
@@ -172,20 +183,24 @@ public class Parser
 		return g;
 	}
         
-        private Grammar externTokenise(String input)
+        private Grammar externTokenise(String input, String tryPackage)
         {
                 input = correctCase(input);
 		Class c; 
 		Grammar g = null;
+                String path = tryPackage;
 		try 
                 {
-                        String path = Model.getItemPackage();
-                        c = Class.forName(Model.getItemPackage() + input);
+                        c = Class.forName(path + input);
                         g = (Grammar) c.newInstance();
                 } catch (ClassNotFoundException cnfe)
 		{
+                        if (path == Model.getItemPackage())
+                                return externTokenise(input, verbPackage);
+                        else if (path == verbPackage)
+                                return externTokenise(input, prepPackage);
+                        // If we reach here, we've tried all possible grammar packages.
 			System.out.println("I don't know what "+input+" means!");
-			error = true;
 			
 		}
 		catch (InstantiationException ie)

@@ -14,6 +14,11 @@ public class State
 		current_loc = Room.getRoom("Hall");
 		inventory = new HashMap<String, Noun>();
 	}
+        
+        public HashMap<String, Noun> getInven()
+        {
+                return inventory;
+        }
 
 
 	/**
