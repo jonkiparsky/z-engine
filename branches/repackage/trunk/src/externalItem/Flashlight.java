@@ -1,8 +1,11 @@
-package zengine.grammar;
+package externalItem;
 
 import zengine.Grammar;
 import zengine.Preposition;
 import zengine.Noun;
+import zengine.grammar.None;
+import zengine.grammar.Off;
+import zengine.grammar.On;
 
 public class Flashlight extends Noun
 {

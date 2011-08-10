@@ -143,20 +143,20 @@ public class Parser
 		error("Cannot understand "+g.toString()+" here");
 	}
 
-	public Grammar tokenise( String input)
+	public Grammar tokenise(String input)
 	{
 		input = correctCase(input);
 		Class c; 
 		Grammar g = null;
-		try {
-     		c = Class.forName("zengine.grammar." + input);
-        	g = (Grammar) c.newInstance();
-   	}
+		try 
+                {
+                        c = Class.forName("zengine.grammar." + input);
+                        g = (Grammar) c.newInstance();
+                }
 		catch (ClassNotFoundException cnfe)
 		{
-				System.out.println("I don't know what "+input+" means!");
-				error = true;
-			
+				//System.out.println("I don't know what "+input+" means!");
+                                return externTokenise(input);			
 		}
 		catch (InstantiationException ie)
 		{	
@@ -171,6 +171,35 @@ public class Parser
 		
 		return g;
 	}
+        
+        private Grammar externTokenise(String input)
+        {
+                input = correctCase(input);
+		Class c; 
+		Grammar g = null;
+		try 
+                {
+                        String path = Model.getItemPackage();
+                        c = Class.forName(Model.getItemPackage() + input);
+                        g = (Grammar) c.newInstance();
+                } catch (ClassNotFoundException cnfe)
+		{
+			System.out.println("I don't know what "+input+" means!");
+			error = true;
+			
+		}
+		catch (InstantiationException ie)
+		{	
+			error = true;
+			System.out.println("error: "+ ie.getMessage());
+		}
+		catch (IllegalAccessException iae)
+		{
+			error = true;
+			System.out.println("error: "+ iae.getMessage());
+		}		
+		return g;
+        }
 
 	private String correctCase(String s)
 	{

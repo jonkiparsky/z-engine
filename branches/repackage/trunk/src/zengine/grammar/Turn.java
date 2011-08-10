@@ -11,7 +11,7 @@ public class Turn extends Verb
 	{
 		super ("TURN");
 		acceptable.add(Preposition.class);
-                acceptable.add(zengine.grammar.Flashlight.class);
+                acceptable.add(externalItem.Flashlight.class);
 	}
         
         public Turn(Grammar g)

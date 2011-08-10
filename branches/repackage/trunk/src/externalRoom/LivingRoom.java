@@ -1,9 +1,9 @@
 
-package zengine.rooms;
+package externalRoom;
 
 
 import zengine.Room;
-import zengine.grammar.Banana;
+import externalItem.Banana;
 
 /**
 * Represents a living room

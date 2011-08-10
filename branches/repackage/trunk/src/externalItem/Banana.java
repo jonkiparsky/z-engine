@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package zengine.grammar;
+package externalItem;
 
 import zengine.Noun;
+import zengine.grammar.None;
 
 public class Banana extends Noun
 {
