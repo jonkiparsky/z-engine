@@ -5,7 +5,7 @@ import zengine.Preposition;
 import zengine.Noun;
 import zengine.grammar.None;
 import zengine.grammar.Off;
-import zengine.grammar.On;
+import externalPrep.On;
 
 public class Flashlight extends Noun
 {

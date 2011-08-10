@@ -22,7 +22,7 @@ public class ZEngineMain
 	{
 		Model.init("externalRoom", "externalItem");
 		state = new State();
-		parser = new Parser();			
+		parser = new Parser("externalVerb", "externalPrep");			
 
 		state.look();		
 		while (true) 
