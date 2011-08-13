@@ -14,6 +14,14 @@ public class State
 		current_loc = Room.getRoom("Hall");
 		inventory = new HashMap<String, Noun>();
 	}
+
+
+    public Noun checkContext(Noun n)
+    {   
+	 	return inventory.get(n.toString());
+            
+    }
+
         
         public HashMap<String, Noun> getInven()
         {
@@ -77,7 +85,7 @@ public class State
 	// For Turn On/Off Flashlight
 	public void turn (Preposition prep)
 	{  
-		Noun noun = prep.noun;   
+		Noun noun = checkContext(prep.noun);   
 		
    
 		if (inventory.containsKey(prep.noun.name))
@@ -103,6 +111,8 @@ public class State
 	public void turn(Noun n)
 	{
 		    Preposition p = n.prep;
+            n = checkContext(n);
+
 		    if (inventory.containsKey(n.name))
 		    {
 			    Noun noun = n;
