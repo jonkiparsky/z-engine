@@ -28,8 +28,20 @@ public class Flashlight extends Noun
         public void setState(zengine.Preposition prep)
         {
                 if (prep instanceof On)
-                        state = prep.toString();
-                else if (prep instanceof Off)
-                        state = prep.toString();                       
-        }
+					{
+              		state = prep.toString();
+               		
+					} 
+					else if (prep instanceof Off)
+					{
+                       state = prep.toString();                       
+					}   
+     }
+
+   public boolean isLightSource()
+   {
+		return true;
+	//	return state.equals("ON");
+	}
+
 }

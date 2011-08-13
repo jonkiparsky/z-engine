@@ -1,4 +1,3 @@
-
 package zengine;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +8,7 @@ public abstract class Room
         /**
         * Used to determine what the player has done in the room. 
         */
-        enum PlayerInteractionState { NOT_ENTERED, NEW_ENTERED, PREV_ENTERED }
+        enum PlayerInteractionState { NOT_ENTERED, NEW_ENTERED, PREV_ENTERED}
     
 	protected String name;
 	public HashMap<String, Room> exits;
@@ -19,6 +18,8 @@ public abstract class Room
         protected String longDescription;
         protected PlayerInteractionState interactState;
 	Room startRoom;
+	protected boolean isDark;
+	
 	
 	protected ArrayList<Noun> hiddenObjects;
 	protected HashMap<String,Room> hiddenExits;
@@ -31,6 +32,7 @@ public abstract class Room
 		items = new HashMap<String, Noun>();
 		this.hiddenObjects = new ArrayList<Noun>();
 		this.hiddenExits = new HashMap<String, Room>();
+		isDark = false;
 	}
 
 	/**
@@ -39,6 +41,7 @@ public abstract class Room
 	*/
 	public void enter()
 	{
+
 		switch (interactState)
       {
          case NOT_ENTERED:
@@ -47,8 +50,8 @@ public abstract class Room
          case NEW_ENTERED:
             interactState = PlayerInteractionState.PREV_ENTERED;
             break;
-          case PREV_ENTERED:
-            break;
+			default :
+				break;
       }
 
 	}
@@ -89,6 +92,10 @@ public abstract class Room
 	*/
 	public String description()
 	{
+		if (isDark && ! ZEngineMain.state.carryingLight())
+		{
+			return "It is dark; you are likely to stub your toe. ";
+		}
 		StringBuilder sb = new StringBuilder();
                 switch (interactState)
                 {

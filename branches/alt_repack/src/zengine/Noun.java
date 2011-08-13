@@ -15,6 +15,16 @@ public abstract class Noun extends Grammar
 		desc = "";
 	}
 
+
+	/**
+	* Override this when an object is emitting light. This should be true only
+	* when the object is emitting light: a flashlight is not a light source when
+	* it is turned off.
+	*/
+	public boolean isLightSource()
+	{
+		return false;
+	}
 	public boolean plural()
 	{
 		return plural;

@@ -12,6 +12,7 @@ public class Cellar extends Room
         {
                 super("Cellar");
                 description = "You are in a dank cellar.";
+					isDark=true;
         }
         
         public void setExits()

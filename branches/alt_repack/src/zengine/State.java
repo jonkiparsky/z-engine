@@ -9,11 +9,20 @@ public class State
 	private HashMap<String,Noun> inventory;
 	Room tester;
 
+
 	public State()
 	{
 		current_loc = Room.getRoom("Hall");
 		inventory = new HashMap<String, Noun>();
 	}
+
+
+	public Noun checkContext(Noun n)
+	{	
+				return inventory.get(n.toString());
+			
+	}
+
 
 
 	/**
@@ -25,8 +34,8 @@ public class State
 		
 		System.out.println(">> Go "+ d.toString());
 		current_loc = current_loc.getExit(d);
-		look();
 		current_loc.enter();
+		look();
 	}
 
   /**
@@ -72,10 +81,10 @@ public class State
 	// For Turn On/Off Flashlight
 	public void turn (Preposition prep)
 	{  
-		Noun noun = prep.noun;   
+		Noun noun = checkContext(prep.noun);   
 		
-   
-		if (inventory.containsKey(prep.noun.name))
+   	if (noun !=null)
+		//if (inventory.containsKey(prep.noun.name))
 		{
 			noun = inventory.get(prep.noun.name);
 			if (noun.state != prep.name)
@@ -93,11 +102,15 @@ public class State
 				System.out.println("You don't have " + noun.name);
 		}
 	}
+
 	
 	//For Turn Flashlight On/Off
 	public void turn(Noun n)
 	{
+		
 		    Preposition p = n.prep;
+
+			n = checkContext(n);
 		    if (inventory.containsKey(n.name))
 		    {
 			    Noun noun = n;
@@ -115,6 +128,21 @@ public class State
 		    }
 	}
 
+
+	public boolean carryingLight()
+	{
+		System.out.println("carryingLight(): 1");
+		for (String key: inventory.keySet())
+		{
+		System.out.println("carryingLight(): 2");
+			System.out.println(key + ": "+ inventory.get(key).isLightSource());	
+			System.out.println(key + ": "+ inventory.get(key).state);	
+			if (inventory.get(key).isLightSource())
+				return true;
+		}		
+		System.out.println("carryingLight(): 3");
+		return false;
+	}
 
   /**
   * Report the contents of the player's "pack". This is a primitive command; its
@@ -146,6 +174,7 @@ public class State
 		    	System.out.println(inventory.get(s).itemDescription());
 			}
     	}
+		System.out.println("Carrying light? "+carryingLight());
 	}
 
 	/**
