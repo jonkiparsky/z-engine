@@ -31,15 +31,19 @@ public class Model
 	*/
 	private static void loadActions()
 	{
-		String pathToRooms = "src/zengine/rooms";
+		String pathToRooms = "src/gamefiles/rooms";
 
 		File roomsDir = new File(pathToRooms);
 		
 		for (String s: roomsDir.list())
 		{	
 			if (s.charAt(0) == '.')  continue;  // skip the dotfiles
+			if (! s.contains("java")) continue;	// skip non-java files
+							// this will be an error if we decide to accept clojure
+							// or jython or other jvm-targeting languages...
+
 			String name = s.split("\\.")[0];
-			
+		
 			rooms.put(name, makeRoom(name));
 		}
 
