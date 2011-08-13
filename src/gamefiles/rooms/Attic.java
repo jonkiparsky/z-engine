@@ -12,7 +12,10 @@ public class Attic extends Room
         {
                 super("Attic");
                 description = "You are in a dusty attic.";
+				isDark=true;
+
         }
+
         
         public void setExits()
         {
