@@ -1,4 +1,4 @@
-package zengine.properties;
+package zengine;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class PropertyLoader {
 
  	public static Class<?> loaderLocation;
   	private static Map<String, Properties> propertiesMap;
-  	private static String propertyLocation = "src/zengine/properties/{0}.properties";
+  	private static String propertyLocation = "src/gamefiles/props/{0}.properties";
 
   	public PropertyLoader() {   
   		 propertiesMap = new TreeMap<String, Properties>();
