@@ -9,9 +9,8 @@ public abstract class Noun extends Grammar
 
 	public Noun(String name)
 	{
-		super();
-		this.name = name;
-                acceptable.add(Preposition.class);
+		super(name);
+      acceptable.add(Preposition.class);
 		desc = "";
 	}
 

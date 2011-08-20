@@ -16,8 +16,8 @@ public class Utils
 	/**
 	* Print a debug message to a destination. Currently, print to screen.
 	*/
-	protected static void debug(String s)
+	protected static void debug(Object o, String s)
 	{
-		System.out.println(s);
+		System.out.println(o.toString()+": "+s);
 	}
 }

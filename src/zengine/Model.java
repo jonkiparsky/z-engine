@@ -2,7 +2,6 @@ package zengine;
 
 import java.util.*;
 import zengine.rooms.*;
-import zengine.properties.PropertyLoader;
 import java.io.File;
 
 /**

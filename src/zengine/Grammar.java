@@ -3,7 +3,7 @@ package zengine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import zengine.grammar.None;
+import gamefiles.grammar.None;
 
 /**
 * Base class for grammar items
@@ -19,11 +19,17 @@ public abstract class Grammar
 
 	public Grammar()
 	{
+		this(" ");
+	}
+
+	public Grammar(String name)
+	{
 		error = false;	
 		this.frame = new ArrayList<Grammar>();
 		this.acceptable = new ArrayList<Class>();
 		this.complements = new HashMap<String, Grammar>();
                 acceptable.add(None.class);
+		this.name = name;
 	}
 	public  boolean accept(Grammar g)
 	{
@@ -43,10 +49,19 @@ public abstract class Grammar
 		System.out.println("Can't execute "+ this.name);
 	}
 
+	/**
+
 	public String toString()
 	{
 		return name;
 	}
 	
+	/**
+	* 	Convenient wrapper class for Utils.debug()
+	*/
+	protected void debug(String s)
+	{
+		Utils.debug(this, s);
+	}
 }
 

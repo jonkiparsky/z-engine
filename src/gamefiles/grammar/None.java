@@ -10,7 +10,7 @@ public class None extends Grammar
 	
 	public None()
 	{
-		this.name="END OF STRING";
+		super ("NONE");
 	}
 
 

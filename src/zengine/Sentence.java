@@ -3,7 +3,7 @@ package zengine;
 /*
  * Change so that it holds Phrases instead?
  */
-import zengine.grammar.*;
+import gamefiles.grammar.*;
 import java.util.ArrayList;
 
 
@@ -21,11 +21,13 @@ public class Sentence extends Grammar
 	private Sentence(Class c, Grammar g)
 	{
 		super();
+		this.name="SENTENCE";
 		acceptable.add(Verb.class);
 		acceptable.add(Direction.class);
 		current = g;
 		complements.put(c.getName(), g);
-		Utils.debug("initiated Sentence with "+g.toString());
+		Utils.debug("SENTENCE (Constr)",
+				"initiated Sentence with "+g.toString());
 	}
 
 
@@ -67,7 +69,7 @@ public class Sentence extends Grammar
 			sb.append(complements.get(s).toString());
 		}
 	
-		Utils.debug("Sentence.accept("+g.toString()+") complements = "+
+		Utils.debug(this,"accept("+g.toString()+") complements = "+
 			sb.toString()+ " current = " +current);
 			
 		if (current == null) return false;
@@ -76,8 +78,8 @@ public class Sentence extends Grammar
 
 	 	if (accepted)
 		{
-			Utils.debug("accepted " + g.toString());
-			Utils.debug(g.getClass().toString());
+			Utils.debug(this,"accepted " + g.toString());
+			Utils.debug(this,g.getClass().toString());
 			current=g;
 
 			sb= new StringBuffer();
@@ -86,7 +88,7 @@ public class Sentence extends Grammar
         		 sb.append(complements.get(s).toString());
       	}
 
-			Utils.debug("Result = true. Complements = "+ sb.toString());
+			Utils.debug(this,"Result = true. Complements = "+ sb.toString());
 			return true;
 			
 
@@ -113,5 +115,9 @@ public class Sentence extends Grammar
 		}
 	}
 
+	public String toString()
+	{
+		return name;
+	}
 
 }

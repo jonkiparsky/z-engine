@@ -4,10 +4,9 @@ public abstract class Preposition extends Grammar
 {
         Noun noun;
 
-	public Preposition(String s)
+	public Preposition(String name)
 	{
-		super();
-		name = s;
+		super(name);
 	}
 
 	public boolean accept(Grammar g)
@@ -20,12 +19,5 @@ public abstract class Preposition extends Grammar
                 }
                 return false;
 	}
-
-	public String toString()
-	{
-		return name;
-	}
-
-
 
 }
