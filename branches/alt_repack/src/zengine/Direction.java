@@ -1,6 +1,6 @@
 package zengine;
-import zengine.grammar.Go;
-import zengine.grammar.None;
+import gamefiles.grammar.Go;
+import gamefiles.grammar.None;
 
 /**
 * Abstract class representing the grammatical class of directions
@@ -11,8 +11,7 @@ public abstract class Direction extends Grammar
 
 	public Direction(String name)
 	{
-		super();
-		this.name=name;
+		super(name);
 
 		this.acceptable.add(None.class);
 	}

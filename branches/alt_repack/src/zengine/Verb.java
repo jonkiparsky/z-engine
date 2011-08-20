@@ -14,7 +14,7 @@ public abstract class Verb extends Grammar
 
 	public Verb(String name)
 	{
-		this.name = name;
+		super(name);
 	}
 	
 	public Verb(Grammar g)

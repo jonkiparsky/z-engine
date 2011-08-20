@@ -37,7 +37,6 @@ public class State
 	public void go(Direction d)
 	{	
 		
-		System.out.println(">> Go "+ d.toString());
 		current_loc = current_loc.getExit(d);
 		current_loc.enter();
 		look();
@@ -245,9 +244,14 @@ public class State
 	*/
 	public void help()
 	{
-		System.out.println(zengine.grammar.Go.desc);
-		System.out.println(zengine.grammar.Quit.desc);
-		System.out.println(zengine.grammar.Take.desc);
+		System.out.println(gamefiles.grammar.Go.desc);
+		System.out.println(gamefiles.grammar.Quit.desc);
+		System.out.println(gamefiles.grammar.Take.desc);
 	}
 
+
+	public String toString()
+	{
+		return "STATE";
+	}
 }

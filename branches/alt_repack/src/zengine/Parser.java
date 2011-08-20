@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.lang.Class;
 import java.util.Scanner;
 import java.util.Properties;
-// import zengine.grammar.*;
+ import gamefiles.grammar.*;
 
 public class Parser
 {
@@ -128,8 +128,16 @@ public class Parser
 		{
 			error("premature end of input: " + tokens.toString());
 		}
-
+	
 	}
+
+
+
+	public String toString()
+	{
+		return "PARSER";
+	}
+
 
         
 	public void parseFail(String s)
@@ -148,7 +156,7 @@ public class Parser
 		Class c; 
 		Grammar g = null;
 		try {
-     		c = Class.forName("zengine.grammar." + input);
+     		c = Class.forName("gamefiles.grammar." + input);
         	g = (Grammar) c.newInstance();
    	}
 		catch (ClassNotFoundException cnfe)
@@ -185,7 +193,7 @@ public class Parser
 
 	private void error(String s)
 	{
-		System.out.println(s);
+		Utils.debug(this, s);
 	}	
 
 	private void loadProperties()
