@@ -3,9 +3,14 @@ package zengine;
 import java.util.*;
 import zengine.rooms.Hall;
 import zengine.Room;
+import java.text.MessageFormat;
+import java.text.FieldPosition;
+
 public class State
 {
 	public  Room current_loc;
+	
+	private String message;
 	private HashMap<String,Noun> inventory;
 	Room tester;
 
@@ -60,8 +65,14 @@ public class State
 			inventory();
 		}		
 		else {
-			System.out.println("You can't see a "+i.toString()+" here!");
-		}
+		//	System.out.println("You can't see a "+i.toString()+" here!");
+			
+
+		String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
+
+     System.out.printf(formatString, i.toString());
+       System.out.println();
+			}
 	}
 
 	/**
@@ -70,10 +81,22 @@ public class State
  	*/
 	public void drop(Noun i)
 	{
+
+		String article;
 		Noun n = inventory.remove(i.toString());
 		if (n == null)
 		{
-			System.out.println("You haven't got a "+i.toString());
+			if (i.plural())
+			{	
+				article = "any";
+			}
+			else 
+			{
+				article = "a";
+			}
+			String s = (String)ZEngineMain.strings.get("DROP_No_Such_Item");
+			
+			System.out.printf(s, article, i.toString() );
 		}
 		else current_loc.drop(n);
 	}
@@ -86,16 +109,26 @@ public class State
    	if (noun !=null)
 		//if (inventory.containsKey(prep.noun.name))
 		{
+			System.out.println("Turn: break 1");
+			
 			noun = inventory.get(prep.noun.name);
-			if (noun.state != prep.name)
+			if (! noun.state.equals(prep.name))
 			{
+			System.out.println("Turn: break 2");
 				noun.setState(prep);
 			}
-			else if (noun.state == prep.name)
-				System.out.println(noun.name + " is already " + prep.name);
+			else if (noun.state.equals (prep.name))
+			{
+			System.out.println("Turn: break 3");
+				String s = (String)ZEngineMain.strings.get("TURN_Already_In_State");
+				System.out.printf(s, noun.name, prep.name);
+
+				System.out.println("DEBUG: "+s);
+			}
 		}
 		else
 		{
+			System.out.println("Turn: break 4");
 			if (!noun.plural)
 				System.out.println("You don't have a " + noun.name);
 			else

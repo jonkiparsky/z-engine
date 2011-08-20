@@ -1,5 +1,6 @@
 package zengine;
 
+import java.util.Properties;
 
 /**
 * Kickoff class for Z-Engine. This class does nothing but start the game; no
@@ -10,7 +11,7 @@ public class ZEngineMain
 	Model model;
 	public static State state;
 	public static Parser parser;	
-
+	public static Properties strings;
 
 	public static void main(String[] args)
 	{
@@ -24,6 +25,10 @@ public class ZEngineMain
 		model = new Model();
 		state = new State();
 		parser = new Parser();			
+ 
+
+		strings = PropertyLoader.getProperties("strings");
+
 
 		state.look();		
 		while (true) 
