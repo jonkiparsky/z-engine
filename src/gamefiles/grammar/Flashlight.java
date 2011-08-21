@@ -40,8 +40,8 @@ public class Flashlight extends Noun
 
    public boolean isLightSource()
    {
-		return true;
-	//	return state.equals("ON");
+//		return true;
+		return state.equals("ON");
 	}
 
 }

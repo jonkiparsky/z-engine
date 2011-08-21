@@ -108,26 +108,21 @@ public class State
    	if (noun !=null)
 		//if (inventory.containsKey(prep.noun.name))
 		{
-			System.out.println("Turn: break 1");
 			
 			noun = inventory.get(prep.noun.name);
 			if (! noun.state.equals(prep.name))
 			{
-			System.out.println("Turn: break 2");
 				noun.setState(prep);
 			}
 			else if (noun.state.equals (prep.name))
 			{
-			System.out.println("Turn: break 3");
 				String s = (String)ZEngineMain.strings.get("TURN_Already_In_State");
 				System.out.printf(s, noun.name, prep.name);
 
-				System.out.println("DEBUG: "+s);
 			}
 		}
 		else
 		{
-			System.out.println("Turn: break 4");
 			if (!noun.plural)
 				System.out.println("You don't have a " + noun.name);
 			else
@@ -163,16 +158,11 @@ public class State
 
 	public boolean carryingLight()
 	{
-		System.out.println("carryingLight(): 1");
 		for (String key: inventory.keySet())
 		{
-		System.out.println("carryingLight(): 2");
-			System.out.println(key + ": "+ inventory.get(key).isLightSource());	
-			System.out.println(key + ": "+ inventory.get(key).state);	
 			if (inventory.get(key).isLightSource())
 				return true;
 		}		
-		System.out.println("carryingLight(): 3");
 		return false;
 	}
 
@@ -206,7 +196,6 @@ public class State
 		    	System.out.println(inventory.get(s).itemDescription());
 			}
     	}
-		System.out.println("Carrying light? "+carryingLight());
 	}
 
 	/**

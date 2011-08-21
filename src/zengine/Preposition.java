@@ -6,7 +6,8 @@ public abstract class Preposition extends Grammar
 
 	public Preposition(String name)
 	{
-		super(name);
+//		super(name);
+		this.name = name;
 	}
 
 	public boolean accept(Grammar g)
@@ -18,6 +19,10 @@ public abstract class Preposition extends Grammar
                         return true;
                 }
                 return false;
+	}
+	public String toString()
+	{
+		return name;
 	}
 
 }

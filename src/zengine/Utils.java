@@ -18,6 +18,8 @@ public class Utils
 	*/
 	protected static void debug(Object o, String s)
 	{
-		System.out.println(o.toString()+": "+s);
+
+		// disable output for now
+//		System.out.println(o.toString()+": "+s);
 	}
 }
