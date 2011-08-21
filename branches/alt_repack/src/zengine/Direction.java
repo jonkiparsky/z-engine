@@ -11,8 +11,8 @@ public abstract class Direction extends Grammar
 
 	public Direction(String name)
 	{
-		super(name);
-
+//		super(name);
+		this.name = name;
 		this.acceptable.add(None.class);
 	}
 	

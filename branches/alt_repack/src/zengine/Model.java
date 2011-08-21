@@ -11,7 +11,7 @@ public class Model
 {
 
 	private static HashMap<String, Room> rooms;	
-	private static String roomPackage = "zengine.rooms";
+	private static String roomPackage = "gamefiles.rooms";
 			
 	static
 	{
@@ -44,6 +44,7 @@ public class Model
 			String name = s.split("\\.")[0];
 		
 			rooms.put(name, makeRoom(name));
+
 		}
 
 	for (String s : rooms.keySet())
@@ -61,7 +62,7 @@ public class Model
    private static Room makeRoom(String name)
    {
       try{
-      Class c = Class.forName("zengine.rooms."+name);
+      Class c = Class.forName("gamefiles.rooms."+name);
       return (Room)c.newInstance();
       }
       catch (Exception e)

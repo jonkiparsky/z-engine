@@ -1,6 +1,5 @@
 package gamefiles.grammar;
 
-
 import zengine.*;
 
 /**
@@ -30,7 +29,7 @@ public class Go extends Verb
 	public void execute()
 	{
 
-			direction = (Direction)complements.get("zengine.Direction");
+			direction = (Direction)complements.get(Direction.class.getName());
 
 			if (direction==null)
 		{

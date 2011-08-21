@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.lang.Class;
 import java.util.Scanner;
 import java.util.Properties;
- import gamefiles.grammar.*;
+import gamefiles.grammar.*;
 
 public class Parser
 {
@@ -150,6 +150,12 @@ public class Parser
 		error("Cannot understand "+g.toString()+" here");
 	}
 
+
+	/**
+	*	Attempts to create and return a grammar object for the class represented
+	*	by the String "input"
+	*	
+	*/
 	public Grammar tokenise( String input)
 	{
 		input = correctCase(input);

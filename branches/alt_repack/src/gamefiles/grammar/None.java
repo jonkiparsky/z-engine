@@ -11,7 +11,11 @@ public class None extends Grammar
 	public None()
 	{
 		super ("NONE");
+		this.name="NONE";
 	}
 
-
+	public String toString()
+	{	
+		return name;
+	}
 }
