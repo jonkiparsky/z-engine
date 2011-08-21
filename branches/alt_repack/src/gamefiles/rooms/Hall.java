@@ -1,4 +1,4 @@
-package zengine.rooms;
+package gamefiles.rooms;
 
 import gamefiles.grammar.Flashlight;
 import zengine.Room;
