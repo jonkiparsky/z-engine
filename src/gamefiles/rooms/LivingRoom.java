@@ -1,5 +1,5 @@
 
-package zengine.rooms;
+package gamefiles.rooms;
 
 
 import zengine.Room;
