@@ -1,7 +1,7 @@
 package zengine;
 
 import java.util.*;
-import zengine.rooms.Hall;
+import gamefiles.rooms.Hall;
 import zengine.Room;
 import java.text.MessageFormat;
 import java.text.FieldPosition;
@@ -80,24 +80,30 @@ public class State
  	*/
 	public void drop(Noun i)
 	{
-
-		String article;
-		Noun n = inventory.remove(i.toString());
-		if (n == null)
-		{
-			if (i.plural())
-			{	
-				article = "any";
-			}
-			else 
-			{
-				article = "a";
-			}
-			String s = (String)ZEngineMain.strings.get("DROP_No_Such_Item");
+                if (i != null)
+                {
+                        String article;
+                        Noun n = inventory.remove(i.toString());
+                        if (n == null)
+                        {
+                                if (i.plural())
+                                {	
+                                        article = "any";
+                                }
+                                else 
+                                {
+                                        article = "a";
+                                }
+                                String s = (String)ZEngineMain.strings.get("DROP_No_Such_Item");
 			
-			System.out.printf(s, article, i.toString() );
-		}
-		else current_loc.drop(n);
+                                System.out.printf(s, article, i.toString() );
+                        }
+                        else current_loc.drop(n);
+                }
+                else
+                {
+                        System.out.println("Drop what?");
+                }
 	}
 	
 	// For Turn On/Off Flashlight

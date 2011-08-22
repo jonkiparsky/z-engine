@@ -1,7 +1,7 @@
 package zengine;
 
 import java.util.*;
-import zengine.rooms.*;
+import gamefiles.rooms.*;
 import java.io.File;
 
 /**
