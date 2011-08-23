@@ -12,7 +12,7 @@ public class PropertyLoader {
 
  	public static Class<?> loaderLocation;
   	private static Map<String, Properties> propertiesMap;
-  	private static String propertyLocation = "src/gamefiles/props/{0}.properties";
+  	private static String propertyLocation = "c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamefiles/props/{0}.properties";
 
   	public PropertyLoader() {   
   		 propertiesMap = new TreeMap<String, Properties>();
