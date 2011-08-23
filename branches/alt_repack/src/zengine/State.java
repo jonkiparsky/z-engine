@@ -12,6 +12,7 @@ public class State
 	
 	private String message;
 	private HashMap<String,Noun> inventory;
+	private Confirmable confirm;
 	Room tester;
 
 
@@ -19,6 +20,7 @@ public class State
 	{
 		current_loc = Room.getRoom("Hall");
 		inventory = new HashMap<String, Noun>();
+		confirm = null;
 	}
 
 
@@ -223,14 +225,36 @@ public class State
 	{	
 		current_loc.search();
 	}
+
+	public void answer(String s)
+	{
+		if (confirm == null)
+		{
+			System.out.println(s + " what?");
+			return;
+		}
+		
+		confirm.confirm(s);
+
+	}
+
+	public void setConfirm(Confirmable command)
+	{
+		this.confirm = command;
+	}
+	
+	public void clearConfirm()
+	{
+		confirm = null;
+	}
 	
 	/**
 	* Gracefully exit the game.
 	*/
-	public void quit()
+	public void quit(String quitString)
 	{
 		
-		System.out.println("Goodbye!");
+		System.out.println(quitString);
 		System.exit(0);
 	}
 	
