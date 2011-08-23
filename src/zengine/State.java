@@ -111,7 +111,7 @@ public class State
 	{  
 		Noun noun = checkContext(prep.noun);   
 		
-   	if (noun !=null)
+                if (noun !=null)
 		//if (inventory.containsKey(prep.noun.name))
 		{
 			
@@ -127,12 +127,12 @@ public class State
 
 			}
 		}
-		else
+                else
 		{
-			if (!noun.plural)
-				System.out.println("You don't have a " + noun.name);
+			if (!prep.noun.plural)
+				System.out.println("You don't have a " + prep.noun.name);
 			else
-				System.out.println("You don't have " + noun.name);
+				System.out.println("You don't have " + prep.noun.name);
 		}
 	}
 

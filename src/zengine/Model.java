@@ -30,7 +30,7 @@ public class Model
 	*/
 	private static void loadActions()
 	{
-		String pathToRooms = "src/gamefiles/rooms";
+		String pathToRooms = "c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamefiles/rooms";
 
 		File roomsDir = new File(pathToRooms);
 		
