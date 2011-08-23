@@ -2,6 +2,7 @@ package zengine;
 
 import java.util.Properties;
 
+
 /**
 * Kickoff class for Z-Engine. This class does nothing but start the game; no
 * working code should lodge here.
@@ -26,7 +27,8 @@ public class ZEngineMain
 		state = new State();
 		parser = new Parser();			
  
-
+		System.out.println(Utils.getLocalRoot());
+	
 		strings = PropertyLoader.getProperties("strings");
 
 
