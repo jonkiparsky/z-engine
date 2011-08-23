@@ -30,9 +30,7 @@ public class Model
 	*/
 	private static void loadActions()
 	{
-		String pathToRooms = "src/gamefiles/rooms";
-
-		File roomsDir = new File(pathToRooms);
+		File roomsDir = Utils.getRoomsDir();
 		
 		for (String s: roomsDir.list())
 		{	
