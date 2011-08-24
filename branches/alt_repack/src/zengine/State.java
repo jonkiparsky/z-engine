@@ -77,6 +77,37 @@ public class State
 	}
 
 	/**
+	* Provides direct delete access to the inventory. Use for actions and events
+	* which remove items from the player's pack. Note that if items are not
+	* caught by the calling class, they are effectively destroyed in the game.
+	*/
+	public Noun inventory_destroy(Noun item)
+	{
+		return inventory.remove(item.toString());
+	}
+
+	/**
+	* Provides direct delete access to the inventory. Use for actions and events
+	* which remove items from the player's pack. Note that if items are not
+	* caught by the calling class, they are effectively destroyed in the game.
+	* Convenience class allowing delete by name as well as by object reference. 
+	*/
+	public Noun inventory_destroy(String itemName)
+	{
+		return inventory.remove(itemName);
+	}
+
+	/**
+	* Provides direct add access to the inventory. Use this to deposit items in
+	* the player's pack when "take" is inconvenient.
+	* To do: if weight or space limits are imposed, this method should address
+	* them.
+	public void inventory_put(Noun item)
+	{	
+		inventory.put(item.toString(), item);
+	}
+
+	/**
 	* Primitive command to remove an item from player's "pack" and add it to
 	* current locale's items list.  
  	*/

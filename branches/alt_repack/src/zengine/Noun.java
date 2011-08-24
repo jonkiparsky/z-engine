@@ -55,4 +55,10 @@ public abstract class Noun extends Grammar
 	}
 
 
+	public void execute(Verb verb)
+	{
+		System.out.println("You can't "+verb.toString()+" the "+this.toString());
+
+	}
+
 }
