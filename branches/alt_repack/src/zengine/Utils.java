@@ -34,16 +34,18 @@ public class Utils
 	public static File getRoomsDir()
 	{
 		String sep = System.getProperty("file.separator");
-		String roomsPath = getLocalRoot()+ sep + "src" + sep + 
-				"gamefiles" + sep + "rooms";
+		String roomsPath = //getLocalRoot()+ sep + "src" + sep + 
+				//"gamefiles" + sep + "rooms";
+                        "c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamefiles/rooms";
 		return new File(roomsPath);
 	}
 
 	public static String getPropsPath()
 	{
 		String sep = System.getProperty("file.separator");
-		String propsPath = getLocalRoot()+ sep + "src" + sep + 
-				"gamefiles" + sep + "props"+sep;
+		String propsPath = //getLocalRoot()+ sep + "src" + sep + 
+				//"gamefiles" + sep + "props"+sep;
+                "c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamefiles/props/{0}.properties";
 		return propsPath;
 	}
 

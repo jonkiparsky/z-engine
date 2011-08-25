@@ -57,6 +57,9 @@ public class Parser
 			input = in.nextLine();
 		} while (input.length() == 0);
 		
+                Timer.increaseTime(1f);
+                Timer.showTime();
+                
 		String[] move = input.split("\\W");
 		
 		String first = move[0];
@@ -217,8 +220,7 @@ public class Parser
 	{
 		System.out.println("---------");
 		System.out.println("Parse Test");
-		System.out.println("---------");
-	
+		System.out.println("---------");	
 	}
 
 }
