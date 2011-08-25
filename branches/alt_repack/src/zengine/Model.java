@@ -12,6 +12,7 @@ public class Model
 
 	private static HashMap<String, Room> rooms;	
 	private static String roomPackage = "gamefiles.rooms";
+                //"c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamesfiles.rooms";
 			
 	static
 	{
