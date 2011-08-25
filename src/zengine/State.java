@@ -24,12 +24,17 @@ public class State
 	}
 
 
+        /**
+         * Checks to see if an object is in the players inventory.
+         * @param n
+         * The object to check.
+         * @return 
+         * Returns the object if it is in the inventory, otherwise returns null.
+         */
 	public Noun checkContext(Noun n)
 	{	
-				return inventory.get(n.toString());
-			
+				return inventory.get(n.toString());			
 	}
-
 
 
 	/**
@@ -121,11 +126,11 @@ public class State
                         {
                                 if (i.plural())
                                 {	
-                                        article = "any";
+                                        article = (String)ZEngineMain.strings.get("GEN_Multiple_Indef_Article");
                                 }
                                 else 
                                 {
-                                        article = "a";
+                                        article = (String)ZEngineMain.strings.get("GEN_Singular_Indef_Article");
                                 }
                                 String s = (String)ZEngineMain.strings.get("DROP_No_Such_Item");
 			
@@ -162,10 +167,18 @@ public class State
 		}
                 else
 		{
+                        String s = (String)ZEngineMain.strings.get("INV_No_Item");
+                        String article; 
 			if (!prep.noun.plural)
-				System.out.println("You don't have a " + prep.noun.name);
+                        {
+                                article = (String) ZEngineMain.strings.get("GEN_Singular_Indef_Article");
+                                System.out.printf(s, article, prep.noun.name);
+                        }
 			else
-				System.out.println("You don't have " + prep.noun.name);
+                        {
+                                article = (String) ZEngineMain.strings.get("GEN_Multiple_Indef_Article");
+                                System.out.printf(s, article, prep.noun.name);
+                        }
 		}
 	}
 
@@ -298,7 +311,16 @@ public class State
 		System.out.println(gamefiles.grammar.Quit.desc);
 		System.out.println(gamefiles.grammar.Take.desc);
 	}
-
+        
+        public boolean yes()
+        {
+                return true;
+        }
+        
+        public boolean no()
+        {
+                return false;
+        }
 
 	public String toString()
 	{

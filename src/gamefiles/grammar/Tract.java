@@ -2,8 +2,10 @@ package gamefiles.grammar;
 
 import zengine.Noun;
 import zengine.Verb;
+import zengine.IReadable;
+import zengine.IBurnable;
 
-public class Tract extends Noun
+public class Tract extends Noun implements IReadable, IBurnable
 {
 	private String text = "This appears to be a religious tome of some sort, but it is "
 		+ "badly damaged. The author seems to be the prophet Goxlin, and his topic "
@@ -20,19 +22,21 @@ public class Tract extends Noun
 		
 	}
 
-
 	public void execute(Verb v)
 	{
 		if (v instanceof Read)
 		{
-			execute((Read)v);
+			//execute((Read)v);
+                        ((Read)v).execute(this);
 		}
 		else if (v instanceof Burn)
 		{
-			execute((Burn)v);
+			//execute((Burn)v);
+                        ((Burn)v).execute(this);
 		}
 	}
-
+        
+        /*
 	public void execute(Read read)
 	{
 		System.out.println("Tract.execute("+read.toString()+")");
@@ -43,8 +47,15 @@ public class Tract extends Noun
 	{
 		System.out.println("Tract.execute("+burn.toString()+")");
 		burn.callback(burnText, this);
-	}
+	}*/
 
-
-
+        public String readText()
+        {
+                return text;
+        }
+        
+        public String burnText()
+        {
+                return burnText;
+        }
 }
