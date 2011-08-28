@@ -1,0 +1,82 @@
+<project name="learn_ant" >
+	<property name="basedir" value = "." />
+	<property file="build.properties" />
+	<property name="build.dir" value="${basedir}/bin" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="images.dir" value="${package}/images/*.*"/>
+	<property name="properties.dir" value="${package}/properties/*.properties"/>
+	<property name="main.class" value="Hello" />
+	<property name="jar.dir" value="${basedir}" />
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete file="${jarfile}" />
+		<echo message="Ran clean"/>
+	</target>
+
+
+	<target name="compile" >
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}"/>
+	</target>
+
+	
+
+	<target name="make_jar" depends="compile" description="Create jar file">
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<include name="${images.dir}"/>
+				<include name="${properties.dir}"/>
+			</fileset>
+		</copy>
+		<jar destfile="${jarfile}" basedir="${build.dir}">
+
+			<manifest>
+				<attribute name="Main-Class" 
+						value="${package}/${main.class}"/>			
+			</manifest>
+
+		</jar>		
+	</target>
+
+
+	<target name="clean-javadoc">
+		<delete dir="${javadoc.dir}" />
+		<echo message="Ran clean-javadoc"/>
+	</target>
+
+	<target name="javadoc" depends="clean-javadoc">
+		<mkdir dir="{javadoc.dir}" />
+		<javadoc destdir="${javadoc.dir}">
+				<fileset dir="${src.dir}" includes="*.java" />		
+		</javadoc>
+	</target>
+
+	<target name = "run">
+		<java jar="${jarfile}" fork="true"/>
+	</target>
+
+	<target name = "test">
+		<java jar="${jarfile}" fork="true">
+			<arg value = "test"/>
+		</java>
+	</target>
+
+	<target name="help">
+		<echo message="compile:		Compile source to build directory" />
+		<echo message="make_jar:	Compile code and create jar in jar directory" />
+		<echo message="javadoc:		Generate javadoc in documents directory"/>
+		<echo message="clean:		Delete bin"/>
+		<echo message="clean-javadoc:	Delete javadoc" />
+		<echo message="run:			Run the jar file" />
+		<echo message="help:			Print this message"/>
+		<echo message="*******************************"/>
+
+		<echo message="Build directory = ${build.dir}"/>
+		<echo message="Docs directory = ${docs.dir}"/>
+		<echo message="javadoc directory = ${javadoc.dir}"/>
+		<echo message="Main file = ${main.class}.class"/>
+		<echo message="Jar name = ${jarfile}"/>
+	</target>
+</project>
+
