@@ -82,12 +82,19 @@ public class Parser
 			return;
 		}
 
+			// If one-word command, simply make a one-word sentence and try to
+			// execute it.
+ 
 		if (move.length <2) 
 		{
 			sentence.execute();
 			return;
 		}
-	
+
+			// otherwise, do a bit of work: make an array and feed the array into
+			// the sentence. If the sentence and the array come to the end at the
+			// same time, try to execute. 
+
 		String[] m = new String[move.length - 1];		
 		System.arraycopy(move, 1, m, 0, m.length);
 				
@@ -116,7 +123,8 @@ public class Parser
 		
 		if (error)
 		{
-			error("I don't know what that word means: see parser.makeMove");
+			error("I don't know what that word means: see parser.makeMove\n"+
+				"Tokens: "+tokens);
 			error= false;
 			return;
 		}
@@ -145,12 +153,12 @@ public class Parser
         
 	public void parseFail(String s)
 	{
-		error("I don't know what "+s+" means");
+		error("I don't know what "+s+" means(pfs)");
 	}
 
 	public void parseFail(Grammar g)
 	{
-		error("Cannot understand "+g.toString()+" here");
+		error("Cannot understand "+g.toString()+" here(pfg)");
 	}
 
 
@@ -170,7 +178,7 @@ public class Parser
    	}
 		catch (ClassNotFoundException cnfe)
 		{
-				System.out.println("I don't know what "+input+" means!");
+				System.out.println("I don't know what "+input+" means! (cnfe)");
 				error = true;
 			
 		}
