@@ -7,7 +7,7 @@ public abstract class Noun extends Grammar
 	protected String desc;
 	protected String state;
 	protected boolean plural;
-        protected Preposition prep;
+	protected Preposition prep;
 
 	public Noun(String name)
 	{
@@ -36,12 +36,12 @@ public abstract class Noun extends Grammar
 	{
 		return state;
 	}
-        
-        
-        public void setState(Preposition prep)
-        {
-                System.out.println("You can't set " + name + " status to " + prep.name);
-        }
+	
+	
+	public void setState(Preposition prep)
+	{
+		System.out.println("You can't set " + name + " status to " + prep.name);
+	}
 	
 	public String toString()
 	{
