@@ -49,7 +49,7 @@ public class Parser
 	public void makeMove()
 	{
 		String input;
-		
+	
 		StringBuffer tokens = new StringBuffer();
 		do
 		{

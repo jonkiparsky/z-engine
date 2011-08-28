@@ -41,11 +41,46 @@ public class Utils
 
 	public static String getPropsPath()
 	{
+		
 		String sep = System.getProperty("file.separator");
 		String propsPath = getLocalRoot()+ sep + "src" + sep + 
 				"gamefiles" + sep + "props"+sep;
 		return propsPath;
 	}
 
+
+	// debugging file references
+	public static void printDirectoryListings()
+	{
+		System.out.println("showing directory listings");
+		File f = new File (".");
+		System.out.println("Root directory: " +getLocalRoot());
+		System.out.println("getLocalRoot function is " +
+				(f.getAbsolutePath().equals(getLocalRoot())? "indeed" : "not") + 
+				" correct");
+		System.out.println("Rooms directory: " +getRoomsDir().getAbsolutePath());
+		System.out.println("Props directory: " +getPropsPath());
+		recurse(f, 0);	
+	}
+	
+	private static void recurse(File file, int n)
+	{
+		for (File f: file.listFiles())
+		{
+		if(f.getName().charAt(0)=='.')
+			continue;
+	 	printFileName(f, n);
+		if (f.isDirectory())
+			recurse(f, n+1);
+		}
+	}
+
+	private static void printFileName(File f, int n)
+	{
+		for (int i = 0; i <n; i++)
+			System.out.print("\t");
+		System.out.println(f.getName());
+		
+	}
 
 }
