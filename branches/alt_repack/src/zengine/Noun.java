@@ -1,5 +1,7 @@
 package zengine;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 public abstract class Noun extends Grammar
 {
 	protected String desc;
@@ -55,10 +57,31 @@ public abstract class Noun extends Grammar
 	}
 
 
-	public void execute(Verb verb)
+	public <V extends Verb> void execute(V  verb)
 	{
-		System.out.println("You can't "+verb.toString()+" the "+this.toString());
+		System.out.println(verb.getClass().getName());	
+		try
+		{
+			Method ex = this.getClass().getMethod("execute", verb.getClass());
+			ex.invoke(this,verb);
+		}
+		catch(NoSuchMethodException e)
+		{
 
+		System.out.println("You can't "+verb.toString()+" the "+this.toString());
+		}
+		catch(SecurityException se)
+		{
+			System.out.println("Noun.execute threw a securityException");
+		}
+		catch (IllegalAccessException iae)
+		{
+			System.out.println("Noun.execute threw a illegalAccessException");
+		}
+		catch (InvocationTargetException iae)
+		{
+			System.out.println("Noun.execute threw a InvocationTargetException");
+		}
 	}
 
 }
