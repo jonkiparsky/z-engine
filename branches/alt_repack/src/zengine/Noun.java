@@ -56,7 +56,6 @@ public abstract class Noun extends Grammar
 		return (desc);
 	}
 
-
 	public <V extends Verb> void execute(V  verb)
 	{
 		System.out.println(verb.getClass().getName());	
@@ -83,5 +82,4 @@ public abstract class Noun extends Grammar
 			System.out.println("Noun.execute threw a InvocationTargetException");
 		}
 	}
-
 }

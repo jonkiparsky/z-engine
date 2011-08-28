@@ -3,7 +3,7 @@ package gamefiles.grammar;
 import zengine.Verb;
 import zengine.ZEngineMain;
 import zengine.Confirmable;
-import zengine.Timer;
+import zengine.Time;
 
 public class Quit extends Verb implements Confirmable{
     
@@ -24,12 +24,12 @@ public class Quit extends Verb implements Confirmable{
         {
 		System.out.println("Are you sure you want to quit?");
 		ZEngineMain.state.setConfirm((Confirmable)this);
-                timeAsked = Timer.getTime();
+                //timeAsked = Time.getTime();
         }
 		
         public void confirm(String s)	
         {
-                timeElapsed = Timer.getTime() - timeAsked;
+                //timeElapsed = Time.getTime() - timeAsked;
                 if (timeElapsed > 1)
                 {
                         System.out.println("You have taken too long to confirm quitting.");

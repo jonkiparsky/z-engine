@@ -4,7 +4,7 @@ import zengine.Verb;
 import zengine.ZEngineMain;
 import zengine.Utils;
 import zengine.Confirmable;
-import zengine.Timer;
+//import zengine.Timer;
 
 public class Showdirectorylistings extends Verb{
     

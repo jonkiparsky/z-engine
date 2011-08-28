@@ -30,8 +30,12 @@ public class ZEngineMain
 		System.out.println(Utils.getLocalRoot());
 	
 		strings = PropertyLoader.getProperties("strings");
-
-                //testTimer();
+                
+                testTimer();
+                System.out.println("Changing time step to 30 mins");
+                Time.resetTime();
+                Time.setTimeStep(30);
+                testTimer();
                 
 		state.look();		
 		while (true) 
@@ -40,24 +44,26 @@ public class ZEngineMain
         
         private void testTimer()
         {  
-                // Commented times are what the correct time would be.
-                // Number passed is an hour.
-                // Monday 00:00
-                Timer.showTime();
-                Timer.increaseTime(12f);
-                // Monday 12:00
-                Timer.showTime();
-                Timer.increaseTime(9f);
-                // Monday 21:00
-                Timer.showTime();
-                Timer.increaseTime(48f);
-                // Wednesday 21:00
-                Timer.showTime();
-                Timer.increaseTime(72f);
-                // Saturday 21:00
-                Timer.showTime();
-                Timer.increaseTime(72f);
-                // Tuesday 21:00
-                Timer.showTime();
+                Time.showTime();
+                
+                System.out.println("\nIncreasing 1 timestep");
+                Time.increaseTime(1);
+                Time.showTime();
+                
+                System.out.println("\nIncreasing 17 timesteps");
+                Time.increaseTime(17);
+                Time.showTime();
+                
+                System.out.println("\nIncreasing 30 timesteps");
+                Time.increaseTime(30);
+                Time.showTime();
+                
+                System.out.println("\nIncreasing 75 timesteps");
+                Time.increaseTime(75);
+                Time.showTime();
+                
+                System.out.println("\nIncreasing 150 timesteps");
+                Time.increaseTime(150);
+                Time.showTime();
         }
 }

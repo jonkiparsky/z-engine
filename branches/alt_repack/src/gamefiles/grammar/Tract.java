@@ -15,9 +15,7 @@ public class Tract extends Noun
 	public Tract()
 	{
 		super ("TRACT");
-		this.name = "TRACT";
-
-		
+		this.name = "TRACT";		
 	}
 
         
