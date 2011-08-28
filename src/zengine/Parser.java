@@ -56,9 +56,6 @@ public class Parser
 			System.out.print(">> ");
 			input = in.nextLine();
 		} while (input.length() == 0);
-		
-                Timer.increaseTime(1f);
-                Timer.showTime();
                 
 		String[] move = input.split("\\W");
 		
