@@ -7,6 +7,9 @@ import java.io.File;
 */
 public class Utils
 {
+	private static File gameFilesLocation;
+	private static File engineFilesLocation;
+	
 	private static enum DebugLevel
 	{
 
@@ -33,10 +36,11 @@ public class Utils
 
 	public static File getRoomsDir()
 	{
+		
+		System.out.println(gameFilesLocation.getAbsolutePath());
+		
 		String sep = System.getProperty("file.separator");
-		String roomsPath = //getLocalRoot()+ sep + "src" + sep + 
-				//"gamefiles" + sep + "rooms";
-                "c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamefiles/rooms";
+		String roomsPath = gameFilesLocation.getAbsolutePath() + sep + "rooms";
 		return new File(roomsPath);
 	}
 
@@ -44,9 +48,10 @@ public class Utils
 	{
 		
 		String sep = System.getProperty("file.separator");
-		String propsPath = //getLocalRoot()+ sep + "src" + sep + 
-				//"gamefiles" + sep + "props"+sep;
-                "c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamefiles/props/";
+		String propsPath = gameFilesLocation.getAbsolutePath() + sep 
+				+ "props" + sep;
+	
+		System.out.println("propspath = " +propsPath);
 		return propsPath;
 	}
 
@@ -64,25 +69,77 @@ public class Utils
 		System.out.println("Props directory: " +getPropsPath());
 		recurse(f, 0);	
 	}
+
+
+ private static void recurse(File file, int n)
+        {
+                for (File f: file.listFiles())
+                {
+                if(f.getName().charAt(0)=='.')
+                        continue;
+                printFileName(f, n);
+                if (f.isDirectory())
+                        recurse(f, n+1);
+                }
+        }
 	
-	private static void recurse(File file, int n)
+
+   private static void printFileName(File f, int n)
+        {
+                for (int i = 0; i <n; i++)
+                        System.out.print("\t");
+                System.out.println(f.getName());
+                
+        }
+
+
+	public static void seekLocalRoots()
 	{
-		for (File f: file.listFiles())
+		File file = new File (".");
+		gameFilesLocation = seekSource(file, "gamefiles");
+		
+		engineFilesLocation = seekSource(file, "zengine");
+	
+	
+		if (gameFilesLocation ==null)
 		{
-		if(f.getName().charAt(0)=='.')
-			continue;
-	 	printFileName(f, n);
-		if (f.isDirectory())
-			recurse(f, n+1);
+			System.out.println("can't find gamefiles. exiting");
+			System.exit(0);
+		}
+		if (engineFilesLocation ==null)
+		{
+			System.out.println("can't find enginefiles. exiting");
+			System.exit(0);
 		}
 	}
 
-	private static void printFileName(File f, int n)
+	private static File seekSource(File file, String seekName)
 	{
-		for (int i = 0; i <n; i++)
-			System.out.print("\t");
-		System.out.println(f.getName());
-		
+	//	System.out.println("seeking: "+file.getAbsolutePath());
+		LOOP: for (File f: file.listFiles())
+		{
+			if(f.getName().charAt(0)=='.')
+				continue LOOP;
+			if (f.getName().equals("bin"))
+				continue;
+			if (f.getName().equals("build")) 
+				continue;
+	//		System.out.println("f.getName(): "+f.getName());
+	//		System.out.println("seekName = " +seekName);
+			if (f.getName().trim().equals(seekName.trim()))
+			{
+				System.out.println("Found "+seekName);
+				return f;
+			}
+			if (f.isDirectory())
+			{
+	//			System.out.println("seeking in "+f.getName());
+				File returnFile = seekSource(f, seekName);
+				if (returnFile != null)
+					return(seekSource(f, seekName));
+			}
+		}
+	//	System.out.println ("can't find: "+seekName);
+		return null;
 	}
-
 }

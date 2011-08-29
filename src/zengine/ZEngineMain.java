@@ -17,6 +17,7 @@ public class ZEngineMain
 	public static void main(String[] args)
 	{
 		ZEngineMain main = new ZEngineMain();
+		Utils.seekLocalRoots();
 		main.start();		
 		
 	}
@@ -26,8 +27,8 @@ public class ZEngineMain
 		model = new Model();
 		state = new State();
 		parser = new Parser();			
+
  
-		System.out.println(Utils.getLocalRoot());
 	
 		strings = PropertyLoader.getProperties("strings");
                 
