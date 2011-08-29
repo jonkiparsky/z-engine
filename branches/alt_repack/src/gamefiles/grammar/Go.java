@@ -23,7 +23,7 @@ public class Go extends Verb
 	public Go(Direction g)
 	{
 		super("GO");
-			this.complements.put(Direction.class.getName(), g);
+                this.complements.put(Direction.class.getName(), g);
 	}
 	
 	public void execute()
@@ -39,7 +39,7 @@ public class Go extends Verb
 
 		
 		
-		if (ZEngineMain.state.current_loc.getExit(direction) == null)
+		if (ZEngineMain.state.currentRoom().getExit(direction) == null)
 		{	
 			System.out.println("I can't see an exit that way");
 		}

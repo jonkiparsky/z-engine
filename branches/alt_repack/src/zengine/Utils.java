@@ -28,12 +28,18 @@ public class Utils
 //		System.out.println(o.toString()+": "+s);
 	}
 
+        /**
+         * Returns the users local root path.
+         */
 	public static String getLocalRoot()
 	{
 		File file = new File(".");
 		return file.getAbsolutePath();
 	}
-
+        
+        /**
+         * Returns the file path for gamefiles.rooms.
+         */
 	public static File getRoomsDir()
 	{
 		
@@ -44,6 +50,10 @@ public class Utils
 		return new File(roomsPath);
 	}
 
+        /**
+         * Returns the file path for gamefiles.props.
+         * @return 
+         */
 	public static String getPropsPath()
 	{
 		
@@ -56,7 +66,9 @@ public class Utils
 	}
 
 
-	// debugging file references
+	/**
+         * Used for debugging. Prints various file paths.
+         */
 	public static void printDirectoryListings()
 	{
 		System.out.println("showing directory listings");

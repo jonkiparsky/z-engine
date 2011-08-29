@@ -32,6 +32,7 @@ public class Time
                 dayIndex = 0;
                 currentDay = days[dayIndex];
                 timeStep = 1;
+                time = 0;
                 minsInHour = 60;
                 hoursInDay = 24; 
         }

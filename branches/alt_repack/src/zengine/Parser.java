@@ -169,11 +169,60 @@ public class Parser
 		input = correctCase(input);
 		Class c; 
 		Grammar g = null;
-		try {
-     		c = Class.forName("gamefiles.grammar." + input);
-        	g = (Grammar) c.newInstance();
-   	}
+		try 
+                {
+                        c = Class.forName("gamefiles.grammar." + input);
+                        g = (Grammar) c.newInstance();
+                        /*if (g == null)
+                        {
+                                c = Class.forName("zengine." + input);
+                                g = (Grammar) c.newInstance();
+                        }*/
+                }
 		catch (ClassNotFoundException cnfe)
+		{
+                            if ((g = tokeniseRoom(input)) == null)
+                            {
+                                    System.out.println("I don't know what "+input+" means! (cnfe)");
+                                    error = true;
+                            }
+		}
+		catch (InstantiationException ie)
+		{	
+                        if ((g = tokeniseRoom(input)) == null)
+                        {
+                                error = true;
+                                System.out.println("error: "+ ie.getMessage());
+                        }
+		}
+		catch (IllegalAccessException iae)
+		{
+                        if ((g = tokeniseRoom(input)) == null)
+                        {
+                                error = true;
+                                System.out.println("error: "+ iae.getMessage());
+                        }
+		}
+		
+		return g;
+	}
+        
+        public Grammar tokeniseRoom(String input)
+        {
+                input = correctCase(input);
+                Class c;
+                Grammar g = null;
+                try
+                {
+                    c = Class.forName("gamefiles.rooms." + input);
+                    g = (Grammar) c.newInstance();
+                    /*if (g == null)
+                        {
+                                c = Class.forName("zengine." + input);
+                                g = (Grammar) c.newInstance();
+                        }*/
+                }
+                catch (ClassNotFoundException cnfe)
 		{
 				System.out.println("I don't know what "+input+" means! (cnfe)");
 				error = true;
@@ -191,7 +240,7 @@ public class Parser
 		}
 		
 		return g;
-	}
+        }
 
 	private String correctCase(String s)
 	{

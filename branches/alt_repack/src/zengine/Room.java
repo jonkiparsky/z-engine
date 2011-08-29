@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.Class;
 
-public abstract class Room
+public abstract class Room extends Grammar
 {
         /**
         * Used to determine what the player has done in the room. 
@@ -11,6 +11,7 @@ public abstract class Room
         enum PlayerInteractionState { NOT_ENTERED, NEW_ENTERED, PREV_ENTERED}
     
 	protected String name;
+        protected String teleportName;
 	public HashMap<String, Room> exits;
 	public HashMap<String, Noun> items;
 	protected State state;		
@@ -18,15 +19,20 @@ public abstract class Room
         protected String longDescription;
         protected PlayerInteractionState interactState;
 	Room startRoom;
-	protected boolean isDark;
-	
+	protected boolean isDark;	
 	
 	protected ArrayList<Noun> hiddenObjects;
 	protected HashMap<String,Room> hiddenExits;
 	
+        /**
+         * Creates a new room and instantiates properties to default.
+         * @param name 
+         * The name of the room.
+         */
 	public Room (String name)
 	{
 		this.name = name;
+                this.teleportName = name;
                 interactState = PlayerInteractionState.NOT_ENTERED;
 		exits=new HashMap<String, Room>();
 		items = new HashMap<String, Noun>();
@@ -43,17 +49,16 @@ public abstract class Room
 	{
 
 		switch (interactState)
-      {
-         case NOT_ENTERED:
-            interactState = PlayerInteractionState.NEW_ENTERED;
-            break;
-         case NEW_ENTERED:
-            interactState = PlayerInteractionState.PREV_ENTERED;
-            break;
-			default :
-				break;
-      }
-
+                {
+                        case NOT_ENTERED:
+                            interactState = PlayerInteractionState.NEW_ENTERED;
+                            break;
+                        case NEW_ENTERED:
+                            interactState = PlayerInteractionState.PREV_ENTERED;
+                            break;
+			default:
+                            break;
+                }
 	}
 
 	/**
@@ -75,7 +80,6 @@ public abstract class Room
 		return exits.get(direction.toString());
 	}
 	
-
 	/**
 	* Informs this room that it has an exit in the named direction.
 	*/	
@@ -83,8 +87,16 @@ public abstract class Room
 	{
 		exits.put(direction, room);
 	}
-
-	
+        
+        /**
+        * Returns the name of a teleport room from this room. Returns null
+         * if there is no teleport room.
+        */        
+        public String teleportRoom()
+        {
+                return teleportName;
+        }
+        
 	/**
 	* Constructs and returns a user-facing (formatted) String describing the
 	* room, including any objects present and visible. Description varies
@@ -122,38 +134,40 @@ public abstract class Room
 		{
 		    sb.append("You can see exits to the "+ this.listExits() + "\n");	
 		}
-		sb.append(listItems());
+		sb.append(listItems());                
 	
 		return sb.toString();
 	}
 	
-    public String listItems()
-    {
-	    int itemCount = items.size();
-	    StringBuilder sb = new StringBuilder("There is ");
-		    if (items.isEmpty())
-			    sb.append("nothing");
-	    for (String item: items.keySet())
-	    {
-		    if (!items.get(item).plural())
-			    sb.append("a ");
-		    if (itemCount == 1)
-			    sb.append(item);    
-		    else if (itemCount == 2)
-		    {
-			    sb.append(item + " and ");
-			    itemCount--;
-		    }
-		    else
-		    {
-			    sb.append(item + ", ");
-	 // counts down as items are appended, so last item is always prefixed by and.
-			    itemCount--;
-		    }
-	    }
-	    sb.append(" here");
-	    return sb.toString();
-    }
+        public String listItems()
+        {
+                int itemCount = items.size();
+                StringBuilder sb = new StringBuilder("There is ");
+                        if (items.isEmpty())
+                                sb.append("nothing");
+                for (String item: items.keySet())
+                {
+                        if (!items.get(item).plural())
+                                sb.append("a ");
+                        
+                        if (itemCount == 1)
+                                sb.append(item);    
+                        else if (itemCount == 2)
+                        {
+                                sb.append(item + " and ");
+                                itemCount--;
+                        }
+                        else
+                        {
+                                sb.append(item + ", ");
+                                // counts down as items are appended, so last 
+                                //item is always prefixed by and.
+                                itemCount--;
+                        }
+                }
+                sb.append(" here");
+                return sb.toString();
+        }
 
 	/**
 	* Returns a user-facing (formatted) list of visible exits from the room
@@ -183,11 +197,12 @@ public abstract class Room
 		return sb.toString();
 	}
 	
-	
+	/**
+         * Used for room creation. Override to include room.setExits().
+         */
 	public void setExits()
 	{
-	}
-	
+	}	
 
 	/**
 	* Returns the single instance of the Room with this name.
@@ -238,9 +253,9 @@ public abstract class Room
 	}
 	
 	/**
-	* Executes a search in this room. Default behavior checks the hiddenExits and
-	* hiddenObjects fields and returns a stock answer if there is nothing to
-	* find. 
+	* Executes a search in this room. Default behavior checks the hiddenExits
+        * and hiddenObjects fields and returns a stock answer if there is 
+        * nothing to find. 
 	*/
 	public void search()
 	{
@@ -249,7 +264,6 @@ public abstract class Room
 			System.out.println("A careful search of the room reveals nothing...");
 			return;
 		}
-
 
 		if (hiddenExits.size() > 0)
 		{
@@ -270,11 +284,5 @@ public abstract class Room
 			}
 			hiddenObjects.clear();
 		}
-		
-		
 	}
-	
 }
-
-
-

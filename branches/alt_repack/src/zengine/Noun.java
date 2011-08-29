@@ -2,12 +2,15 @@ package zengine;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+
 public abstract class Noun extends Grammar
 {
 	protected String desc;
 	protected String state;
 	protected boolean plural;
 	protected Preposition prep;
+        
+        protected int weight = 1;
 
 	public Noun(String name)
 	{
@@ -36,6 +39,11 @@ public abstract class Noun extends Grammar
 	{
 		return state;
 	}
+        
+        public int getWeight()
+        {
+                return weight;
+        }
 	
 	
 	public void setState(Preposition prep)
