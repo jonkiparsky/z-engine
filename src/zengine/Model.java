@@ -18,7 +18,10 @@ public class Model
 	{
 		rooms = new HashMap<String, Room>();
 	}
-		
+	
+        /**
+         * Creates a new model. Loads rooms from the gamefiles/rooms directory.
+         */
 	public Model()
 	{
 		loadActions();
@@ -46,7 +49,7 @@ public class Model
 
 		}
 
-	for (String s : rooms.keySet())
+                for (String s : rooms.keySet())
 		{
 			rooms.get(s).setExits();
 		}
@@ -57,24 +60,25 @@ public class Model
 	/**
 	* Load a room given its class name
 	*/
-
-   private static Room makeRoom(String name)
-   {
-      try{
-      Class c = Class.forName("gamefiles.rooms."+name);
-      return (Room)c.newInstance();
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace();
-         return null;
-      }
-   
+        private static Room makeRoom(String name)
+        {
+                try
+                {
+                        Class c = Class.forName("gamefiles.rooms."+name);
+                        return (Room)c.newInstance();
+                }
+                catch (Exception e)
+                {
+                        e.printStackTrace();
+                        return null;
+                }
 	}
+        
+        /**
+         * Returns a room given its name.
+         */
 	public static Room getRoom(String name)
 	{
 		return rooms.get(name);
 	}
-
-
 }

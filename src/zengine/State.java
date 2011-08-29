@@ -8,22 +8,29 @@ import java.text.FieldPosition;
 
 public class State
 {
-	public  Room current_loc;
+	private  Room current_loc;
 	
 	private String message;
-	private HashMap<String,Noun> inventory;
+	//private HashMap<String,Noun> inventory;
+        private Container inventory;
 	private Confirmable confirm;
 	Room tester;
 
-
+        /**
+         * Creates a new state. This holds the players current location,
+         * inventory, as well as access primitive commands that the player can use.
+         */
 	public State()
 	{
 		current_loc = Room.getRoom("Hall");
-		inventory = new HashMap<String, Noun>();
+                current_loc.enter();
+                look();
+		//inventory = new HashMap<String, Noun>();
+                // Inventory of size 25, weightLimit 50.
+                inventory = new Container("Inventory", 25, 50);
 		confirm = null;
 	}
-
-
+        
         /**
          * Checks to see if an object is in the players inventory.
          * @param n
@@ -33,9 +40,16 @@ public class State
          */
 	public Noun checkContext(Noun n)
 	{	
-				return inventory.get(n.toString());			
+				return inventory.getItem(n);			
 	}
-
+        
+        /**
+         * Returns the current location of the player.
+         */
+        public Room currentRoom()
+        {
+                return current_loc;
+        }
 
 	/**
 	* Primitive command to move the player from one point to a contiguous point. 
@@ -44,10 +58,26 @@ public class State
 	public void go(Direction d)
 	{	
 		
-		current_loc = current_loc.getExit(d);
-		current_loc.enter();
+		moveToRoom(current_loc.getExit(d));
+                current_loc.enter();
 		look();
 	}
+        
+        /**
+         * Changes the current location of the player to the desired Room.
+         */
+        public void moveToRoom(Room room)
+        {
+                current_loc = Model.getRoom(room.name);
+        }
+        /**
+         * Changes the current location of the player to the desired Room.
+         */
+        public void moveToRoom(String room)
+        {
+                current_loc = Model.getRoom(room);
+        }
+        
 
   /**
   *  Primitive command for "look". Returns the room's description of itself. 
@@ -66,19 +96,16 @@ public class State
 		Noun n = current_loc.take(i);
 		if (n != null)
 		{
-			inventory.put(i.toString(),i);
+			inventory.addItem(i);
 
 			inventory();
 		}		
-		else {
-		//	System.out.println("You can't see a "+i.toString()+" here!");
-			
-
-		String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
-
-     System.out.printf(formatString, i.toString());
-       System.out.println();
-			}
+		else 
+                {
+                        String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
+                        System.out.printf(formatString, i.toString());
+                        System.out.println();
+		}
 	}
 
 	/**
@@ -88,7 +115,7 @@ public class State
 	*/
 	public Noun inventory_destroy(Noun item)
 	{
-		return inventory.remove(item.toString());
+		return inventory.removeItem(item);
 	}
 
 	/**
@@ -99,7 +126,7 @@ public class State
 	*/
 	public Noun inventory_destroy(String itemName)
 	{
-		return inventory.remove(itemName);
+		return inventory.removeItem(itemName);
 	}
 
 	/**
@@ -121,7 +148,7 @@ public class State
                 if (i != null)
                 {
                         String article;
-                        Noun n = inventory.remove(i.toString());
+                        Noun n = inventory_destroy(i);
                         if (n == null)
                         {
                                 if (i.plural())
@@ -144,7 +171,11 @@ public class State
                 }
 	}
 	
-	// For Turn On/Off Flashlight
+	/**
+         * Changes the state of a noun.
+         * @param prep 
+         * The state to change the noun to.
+         */
 	public void turn (Preposition prep)
 	{  
 		Noun noun = checkContext(prep.noun);   
@@ -153,7 +184,7 @@ public class State
 		//if (inventory.containsKey(prep.noun.name))
 		{
 			
-			noun = inventory.get(prep.noun.name);
+			noun = inventory.getItem(prep.noun.name);
 			if (! noun.state.equals(prep.name))
 			{
 				noun.setState(prep);
@@ -183,14 +214,18 @@ public class State
 	}
 
 	
-	//For Turn Flashlight On/Off
+	/**
+         * Changes the state of a noun.
+         * @param n 
+         * The noun whose state is to be changed.
+         */
 	public void turn(Noun n)
 	{
 		
 		    Preposition p = n.prep;
 
 			n = checkContext(n);
-		    if (inventory.containsKey(n.name))
+		    if (inventory.containsItem(n))
 		    {
 			    Noun noun = n;
 			    if (noun.state != p.name)
@@ -207,12 +242,16 @@ public class State
 		    }
 	}
 
-
+        /**
+         * Checks to see if there is a light source in the players inventory.
+         * @return 
+         * Returns true if a light source is found, false if not.
+         */
 	public boolean carryingLight()
 	{
 		for (String key: inventory.keySet())
 		{
-			if (inventory.get(key).isLightSource())
+			if (inventory.getItem(key).isLightSource())
 				return true;
 		}		
 		return false;
@@ -222,34 +261,52 @@ public class State
   * Report the contents of the player's "pack". This is a primitive command; its
   * implementation is cannot be changed by the game designer without modifying
   * the Engine source code. 
-	* To do: Re-implement as a hook, returning the data unformatted, to allow
-	* game designers to override the implementation. This implementation should
-	* be kept as a convenience.  
 	* To do: externalize strings. 
   */
 	public void inventory()
 	{
-		if (inventory.size()==0)
+		if (inventory.containerEmpty())
 		{
 		System.out.println("You are unburdened by material goods.");
 		
 		}
+                
+                /*
+                 * Purely to demonstrate usage of both string and nouns to
+                 * do the same thing.
+                 
 		for (String s: inventory.keySet())
 		{ 
-			if (!inventory.get(s).plural)
+			if (!inventory.getItem(s).plural)
 			{
 				System.out.println("You have a " + s + ".");
-				if (inventory.get(s).state != null)
-				    System.out.println(inventory.get(s).itemDescription());
+				if (inventory.getItem(s).state != null)
+				    System.out.println(inventory.getItem(s).itemDescription());
 			}
 			else
 			{
 	    		System.out.println("You have "+s+".");
-		    	System.out.println(inventory.get(s).itemDescription());
+		    	System.out.println(inventory.getItem(s).itemDescription());
 			}
-    	}
+                }*/
+                
+                for (Noun n: inventory.itemSet())
+                {
+                        if (!inventory.getItem(n).plural)
+                        {
+                                System.out.println("You have a " + n.toString()
+                                        + ".");
+                                if (inventory.getItem(n).state != null)
+                                        System.out.println(inventory.getItem(n).itemDescription());
+                        }
+                        else
+                        {
+                            System.out.println("You have " + n.toString() + ".");
+                            System.out.println(inventory.getItem(n).itemDescription());
+                        }
+                }
 	}
-
+        
 	/**
 	* Returns unformatted inventory HashMap for game designers who wish to
 	* compose their own inventory command or check the inventory for other
@@ -257,7 +314,7 @@ public class State
 	*/
 	public HashMap<String,Noun> _getInventory()
 	{
-		return inventory;
+		return inventory.getContainer();
 	}
 
   /**

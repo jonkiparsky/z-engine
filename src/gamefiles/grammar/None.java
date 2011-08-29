@@ -1,6 +1,7 @@
 package gamefiles.grammar;
 
 import zengine.Grammar;
+import zengine.Grammar;
 
 /**
 * represents no Grammar item: end of input

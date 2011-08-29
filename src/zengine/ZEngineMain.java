@@ -31,14 +31,7 @@ public class ZEngineMain
  
 	
 		strings = PropertyLoader.getProperties("strings");
-                
-                testTimer();
-                System.out.println("Changing time step to 30 mins");
-                Time.resetTime();
-                Time.setTimeStep(30);
-                testTimer();
-                
-		state.look();		
+                		
 		while (true) 
 			parser.makeMove();	
 	}

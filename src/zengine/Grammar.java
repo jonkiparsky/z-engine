@@ -1,9 +1,9 @@
 package zengine;
 
 
+import gamefiles.grammar.None;
 import java.util.ArrayList;
 import java.util.HashMap;
-import gamefiles.grammar.None;
 
 /**
 * Base class for grammar items
@@ -13,7 +13,15 @@ public abstract class Grammar
 	protected boolean error;
 	protected String name;
 	protected ArrayList<Grammar> frame;
+        
+        /**
+         * Acceptable grammar objects.
+         */
 	protected ArrayList<Class> acceptable;
+        
+        /**
+         * Associated grammar object.
+         */
 	protected HashMap<String, Grammar> complements;
 		//complements might not be the right word...
 
@@ -22,6 +30,11 @@ public abstract class Grammar
 		this(" ");
 	}
 
+        /**
+         * Constructor that should be used for all derived classes.
+         * @param name 
+         * The name of the Grammar object.
+         */
 	public Grammar(String name)
 	{
 		error = false;	
@@ -31,6 +44,13 @@ public abstract class Grammar
                 acceptable.add(None.class);
 		this.name = name;
 	}
+        
+        /**
+         * Returns true if this Grammar object accepts the specified Grammar
+         * object. This should only be reached for None.
+         * @param g
+         * @return 
+         */
 	public  boolean accept(Grammar g)
 	{
 		for (Class c : this.acceptable)
@@ -44,6 +64,10 @@ public abstract class Grammar
 		return false;		
 	}
 
+        /**
+         * Default execute() method. Should only be reached as an error, this 
+         * should be overridden in all derived classes.
+         */
 	protected void execute()
 	{
 		System.out.println("Can't execute "+ this.name);
