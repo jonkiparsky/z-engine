@@ -2,6 +2,7 @@ package gamefiles.rooms;
 
 import zengine.Room;
 import gamefiles.grammar.Banana;
+import gamefiles.grammar.Switch;
 
 /**
 * Represents a living room

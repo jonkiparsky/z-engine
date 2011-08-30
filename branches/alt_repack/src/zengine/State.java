@@ -43,7 +43,7 @@ public class State
 	 */
 	public Noun checkContext(Noun n)
 	{	
-				return inventory.getItem(n);			
+                return inventory.getItem(n);			
 	}
 	
 	/**
@@ -98,12 +98,14 @@ public class State
 	public void take(Noun i)
 	{
 		Noun n = current_loc.take(i);
-		if (n != null)
+		if ((n != null) && (!n.fixture))
 		{
 			inventory.addItem(i);
 
 			inventory();
-		}		
+		}
+                else if (n.fixture)
+                        System.out.println(n.name + " is immovable.");
 		else 
 		{
 			String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
@@ -192,14 +194,36 @@ public class State
 			if (! noun.state.equals(prep.name))
 			{
 				noun.setState(prep);
+                                return;
 			}
 			else if (noun.state.equals (prep.name))
 			{
 				String s = (String)ZEngineMain.strings.get("TURN_Already_In_State");
 				System.out.printf(s, noun.name, prep.name);
+                                return;
 
 			}
 		}
+                // Checks to see if the item is in the current location
+                // and is a fixture.
+                else if ((noun = current_loc.items.get(prep.noun.name)) != null)
+                {
+                        if (noun != null)
+                        {
+                                if (noun.fixture && !noun.state.equals(prep.name))
+                                {
+                                        noun.setState(prep);
+                                        System.out.println(noun.name + " state is " + noun.state);
+                                        return;
+                                }
+                                else if (noun.fixture && noun.state.equals(prep.name))
+                                {
+                                        String s = (String) ZEngineMain.strings.get("TURN_Already_In_State");
+                                        System.out.printf(s, noun.name, prep.name);
+                                        return;
+                                }
+                        }
+                }
 		else
 		{
 			String s = (String)ZEngineMain.strings.get("INV_No_Item");
@@ -225,25 +249,44 @@ public class State
 	 */
 	public void turn(Noun n)
 	{
-		
-		    Preposition p = n.prep;
+                Preposition p = n.prep;
 
-			n = checkContext(n);
-		    if (inventory.containsItem(n))
-		    {
-			    Noun noun = n;
-			    if (noun.state != p.name)
-				    noun.setState(p);
-			    else if (noun.state == p.name)
-				    System.out.print(noun.name + " is already " + p.name);
-		    }
-		    else
-		    {
-			    if (!n.plural)
-				    System.out.println("You don't have a " + n.name);
-			    else
-				    System.out.println("You don't have " + n.name);
-		    }
+                Noun invenNoun = checkContext(n);
+                if (inventory.containsItem(n))
+                {
+                        Noun noun = invenNoun;
+			if (noun.state != p.name)
+                                noun.setState(p);
+			else if (noun.state == p.name)
+                                System.out.print(noun.name + " is already " + p.name);
+                        return;     // No need to continue
+		}
+                
+                // Checks to see if the item is in the current location and
+                // is a fixture.
+                n = current_loc.items.get(n.name);
+                if (n != null)
+                {
+                        if (n.fixture && !n.state.equals(p.name))
+                        {
+                                n.setState(p);
+                                System.out.println(n.name + " state is " + n.state);
+                                return;
+                        }
+                        else if (n.fixture && n.state.equals(p.name))
+                        {
+                                String s = (String) ZEngineMain.strings.get("TURN_Already_In_State");
+                                System.out.printf(s, n.name, p.name);
+                                return;
+                        }
+                }
+		else
+		{
+                        if (!n.plural)
+                                System.out.println("You don't have a " + n.name);
+			else
+                                System.out.println("You don't have " + n.name);
+		}
 	}
 
 	/**

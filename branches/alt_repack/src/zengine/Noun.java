@@ -7,6 +7,7 @@ public abstract class Noun extends Grammar
 {
 	protected String desc;
 	protected String state;
+        protected boolean fixture;
 	protected boolean plural;
 	protected Preposition prep;
         
@@ -16,7 +17,8 @@ public abstract class Noun extends Grammar
 	{
 //		super(name);
 		this.name= name;
-      acceptable.add(Preposition.class);
+                fixture = false;
+                acceptable.add(Preposition.class);
 		desc = "";
 	}
 
