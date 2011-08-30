@@ -197,7 +197,8 @@ public class Parser
 		}
 		catch (IllegalAccessException iae)
 		{
-			if ((g = tokeniseRoom(input)) == null)
+			g = tokeniseRoom(input); 
+			if (g == null)
 			{
 				error = true;
 				System.out.println("error: "+ iae.getMessage());
@@ -213,7 +214,7 @@ public class Parser
 		if (r !=null) 
 			return r;
 		if (in.hasNext())
-			return tokeniseRoom(input + " "+ in.next());
+			return tokeniseRoom(input + " "+ nextWord());
 		else return null;	
 	
 	}

@@ -11,7 +11,7 @@ public class LivingRoom extends Room
         public LivingRoom()
         {
                 super("Living Room");
-                teleportName = "Livingroom";
+                teleportName = "living room";
 		description= "You are in the living room.";
 		hiddenObjects.add(new Banana());
         }

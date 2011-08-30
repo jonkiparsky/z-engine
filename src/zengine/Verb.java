@@ -9,6 +9,7 @@ public abstract class Verb extends Grammar
      * Noun associated with this verb.
      */
 	protected Noun noun = null;
+	protected Room room = null;
         /**
          * Direction associated with this verb.
          */
