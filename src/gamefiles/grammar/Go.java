@@ -45,7 +45,7 @@ public class Go extends Verb
 		}
 		else
 		{	
-			ZEngineMain.state.go(direction);
+			ZEngineMain.state().go(direction);
 		}
 	}
 

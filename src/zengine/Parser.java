@@ -12,6 +12,7 @@ public class Parser
 	private boolean error;
 	Scanner scan;
 	Scanner in;
+	Scanner inputScanner;
 	private Properties macros;
 
        
@@ -23,7 +24,7 @@ public class Parser
 	{
 		error = false;
 		in = new Scanner(System.in);
-                loadProperties();
+		loadProperties();
 	}	
 
 	/**
@@ -49,20 +50,23 @@ public class Parser
 	public void makeMove()
 	{
 		String input;
-	
-		StringBuffer tokens = new StringBuffer();
 		do
 		{
 	//		System.out.println(ZEngineMain.state.dateAsString());
 			System.out.print(">> ");
 			input = in.nextLine();
 		} while (input.length() == 0);
-                
-		String[] move = input.split("\\W");
 		
-		String first = move[0];
-		if (macros.get(first) != null)
-			first =(String) macros.get(first);
+		inputScanner = new Scanner(input);
+		processMove();
+	}	
+
+
+	private void processMove()
+	{
+		StringBuffer tokens = new StringBuffer();
+		
+		String first = nextWord();	
 				
 		Grammar token = tokenise(first);
 		if (token==null) 
@@ -82,22 +86,10 @@ public class Parser
 
 			// If one-word command, simply make a one-word sentence and try to
 			// execute it.
- 
-		if (move.length <2) 
-		{
-			sentence.execute();
-			return;
-		}
 
-			// otherwise, do a bit of work: make an array and feed the array into
-			// the sentence. If the sentence and the array come to the end at the
-			// same time, try to execute. 
-
-		String[] m = new String[move.length - 1];		
-		System.arraycopy(move, 1, m, 0, m.length);
-				
-		for (String word: m)
+		while (inputScanner.hasNext())
 		{
+			String word = inputScanner.next();
 			Grammar g = tokenise(word);
 			if (error) 
 			{
@@ -118,7 +110,7 @@ public class Parser
 				break;
 			}
 		}
-		
+				
 		if (error)
 		{
 			error("I don't know what that word means: see parser.makeMove\n"+
@@ -140,7 +132,14 @@ public class Parser
 	
 	}
 
-
+	private String nextWord()
+	{
+		String word = inputScanner.next();
+		if (macros.get(word) != null)
+			word =(String) macros.get(word);
+	
+		return word;
+	}
 
 	public String toString()
 	{
@@ -148,7 +147,7 @@ public class Parser
 	}
 
 
-        
+	
 	public void parseFail(String s)
 	{
 		error("I don't know what "+s+" means(pfs)");
@@ -171,77 +170,53 @@ public class Parser
 		Class c; 
 		Grammar g = null;
 		try 
-                {
-                        c = Class.forName("gamefiles.grammar." + input);
-                        g = (Grammar) c.newInstance();
-                        /*if (g == null)
-                        {
-                                c = Class.forName("zengine." + input);
-                                g = (Grammar) c.newInstance();
-                        }*/
-                }
+		{
+			c = Class.forName("gamefiles.grammar." + input);
+			g = (Grammar) c.newInstance();
+			/*if (g == null)
+			{
+				c = Class.forName("zengine." + input);
+				g = (Grammar) c.newInstance();
+			}*/
+		}
 		catch (ClassNotFoundException cnfe)
 		{
-                            if ((g = tokeniseRoom(input)) == null)
-                            {
-                                    System.out.println("I don't know what "+input+" means! (cnfe)");
-                                    error = true;
-                            }
+			    if ((g = tokeniseRoom(input)) == null)
+			    {
+				    System.out.println("I don't know what "+input+" means! (cnfe)");
+				    error = true;
+			    }
 		}
 		catch (InstantiationException ie)
 		{	
-                        if ((g = tokeniseRoom(input)) == null)
-                        {
-                                error = true;
-                                System.out.println("error: "+ ie.getMessage());
-                        }
+			if ((g = tokeniseRoom(input)) == null)
+			{
+				error = true;
+				System.out.println("error: "+ ie.getMessage());
+			}
 		}
 		catch (IllegalAccessException iae)
 		{
-                        if ((g = tokeniseRoom(input)) == null)
-                        {
-                                error = true;
-                                System.out.println("error: "+ iae.getMessage());
-                        }
+			if ((g = tokeniseRoom(input)) == null)
+			{
+				error = true;
+				System.out.println("error: "+ iae.getMessage());
+			}
 		}
 		
 		return g;
 	}
-        
-        public Grammar tokeniseRoom(String input)
-        {
-                input = correctCase(input);
-                Class c;
-                Grammar g = null;
-                try
-                {
-                    c = Class.forName("gamefiles.rooms." + input);
-                    g = (Grammar) c.newInstance();
-                    /*if (g == null)
-                        {
-                                c = Class.forName("zengine." + input);
-                                g = (Grammar) c.newInstance();
-                        }*/
-                }
-                catch (ClassNotFoundException cnfe)
-		{
-				System.out.println("I don't know what "+input+" means! (cnfe)");
-				error = true;
-			
-		}
-		catch (InstantiationException ie)
-		{	
-			error = true;
-			System.out.println("error: "+ ie.getMessage());
-		}
-		catch (IllegalAccessException iae)
-		{
-			error = true;
-			System.out.println("error: "+ iae.getMessage());
-		}
-		
-		return g;
-        }
+	
+	public Grammar tokeniseRoom(String input)
+	{
+		Room r = ZEngineMain.model().getRoom(input.toLowerCase());
+		if (r !=null) 
+			return r;
+		if (in.hasNext())
+			return tokeniseRoom(input + " "+ in.next());
+		else return null;	
+	
+	}
 
 	private String correctCase(String s)
 	{
