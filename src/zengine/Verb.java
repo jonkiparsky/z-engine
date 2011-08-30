@@ -13,7 +13,7 @@ public abstract class Verb extends Grammar
          * Direction associated with this verb.
          */
 	protected Direction dir = null;
-
+	protected int duration = 10;
         /**
          * Default constructor. Use public Verb(String name) instead.
          */
@@ -46,7 +46,7 @@ public abstract class Verb extends Grammar
          */
 	public void execute()
 	{
-		System.out.println("Don't know how to do "+name);
+		ZEngineMain.state.updateTime(duration);
 	}
         
         /**

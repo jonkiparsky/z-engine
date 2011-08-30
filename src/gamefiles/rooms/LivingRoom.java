@@ -6,9 +6,9 @@ import gamefiles.grammar.Banana;
 /**
 * Represents a living room
 */
-public class Livingroom extends Room
+public class LivingRoom extends Room
 {
-        public Livingroom()
+        public LivingRoom()
         {
                 super("Living Room");
                 teleportName = "Livingroom";

@@ -28,7 +28,7 @@ public class Go extends Verb
 	
 	public void execute()
 	{
-
+		super.execute();
 			direction = (Direction)complements.get(Direction.class.getName());
 
 			if (direction==null)

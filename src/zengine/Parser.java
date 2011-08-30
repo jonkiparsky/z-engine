@@ -53,6 +53,7 @@ public class Parser
 		StringBuffer tokens = new StringBuffer();
 		do
 		{
+	//		System.out.println(ZEngineMain.state.dateAsString());
 			System.out.print(">> ");
 			input = in.nextLine();
 		} while (input.length() == 0);
