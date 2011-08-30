@@ -31,33 +31,10 @@ public class ZEngineMain
  
 	
 		strings = PropertyLoader.getProperties("strings");
-                		
+                
+		state.look();		
 		while (true) 
 			parser.makeMove();	
 	}
-        
-        private void testTimer()
-        {  
-                Time.showTime();
-                
-                System.out.println("\nIncreasing 1 timestep");
-                Time.increaseTime(1);
-                Time.showTime();
-                
-                System.out.println("\nIncreasing 17 timesteps");
-                Time.increaseTime(17);
-                Time.showTime();
-                
-                System.out.println("\nIncreasing 30 timesteps");
-                Time.increaseTime(30);
-                Time.showTime();
-                
-                System.out.println("\nIncreasing 75 timesteps");
-                Time.increaseTime(75);
-                Time.showTime();
-                
-                System.out.println("\nIncreasing 150 timesteps");
-                Time.increaseTime(150);
-                Time.showTime();
-        }
+      
 }

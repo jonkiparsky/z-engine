@@ -2,6 +2,7 @@ package zengine;
 
 import java.util.*;
 import gamefiles.rooms.Hall;
+import gamefiles.time.*;
 import zengine.Room;
 import java.text.MessageFormat;
 import java.text.FieldPosition;
@@ -12,44 +13,46 @@ public class State
 	
 	private String message;
 	//private HashMap<String,Noun> inventory;
-        private Container inventory;
+	private Container inventory;
 	private Confirmable confirm;
 	Room tester;
+	private int time;
+	private Time timer;
 
-        /**
-         * Creates a new state. This holds the players current location,
-         * inventory, as well as access primitive commands that the player can use.
-         */
+	/**
+	 * Creates a new state. This holds the players current location,
+	 * inventory, as well as access primitive commands that the player can use.
+	 */
 	public State()
 	{
 		current_loc = Room.getRoom("Hall");
-                current_loc.enter();
-                look();
+		current_loc.enter();
+		look();
 		//inventory = new HashMap<String, Noun>();
-                // Inventory of size 25, weightLimit 50.
-                inventory = new Container("Inventory", 25, 50);
+		// Inventory of size 25, weightLimit 50.
+		inventory = new Container("Inventory", 25, 50);
 		confirm = null;
 	}
-        
-        /**
-         * Checks to see if an object is in the players inventory.
-         * @param n
-         * The object to check.
-         * @return 
-         * Returns the object if it is in the inventory, otherwise returns null.
-         */
+	
+	/**
+	 * Checks to see if an object is in the players inventory.
+	 * @param n
+	 * The object to check.
+	 * @return 
+	 * Returns the object if it is in the inventory, otherwise returns null.
+	 */
 	public Noun checkContext(Noun n)
 	{	
 				return inventory.getItem(n);			
 	}
-        
-        /**
-         * Returns the current location of the player.
-         */
-        public Room currentRoom()
-        {
-                return current_loc;
-        }
+	
+	/**
+	 * Returns the current location of the player.
+	 */
+	public Room currentRoom()
+	{
+		return current_loc;
+	}
 
 	/**
 	* Primitive command to move the player from one point to a contiguous point. 
@@ -59,25 +62,25 @@ public class State
 	{	
 		
 		moveToRoom(current_loc.getExit(d));
-                current_loc.enter();
+		current_loc.enter();
 		look();
 	}
-        
-        /**
-         * Changes the current location of the player to the desired Room.
-         */
-        public void moveToRoom(Room room)
-        {
-                current_loc = Model.getRoom(room.name);
-        }
-        /**
-         * Changes the current location of the player to the desired Room.
-         */
-        public void moveToRoom(String room)
-        {
-                current_loc = Model.getRoom(room);
-        }
-        
+	
+	/**
+	 * Changes the current location of the player to the desired Room.
+	 */
+	public void moveToRoom(Room room)
+	{
+		current_loc = Model.getRoom(room.name);
+	}
+	/**
+	 * Changes the current location of the player to the desired Room.
+	 */
+	public void moveToRoom(String room)
+	{
+		current_loc = Model.getRoom(room);
+	}
+	
 
   /**
   *  Primitive command for "look". Returns the room's description of itself. 
@@ -101,10 +104,10 @@ public class State
 			inventory();
 		}		
 		else 
-                {
-                        String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
-                        System.out.printf(formatString, i.toString());
-                        System.out.println();
+		{
+			String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
+			System.out.printf(formatString, i.toString());
+			System.out.println();
 		}
 	}
 
@@ -145,42 +148,42 @@ public class State
  	*/
 	public void drop(Noun i)
 	{
-                if (i != null)
-                {
-                        String article;
-                        Noun n = inventory_destroy(i);
-                        if (n == null)
-                        {
-                                if (i.plural())
-                                {	
-                                        article = (String)ZEngineMain.strings.get("GEN_Multiple_Indef_Article");
-                                }
-                                else 
-                                {
-                                        article = (String)ZEngineMain.strings.get("GEN_Singular_Indef_Article");
-                                }
-                                String s = (String)ZEngineMain.strings.get("DROP_No_Such_Item");
+		if (i != null)
+		{
+			String article;
+			Noun n = inventory_destroy(i);
+			if (n == null)
+			{
+				if (i.plural())
+				{	
+					article = (String)ZEngineMain.strings.get("GEN_Multiple_Indef_Article");
+				}
+				else 
+				{
+					article = (String)ZEngineMain.strings.get("GEN_Singular_Indef_Article");
+				}
+				String s = (String)ZEngineMain.strings.get("DROP_No_Such_Item");
 			
-                                System.out.printf(s, article, i.toString() );
-                        }
-                        else current_loc.drop(n);
-                }
-                else
-                {
-                        System.out.println("Drop what?");
-                }
+				System.out.printf(s, article, i.toString() );
+			}
+			else current_loc.drop(n);
+		}
+		else
+		{
+			System.out.println("Drop what?");
+		}
 	}
 	
 	/**
-         * Changes the state of a noun.
-         * @param prep 
-         * The state to change the noun to.
-         */
+	 * Changes the state of a noun.
+	 * @param prep 
+	 * The state to change the noun to.
+	 */
 	public void turn (Preposition prep)
 	{  
 		Noun noun = checkContext(prep.noun);   
 		
-                if (noun !=null)
+		if (noun !=null)
 		//if (inventory.containsKey(prep.noun.name))
 		{
 			
@@ -196,29 +199,29 @@ public class State
 
 			}
 		}
-                else
+		else
 		{
-                        String s = (String)ZEngineMain.strings.get("INV_No_Item");
-                        String article; 
+			String s = (String)ZEngineMain.strings.get("INV_No_Item");
+			String article; 
 			if (!prep.noun.plural)
-                        {
-                                article = (String) ZEngineMain.strings.get("GEN_Singular_Indef_Article");
-                                System.out.printf(s, article, prep.noun.name);
-                        }
+			{
+				article = (String) ZEngineMain.strings.get("GEN_Singular_Indef_Article");
+				System.out.printf(s, article, prep.noun.name);
+			}
 			else
-                        {
-                                article = (String) ZEngineMain.strings.get("GEN_Multiple_Indef_Article");
-                                System.out.printf(s, article, prep.noun.name);
-                        }
+			{
+				article = (String) ZEngineMain.strings.get("GEN_Multiple_Indef_Article");
+				System.out.printf(s, article, prep.noun.name);
+			}
 		}
 	}
 
 	
 	/**
-         * Changes the state of a noun.
-         * @param n 
-         * The noun whose state is to be changed.
-         */
+	 * Changes the state of a noun.
+	 * @param n 
+	 * The noun whose state is to be changed.
+	 */
 	public void turn(Noun n)
 	{
 		
@@ -242,11 +245,11 @@ public class State
 		    }
 	}
 
-        /**
-         * Checks to see if there is a light source in the players inventory.
-         * @return 
-         * Returns true if a light source is found, false if not.
-         */
+	/**
+	 * Checks to see if there is a light source in the players inventory.
+	 * @return 
+	 * Returns true if a light source is found, false if not.
+	 */
 	public boolean carryingLight()
 	{
 		for (String key: inventory.keySet())
@@ -270,11 +273,11 @@ public class State
 		System.out.println("You are unburdened by material goods.");
 		
 		}
-                
-                /*
-                 * Purely to demonstrate usage of both string and nouns to
-                 * do the same thing.
-                 
+		
+		/*
+		 * Purely to demonstrate usage of both string and nouns to
+		 * do the same thing.
+		 
 		for (String s: inventory.keySet())
 		{ 
 			if (!inventory.getItem(s).plural)
@@ -288,25 +291,25 @@ public class State
 	    		System.out.println("You have "+s+".");
 		    	System.out.println(inventory.getItem(s).itemDescription());
 			}
-                }*/
-                
-                for (Noun n: inventory.itemSet())
-                {
-                        if (!inventory.getItem(n).plural)
-                        {
-                                System.out.println("You have a " + n.toString()
-                                        + ".");
-                                if (inventory.getItem(n).state != null)
-                                        System.out.println(inventory.getItem(n).itemDescription());
-                        }
-                        else
-                        {
-                            System.out.println("You have " + n.toString() + ".");
-                            System.out.println(inventory.getItem(n).itemDescription());
-                        }
-                }
+		}*/
+		
+		for (Noun n: inventory.itemSet())
+		{
+			if (!inventory.getItem(n).plural)
+			{
+				System.out.println("You have a " + n.toString()
+					+ ".");
+				if (inventory.getItem(n).state != null)
+					System.out.println(inventory.getItem(n).itemDescription());
+			}
+			else
+			{
+			    System.out.println("You have " + n.toString() + ".");
+			    System.out.println(inventory.getItem(n).itemDescription());
+			}
+		}
 	}
-        
+	
 	/**
 	* Returns unformatted inventory HashMap for game designers who wish to
 	* compose their own inventory command or check the inventory for other
@@ -368,16 +371,39 @@ public class State
 		System.out.println(gamefiles.grammar.Quit.desc);
 		System.out.println(gamefiles.grammar.Take.desc);
 	}
+
+	    public void updateTime(int duration)
+    {
+        time += duration;
+    }
+       
+    public int getCurrentTime()
+    {
+        return time;
+    }
+
+    public String now()
+    {
+        return timer.now(time);
+    } 
         
-        public boolean yes()
-        {
-                return true;
-        }
-        
-        public boolean no()
-        {
-                return false;
-        }
+    public String dateAsString()
+    {
+        return timer.dateAsString(time);
+    } 
+    
+
+
+	
+	public boolean yes()
+	{
+		return true;
+	}
+	
+	public boolean no()
+	{
+		return false;
+	}
 
 	public String toString()
 	{

@@ -24,6 +24,7 @@ public class Take extends Verb
 	public void execute()
 	{
 
+		super.execute();
 		noun = (Noun)complements.get("zengine.Noun");
 		if (noun != null)
 			ZEngineMain.state.take(noun);
