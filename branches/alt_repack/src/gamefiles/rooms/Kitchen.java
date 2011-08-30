@@ -15,8 +15,8 @@ public class Kitchen extends Room
                 super("Kitchen");
                 description = "You are in a kitchen.";
                 longDescription = "You are in a lavish kitchen. There is a rug on the floor, and various extravagant paintings on the walls.";
-                items.put("KNIFE", new Knife());    
-                items.put("SWITCH", new Switch());
+                items.addItem(new Knife());    
+                items.addItem(new Switch());
                 //hiddenExits.put("DOWN", Room.getRoom("Cellar"));
         }
         

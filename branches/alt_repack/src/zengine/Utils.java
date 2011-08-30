@@ -100,8 +100,7 @@ public class Utils
         {
                 for (int i = 0; i <n; i++)
                         System.out.print("\t");
-                System.out.println(f.getName());
-                
+                System.out.println(f.getName());                
         }
 
 
@@ -140,7 +139,7 @@ public class Utils
 	//		System.out.println("seekName = " +seekName);
 			if (f.getName().trim().equals(seekName.trim()))
 			{
-				System.out.println("Found "+seekName);
+				//System.out.println("Found "+seekName);
 				return f;
 			}
 			if (f.isDirectory())

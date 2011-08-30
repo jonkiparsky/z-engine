@@ -9,16 +9,14 @@ import zengine.Room;
 */
 public class Hall extends Room
 {
-	
-
-   public Hall()
-   {
-      super ("Hall");
+        public Hall()
+        {
+                super ("Hall");
 	 	description ="You are in a hallway";
                 longDescription = "You are in a long, narrow hallway. There are ornate windows covering the walls, with armor statues between each.";
-		items.put("TRACT", new Tract());
-		items.put("FLASHLIGHT", new Flashlight());
-   }
+		items.addItem(new Tract());
+		items.addItem(new Flashlight());
+        }
 
 	public void setExits()
 	{
