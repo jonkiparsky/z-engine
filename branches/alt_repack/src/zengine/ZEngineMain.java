@@ -22,6 +22,15 @@ public class ZEngineMain
 		
 	}
 
+	public static State state()
+	{
+		return state;
+	}
+	public static Model model()
+	{
+		return model();
+	}
+
 	private void start()
 	{
 		model = new Model();

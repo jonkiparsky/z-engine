@@ -60,8 +60,9 @@ public class State
 	*/
 	public void go(Direction d)
 	{	
-		
-		moveToRoom(current_loc.getExit(d));
+			
+	
+		current_loc = current_loc.getExit(d);
 		current_loc.enter();
 		look();
 	}
@@ -293,7 +294,7 @@ public class State
 			}
 		}*/
 		
-		for (Noun n: inventory.itemSet())
+		for (Noun n: inventory.itemList())
 		{
 			if (!inventory.getItem(n).plural)
 			{

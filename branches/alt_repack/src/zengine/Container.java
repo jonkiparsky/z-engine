@@ -3,6 +3,8 @@ package zengine;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Container 
 {
@@ -141,9 +143,14 @@ public class Container
          * Returns a Set<Noun> of the values within the container.
          * @return 
          */
-        public Set<Noun> itemSet()
+        public List<Noun> itemList()
         {
-                return (Set<Noun>) container.values();
+				ArrayList<Noun> list = new ArrayList<Noun>();
+				for (Noun noun: container.values())
+				{
+					list.add(noun);
+				}
+				return list;	
         }
         
         /**

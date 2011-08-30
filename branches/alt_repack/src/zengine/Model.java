@@ -46,7 +46,10 @@ public class Model
 			String name = s.split("\\.")[0];
 		
 			rooms.put(name, makeRoom(name));
+			
+			rooms.put(name.toLowerCase(), rooms.get(name));
 
+			
 		}
 
                 for (String s : rooms.keySet())
@@ -81,4 +84,6 @@ public class Model
 	{
 		return rooms.get(name);
 	}
+
+	
 }
