@@ -9,7 +9,7 @@ import java.text.FieldPosition;
 
 public class State
 {
-	private  Room current_loc;
+	private Room current_loc;
 	
 	private String message;
 	//private HashMap<String,Noun> inventory;
@@ -41,9 +41,9 @@ public class State
 	 * @return 
 	 * Returns the object if it is in the inventory, otherwise returns null.
 	 */
-	public Noun checkContext(Noun n)
+	public Noun checkContext(Noun n, Container container)
 	{	
-                return inventory.getItem(n);			
+                return container.getItem(n);			
 	}
 	
 	/**
@@ -97,7 +97,7 @@ public class State
    */
 	public void take(Noun i)
 	{
-		Noun n = current_loc.take(i);
+		Noun n = currentRoom().take(i);
 		if ((n != null) && (!n.fixture))
 		{
 			inventory.addItem(i);
@@ -184,7 +184,7 @@ public class State
 	 */
 	public void turn (Preposition prep)
 	{  
-		Noun noun = checkContext(prep.noun);   
+		Noun noun = checkContext(prep.noun, inventory);   
 		
 		if (noun !=null)
 		//if (inventory.containsKey(prep.noun.name))
@@ -206,7 +206,7 @@ public class State
 		}
                 // Checks to see if the item is in the current location
                 // and is a fixture.
-                else if ((noun = current_loc.items.get(prep.noun.name)) != null)
+                else if ((noun = current_loc.items.getItem(prep.noun)) != null)
                 {
                         if (noun != null)
                         {
@@ -251,8 +251,8 @@ public class State
 	{
                 Preposition p = n.prep;
 
-                Noun invenNoun = checkContext(n);
-                if (inventory.containsItem(n))
+                Noun invenNoun = checkContext(n, inventory);
+                if (inventory.containsItem(invenNoun))
                 {
                         Noun noun = invenNoun;
 			if (noun.state != p.name)
@@ -264,7 +264,7 @@ public class State
                 
                 // Checks to see if the item is in the current location and
                 // is a fixture.
-                n = current_loc.items.get(n.name);
+                n = current_loc.items.getItem(n);
                 if (n != null)
                 {
                         if (n.fixture && !n.state.equals(p.name))

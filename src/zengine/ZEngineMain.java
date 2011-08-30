@@ -41,7 +41,7 @@ public class ZEngineMain
 	
 		strings = PropertyLoader.getProperties("strings");
                 
-		state.look();		
+		//state.look();		
 		while (true) 
 			parser.makeMove();	
 	}

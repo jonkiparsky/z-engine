@@ -2,6 +2,7 @@ package zengine;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.Class;
+import zengine.Container;
 
 public abstract class Room extends Grammar
 {
@@ -12,13 +13,14 @@ public abstract class Room extends Grammar
     
 	protected String name;
         protected String teleportName;
-	public HashMap<String, Room> exits;
-	public HashMap<String, Noun> items;
+	protected HashMap<String, Room> exits;
+	//public HashMap<String, Noun> items;
+        protected Container items;
 	protected State state;		
 	protected String description;
         protected String longDescription;
         protected PlayerInteractionState interactState;
-	Room startRoom;
+	protected Room startRoom;
 	protected boolean isDark;	
 	
 	protected ArrayList<Noun> hiddenObjects;
@@ -35,11 +37,19 @@ public abstract class Room extends Grammar
                 this.teleportName = name;
                 interactState = PlayerInteractionState.NOT_ENTERED;
 		exits=new HashMap<String, Room>();
-		items = new HashMap<String, Noun>();
+		items = new Container("Items");
 		this.hiddenObjects = new ArrayList<Noun>();
 		this.hiddenExits = new HashMap<String, Room>();
 		isDark = false;
 	}
+        
+        /**
+         * Returns a HashMap<String, Room> of all exits.
+         */
+        public HashMap<String, Room> getExits()
+        {
+                return exits;
+        }
 
 	/**
 	*  Called when entering a Room. Always call super.enter() when overriding, or
@@ -83,7 +93,7 @@ public abstract class Room extends Grammar
 	/**
 	* Informs this room that it has an exit in the named direction.
 	*/	
-	public  void setExit(String direction, Room room)
+	public void setExit(String direction, Room room)
 	{
 		exits.put(direction, room);
 	}
@@ -141,6 +151,29 @@ public abstract class Room extends Grammar
 	
         public String listItems()
         {
+                StringBuilder sb = new StringBuilder("There is ");
+                if (!items.containerEmpty())
+                {
+                        ArrayList<Noun> itemList = items.itemList();
+                        for (Noun n : itemList)
+                        {
+                                if (n.plural())
+                                        sb.append("a ");
+                                
+                                if (itemList.size() == 1)
+                                        sb.append(n.name);
+                                else if (itemList.size() == 2)
+                                        sb.append(n.name + " and ");
+                                else
+                                        sb.append(n.name + ", ");
+                                
+                                itemList.remove(n); // Reduces size.
+                        }
+                        
+                        sb.append(" here.");
+                }
+                return sb.toString();
+                /*
                 int itemCount = items.size();
                 StringBuilder sb = new StringBuilder("There is ");
                         if (items.isEmpty())
@@ -167,6 +200,7 @@ public abstract class Room extends Grammar
                 }
                 sb.append(" here");
                 return sb.toString();
+                 */
         }
 
 	/**
@@ -228,7 +262,7 @@ public abstract class Room extends Grammar
 	*/
 	public Noun take(Noun n)
 	{			
-		n  = items.remove(n.toString());		
+		n  = items.removeItem(n);		
 		return n;
 	}
 
@@ -241,7 +275,7 @@ public abstract class Room extends Grammar
 	*/
 	public void drop(Noun n)
 	{
-		items.put(n.toString(), n);
+		items.addItem(n);
 	}
 
 	/**
@@ -279,7 +313,7 @@ public abstract class Room extends Grammar
 		{
 			for (Noun n: hiddenObjects)
 			{
-				items.put(n.toString(), n);
+				items.addItem(n);
 				System.out.println("You find a "+n.toString()+"!");
 			}
 			hiddenObjects.clear();

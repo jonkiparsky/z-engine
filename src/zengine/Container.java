@@ -10,8 +10,8 @@ public class Container
 {
         private String name;
         private HashMap<String, Noun> container;
-        private int size;
-        private int weightLimit;
+        private int size = 100;
+        private int weightLimit = 100;
         private int currentWeight = 0;
         
         /**
@@ -22,7 +22,7 @@ public class Container
         public Container(String name)
         {
                 this.name = name;
-                container = new HashMap<String, Noun>();
+                container = new HashMap<String, Noun>(size);
         }
         
         /**
@@ -140,10 +140,10 @@ public class Container
         }
         
         /**
-         * Returns a Set<Noun> of the values within the container.
+         * Returns a ArrayList<Noun> of the values within the container.
          * @return 
          */
-        public List<Noun> itemList()
+        public ArrayList<Noun> itemList()
         {
 				ArrayList<Noun> list = new ArrayList<Noun>();
 				for (Noun noun: container.values())
@@ -181,7 +181,7 @@ public class Container
          */
         public boolean checkNewWeight(Noun n)
         {
-                if ((currentWeight += n.getWeight()) >weightLimit)
+                if ((currentWeight += n.getWeight()) > weightLimit)
                         return false;
                 return true;
         }
