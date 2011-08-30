@@ -62,7 +62,7 @@ public class State
 	{	
 			
 	
-		current_loc = current_loc.getExit(d);
+		moveToRoom(current_loc.getExit(d));
 		current_loc.enter();
 		look();
 	}

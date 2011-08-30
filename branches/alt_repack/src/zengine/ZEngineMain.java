@@ -9,7 +9,7 @@ import java.util.Properties;
 */
 public class ZEngineMain
 {
-	Model model;
+	private static Model model;
 	public static State state;
 	public static Parser parser;	
 	public static Properties strings;
@@ -28,7 +28,7 @@ public class ZEngineMain
 	}
 	public static Model model()
 	{
-		return model();
+		return model;
 	}
 
 	private void start()
