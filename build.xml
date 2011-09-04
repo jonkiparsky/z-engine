@@ -47,7 +47,7 @@
 
 	<target name="javadoc" depends="clean-javadoc">
 		<mkdir dir="{javadoc.dir}" />
-		<javadoc destdir="${javadoc.dir}">
+		<javadoc  destdir="${javadoc.dir}">
 				<fileset dir="${src.dir}" includes="*.java" />		
 		</javadoc>
 	</target>

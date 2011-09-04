@@ -35,7 +35,7 @@ public class Model
 	private static void loadActions()
 	{
 		File roomsDir = Utils.getRoomsDir();
-		
+	
 		for (String s: roomsDir.list())
 		{	
 			if (s.charAt(0) == '.')  continue;  // skip the dotfiles
@@ -51,6 +51,7 @@ public class Model
 
 			
 		}
+
 
                 for (String s : rooms.keySet())
 		{
