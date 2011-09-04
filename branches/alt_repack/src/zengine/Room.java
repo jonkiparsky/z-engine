@@ -161,9 +161,9 @@ public abstract class Room extends Grammar
 				if (n.plural())
 					sb.append("a ");
 				
-				if (itemList.size() == 1)
+				if (itemList.size() - toRemove.size()== 1)
 					sb.append(n.name);
-				else if (itemList.size() == 2)
+				else if (itemList.size()- toRemove.size() == 2)
 					sb.append(n.name + " and ");
 				else
 					sb.append(n.name + ", ");
