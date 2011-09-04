@@ -11,7 +11,6 @@ public class Switch extends Noun
                 super("SWITCH");
                 plural = false;
                 setState(new Off());
-                acceptable.add(None.class);
                 fixture = true;
         }
         

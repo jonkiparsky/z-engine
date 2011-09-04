@@ -8,6 +8,5 @@ public class Knife extends Noun
         {
                 super("KNIFE");
                 plural = false;
-                acceptable.add(None.class);
         }
 }
