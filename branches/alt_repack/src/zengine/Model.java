@@ -27,6 +27,13 @@ public class Model
 		loadActions();
 	}
 
+	public void LookICanSeeState()
+	{
+		System.out.println("State.yes() says: "+ ZEngineMain.state.yes());
+
+	}
+
+
 	/**
 	* 	Load rooms dynamically, by reading contents of "rooms" directory. 
 	*	All rooms will be loaded and placed in a hashmap, which can be accessed by
