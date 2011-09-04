@@ -135,6 +135,9 @@ public class Utils
 				continue;
 			if (f.getName().equals("build")) 
 				continue;
+		
+			if (f.getName().equals("docs")) 
+				continue;
 	//		System.out.println("f.getName(): "+f.getName());
 	//		System.out.println("seekName = " +seekName);
 			if (f.getName().trim().equals(seekName.trim()))

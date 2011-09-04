@@ -6,50 +6,50 @@ import zengine.Container;
 
 public abstract class Room extends Grammar
 {
-        /**
-        * Used to determine what the player has done in the room. 
-        */
-        enum PlayerInteractionState { NOT_ENTERED, NEW_ENTERED, PREV_ENTERED}
+	/**
+	* Used to determine what the player has done in the room. 
+	*/
+	enum PlayerInteractionState { NOT_ENTERED, NEW_ENTERED, PREV_ENTERED}
     
 	protected String name;
-        protected String teleportName;
+	protected String teleportName;
 	protected HashMap<String, Room> exits;
 	//public HashMap<String, Noun> items;
-        protected Container items;
+	protected Container items;
 	protected State state;		
 	protected String description;
-        protected String longDescription;
-        protected PlayerInteractionState interactState;
+	protected String longDescription;
+	protected PlayerInteractionState interactState;
 	protected Room startRoom;
 	protected boolean isDark;	
 	
 	protected ArrayList<Noun> hiddenObjects;
 	protected HashMap<String,Room> hiddenExits;
 	
-        /**
-         * Creates a new room and instantiates properties to default.
-         * @param name 
-         * The name of the room.
-         */
+	/**
+	 * Creates a new room and instantiates properties to default.
+	 * @param name 
+	 * The name of the room.
+	 */
 	public Room (String name)
 	{
 		this.name = name;
-                this.teleportName = name;
-                interactState = PlayerInteractionState.NOT_ENTERED;
+		this.teleportName = name;
+		interactState = PlayerInteractionState.NOT_ENTERED;
 		exits=new HashMap<String, Room>();
 		items = new Container("Items");
 		this.hiddenObjects = new ArrayList<Noun>();
 		this.hiddenExits = new HashMap<String, Room>();
 		isDark = false;
 	}
-        
-        /**
-         * Returns a HashMap<String, Room> of all exits.
-         */
-        public HashMap<String, Room> getExits()
-        {
-                return exits;
-        }
+	
+	/**
+	 * Returns a HashMap<String, Room> of all exits.
+	 */
+	public HashMap<String, Room> getExits()
+	{
+		return exits;
+	}
 
 	/**
 	*  Called when entering a Room. Always call super.enter() when overriding, or
@@ -59,16 +59,16 @@ public abstract class Room extends Grammar
 	{
 
 		switch (interactState)
-                {
-                        case NOT_ENTERED:
-                            interactState = PlayerInteractionState.NEW_ENTERED;
-                            break;
-                        case NEW_ENTERED:
-                            interactState = PlayerInteractionState.PREV_ENTERED;
-                            break;
+		{
+			case NOT_ENTERED:
+			    interactState = PlayerInteractionState.NEW_ENTERED;
+			    break;
+			case NEW_ENTERED:
+			    interactState = PlayerInteractionState.PREV_ENTERED;
+			    break;
 			default:
-                            break;
-                }
+			    break;
+		}
 	}
 
 	/**
@@ -97,20 +97,20 @@ public abstract class Room extends Grammar
 	{
 		exits.put(direction, room);
 	}
-        
-        /**
-        * Returns the name of a teleport room from this room. Returns null
-         * if there is no teleport room.
-        */        
-        public String teleportRoom()
-        {
-                return teleportName;
-        }
-        
+	
+	/**
+	* Returns the name of a teleport room from this room. Returns null
+	 * if there is no teleport room.
+	*/	
+	public String teleportRoom()
+	{
+		return teleportName;
+	}
+	
 	/**
 	* Constructs and returns a user-facing (formatted) String describing the
 	* room, including any objects present and visible. Description varies
-        * based on interactState.
+	* based on interactState.
 	*/
 	public String description()
 	{
@@ -119,19 +119,19 @@ public abstract class Room extends Grammar
 			return "It is dark; you are likely to stub your toe. ";
 		}
 		StringBuilder sb = new StringBuilder();
-                switch (interactState)
-                {
-                    case NOT_ENTERED:
-                                if (longDescription != null)
-                                        sb.append(this.longDescription + "\n");
-                                else
-                                        sb.append(description + "\n");
-                                break;
-                    case NEW_ENTERED:
-                    case PREV_ENTERED:
-                                sb.append(this.description + "\n");
-                                break;
-                }
+		switch (interactState)
+		{
+		    case NOT_ENTERED:
+				if (longDescription != null)
+					sb.append(this.longDescription + "\n");
+				else
+					sb.append(description + "\n");
+				break;
+		    case NEW_ENTERED:
+		    case PREV_ENTERED:
+				sb.append(this.description + "\n");
+				break;
+		}
 		if (exits.size() == 0)
 		{
 			sb.append("You can't see any way out.");
@@ -144,64 +144,67 @@ public abstract class Room extends Grammar
 		{
 		    sb.append("You can see exits to the "+ this.listExits() + "\n");	
 		}
-		sb.append(listItems());                
+		sb.append(listItems());		
 	
 		return sb.toString();
 	}
 	
-        public String listItems()
-        {
-                StringBuilder sb = new StringBuilder("There is ");
-                if (!items.containerEmpty())
-                {
-                        ArrayList<Noun> itemList = items.itemList();
-                        for (Noun n : itemList)
-                        {
-                                if (n.plural())
-                                        sb.append("a ");
-                                
-                                if (itemList.size() == 1)
-                                        sb.append(n.name);
-                                else if (itemList.size() == 2)
-                                        sb.append(n.name + " and ");
-                                else
-                                        sb.append(n.name + ", ");
-                                
-                                itemList.remove(n); // Reduces size.
-                        }
-                        
-                        sb.append(" here.");
-                }
-                return sb.toString();
-                /*
-                int itemCount = items.size();
-                StringBuilder sb = new StringBuilder("There is ");
-                        if (items.isEmpty())
-                                sb.append("nothing");
-                for (String item: items.keySet())
-                {
-                        if (!items.get(item).plural())
-                                sb.append("a ");
-                        
-                        if (itemCount == 1)
-                                sb.append(item);    
-                        else if (itemCount == 2)
-                        {
-                                sb.append(item + " and ");
-                                itemCount--;
-                        }
-                        else
-                        {
-                                sb.append(item + ", ");
-                                // counts down as items are appended, so last 
-                                //item is always prefixed by and.
-                                itemCount--;
-                        }
-                }
-                sb.append(" here");
-                return sb.toString();
-                 */
-        }
+	public String listItems()
+	{
+		StringBuilder sb = new StringBuilder("There is ");
+		ArrayList<Noun> toRemove = new ArrayList<Noun>();
+		if (!items.containerEmpty())
+		{
+			ArrayList<Noun> itemList = items.itemList();
+			for (Noun n : itemList)
+			{
+				if (n.plural())
+					sb.append("a ");
+				
+				if (itemList.size() == 1)
+					sb.append(n.name);
+				else if (itemList.size() == 2)
+					sb.append(n.name + " and ");
+				else
+					sb.append(n.name + ", ");
+				toRemove.add(n);	
+			}
+			for (Noun n: toRemove)
+			{
+				itemList.remove(n); // Reduces size.
+			}
+			sb.append(" here.");
+		}
+		return sb.toString();
+		/*
+		int itemCount = items.size();
+		StringBuilder sb = new StringBuilder("There is ");
+			if (items.isEmpty())
+				sb.append("nothing");
+		for (String item: items.keySet())
+		{
+			if (!items.get(item).plural())
+				sb.append("a ");
+			
+			if (itemCount == 1)
+				sb.append(item);    
+			else if (itemCount == 2)
+			{
+				sb.append(item + " and ");
+				itemCount--;
+			}
+			else
+			{
+				sb.append(item + ", ");
+				// counts down as items are appended, so last 
+				//item is always prefixed by and.
+				itemCount--;
+			}
+		}
+		sb.append(" here");
+		return sb.toString();
+		 */
+	}
 
 	/**
 	* Returns a user-facing (formatted) list of visible exits from the room
@@ -232,8 +235,8 @@ public abstract class Room extends Grammar
 	}
 	
 	/**
-         * Used for room creation. Override to include room.setExits().
-         */
+	 * Used for room creation. Override to include room.setExits().
+	 */
 	public void setExits()
 	{
 	}	
@@ -288,8 +291,8 @@ public abstract class Room extends Grammar
 	
 	/**
 	* Executes a search in this room. Default behavior checks the hiddenExits
-        * and hiddenObjects fields and returns a stock answer if there is 
-        * nothing to find. 
+	* and hiddenObjects fields and returns a stock answer if there is 
+	* nothing to find. 
 	*/
 	public void search()
 	{

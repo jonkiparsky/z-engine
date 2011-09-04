@@ -132,6 +132,9 @@ public class Parser
 	
 	}
 
+	/**
+	*	Returns the next word in the input.
+	*/
 	private String nextWord()
 	{
 		String word = inputScanner.next();
@@ -141,19 +144,30 @@ public class Parser
 		return word;
 	}
 
+	/**
+	*	Implemented for politeness only. If this is ever needed, please explain
+	*	why in this javadoc string. 
+	*/
+
 	public String toString()
 	{
 		return "PARSER";
 	}
 
 
-	
-	public void parseFail(String s)
+	/**
+	* Respond to a failure to parse a String
+	*/
+	private void parseFail(String s)
 	{
 		error("I don't know what "+s+" means(pfs)");
 	}
 
-	public void parseFail(Grammar g)
+
+	/**
+	* Respond to a failure to parse a grammar object
+	*/
+	private void parseFail(Grammar g)
 	{
 		error("Cannot understand "+g.toString()+" here(pfg)");
 	}
@@ -207,7 +221,11 @@ public class Parser
 		
 		return g;
 	}
-	
+
+	/**
+	*	Return a Room object for the current input. This will eat input until it
+	*	matches a room, which may end up being incorrect.
+	*/	
 	public Grammar tokeniseRoom(String input)
 	{
 		Room r = ZEngineMain.model().getRoom(input.toLowerCase());
