@@ -132,6 +132,11 @@ public class Parser
 	
 	}
 
+	public Grammar nextToken()
+	{
+		return tokenise(nextWord());
+	}
+
 	/**
 	*	Returns the next word in the input.
 	*/
