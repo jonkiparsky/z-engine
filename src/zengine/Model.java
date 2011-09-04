@@ -12,16 +12,16 @@ public class Model
 
 	private static HashMap<String, Room> rooms;	
 	private static String roomPackage = "gamefiles.rooms";
-                //"c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamesfiles.rooms";
+		//"c:/users/dan/my documents/netbeansprojects/altZengine/alt_repack/src/gamesfiles.rooms";
 			
 	static
 	{
 		rooms = new HashMap<String, Room>();
 	}
 	
-        /**
-         * Creates a new model. Loads rooms from the gamefiles/rooms directory.
-         */
+	/**
+	 * Creates a new model. Loads rooms from the gamefiles/rooms directory.
+	 */
 	public Model()
 	{
 		loadActions();
@@ -30,7 +30,6 @@ public class Model
 	public void LookICanSeeState()
 	{
 		System.out.println("State.yes() says: "+ ZEngineMain.state.yes());
-
 	}
 
 
@@ -51,47 +50,40 @@ public class Model
 							// or jython or other jvm-targeting languages...
 
 			String name = s.split("\\.")[0];
-		
 			rooms.put(name, makeRoom(name));
-			
 			rooms.put(name.toLowerCase(), rooms.get(name));
-
-			
 		}
 
 
-                for (String s : rooms.keySet())
+		for (String s : rooms.keySet())
 		{
 			rooms.get(s).setExits();
 		}
-	
 	}
 	
 
 	/**
 	* Load a room given its class name
 	*/
-        private static Room makeRoom(String name)
-        {
-                try
-                {
-                        Class c = Class.forName("gamefiles.rooms."+name);
-                        return (Room)c.newInstance();
-                }
-                catch (Exception e)
-                {
-                        e.printStackTrace();
-                        return null;
-                }
+	private static Room makeRoom(String name)
+	{
+		try
+		{
+			Class c = Class.forName("gamefiles.rooms."+name);
+			return (Room)c.newInstance();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
-        
-        /**
-         * Returns a room given its name.
-         */
+	
+	/**
+	 * Returns a room given its name.
+	 */
 	public static Room getRoom(String name)
 	{
 		return rooms.get(name);
 	}
-
-	
 }

@@ -5,13 +5,14 @@
 package gamefiles.rooms;
 
 import zengine.Room;
-
+import gamefiles.grammar.Safe;
 public class Cellar extends Room 
 {
         public Cellar()
         {
                 super("Cellar");
                 description = "You are in a dank cellar.";
+					hiddenObjects.add(new Safe());
 					isDark=true;
         }
         
