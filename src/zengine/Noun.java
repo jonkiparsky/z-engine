@@ -23,6 +23,11 @@ public abstract class Noun extends Grammar
 	}
 
 
+	public boolean fixture()
+	{
+		return fixture;
+	}
+
 	/**
 	* Override this when an object is emitting light. This should be true only
 	* when the object is emitting light: a flashlight is not a light source when

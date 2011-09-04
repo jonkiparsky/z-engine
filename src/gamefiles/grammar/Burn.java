@@ -30,7 +30,7 @@ public class Burn extends Verb
 	public void callback(String s, Noun n)
 	{
 		System.out.println(s);
-		ZEngineMain.state.inventory_destroy(n);
+		ZEngineMain.state.inventory_remove(n);
 														
 	}
 
