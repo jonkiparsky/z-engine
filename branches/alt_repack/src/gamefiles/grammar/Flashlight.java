@@ -11,7 +11,6 @@ public class Flashlight extends Noun
 		super ("FLASHLIGHT");
 		plural = false;
 		setState(new Off());
-		acceptable.add(None.class);
 	}
         
         public boolean accept(Grammar g)

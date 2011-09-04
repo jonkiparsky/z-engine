@@ -142,6 +142,7 @@ public class Parser
 	*/
 	private String nextWord()
 	{
+		if (!inputScanner.hasNext()) return null;
 		String word = inputScanner.next();
 		if (macros.get(word) != null)
 			word =(String) macros.get(word);
@@ -236,8 +237,9 @@ public class Parser
 		Room r = ZEngineMain.model().getRoom(input.toLowerCase());
 		if (r !=null) 
 			return r;
-		if (in.hasNext())
-			return tokeniseRoom(input + " "+ nextWord());
+		String nextWord = null;
+		if ((nextWord =  nextWord()) !=null)
+			return tokeniseRoom(input + " "+ nextWord);
 		else return null;	
 	
 	}

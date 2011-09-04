@@ -2,6 +2,7 @@ package zengine;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import gamefiles.grammar.None;
 
 public abstract class Noun extends Grammar
 {
@@ -19,6 +20,7 @@ public abstract class Noun extends Grammar
 		this.name= name;
                 fixture = false;
                 acceptable.add(Preposition.class);
+		this.acceptable.add(None.class);
 		desc = "";
 	}
 

@@ -8,7 +8,6 @@ public class Northeast extends Direction
 
 	{
 		super ("NORTHEAST");
-		acceptable.add(None.class);
 	}
 
 

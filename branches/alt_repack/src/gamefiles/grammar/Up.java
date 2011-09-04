@@ -7,7 +7,6 @@ public class Up extends Direction
 	public Up()
 	{
 		super ("UP");
-		acceptable.add(None.class);
 	}
 
 

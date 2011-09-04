@@ -43,7 +43,7 @@ public class State
 	 */
 	public Noun checkContext(Noun n, Container container)
 	{	
-                return container.getItem(n);			
+		return container.getItem(n);			
 	}
 	
 	/**
@@ -104,8 +104,8 @@ public class State
 
 			inventory();
 		}
-                else if (n.fixture())
-                        System.out.println(n.name + " is immovable.");
+		else if (n.fixture())
+			System.out.println(n.name + " is immovable.");
 		else 
 		{
 			String formatString = (String)ZEngineMain.strings.get("TAKE_No_Such_Item");
@@ -148,7 +148,7 @@ public class State
 	/**
 	* Primitive command to remove an item from player's "pack" and add it to
 	* current locale's items list.  
- 	*/
+	*/
 	public void drop(Noun i)
 	{
 		if (i != null)
@@ -194,36 +194,36 @@ public class State
 			if (! noun.state.equals(prep.name))
 			{
 				noun.setState(prep);
-                                return;
+				return;
 			}
 			else if (noun.state.equals (prep.name))
 			{
 				String s = (String)ZEngineMain.strings.get("TURN_Already_In_State");
 				System.out.printf(s, noun.name, prep.name);
-                                return;
+				return;
 
 			}
 		}
-                // Checks to see if the item is in the current location
-                // and is a fixture.
-                else if ((noun = current_loc.items.getItem(prep.noun)) != null)
-                {
-                        if (noun != null)
-                        {
-                                if (noun.fixture && !noun.state.equals(prep.name))
-                                {
-                                        noun.setState(prep);
-                                        System.out.println(noun.name + " state is " + noun.state);
-                                        return;
-                                }
-                                else if (noun.fixture && noun.state.equals(prep.name))
-                                {
-                                        String s = (String) ZEngineMain.strings.get("TURN_Already_In_State");
-                                        System.out.printf(s, noun.name, prep.name);
-                                        return;
-                                }
-                        }
-                }
+		// Checks to see if the item is in the current location
+		// and is a fixture.
+		else if ((noun = current_loc.items.getItem(prep.noun)) != null)
+		{
+			if (noun != null)
+			{
+				if (noun.fixture && !noun.state.equals(prep.name))
+				{
+					noun.setState(prep);
+					System.out.println(noun.name + " state is " + noun.state);
+					return;
+				}
+				else if (noun.fixture && noun.state.equals(prep.name))
+				{
+					String s = (String) ZEngineMain.strings.get("TURN_Already_In_State");
+					System.out.printf(s, noun.name, prep.name);
+					return;
+				}
+			}
+		}
 		else
 		{
 			String s = (String)ZEngineMain.strings.get("INV_No_Item");
@@ -249,43 +249,43 @@ public class State
 	 */
 	public void turn(Noun n)
 	{
-                Preposition p = n.prep;
+		Preposition p = n.prep;
 
-                Noun invenNoun = checkContext(n, inventory);
-                if (inventory.containsItem(invenNoun))
-                {
-                        Noun noun = invenNoun;
+		Noun invenNoun = checkContext(n, inventory);
+		if (inventory.containsItem(invenNoun))
+		{
+			Noun noun = invenNoun;
 			if (noun.state != p.name)
-                                noun.setState(p);
+				noun.setState(p);
 			else if (noun.state == p.name)
-                                System.out.print(noun.name + " is already " + p.name);
-                        return;     // No need to continue
+				System.out.print(noun.name + " is already " + p.name);
+			return;     // No need to continue
 		}
-                
-                // Checks to see if the item is in the current location and
-                // is a fixture.
-                n = current_loc.items.getItem(n);
-                if (n != null)
-                {
-                        if (n.fixture && !n.state.equals(p.name))
-                        {
-                                n.setState(p);
-                                System.out.println(n.name + " state is " + n.state);
-                                return;
-                        }
-                        else if (n.fixture && n.state.equals(p.name))
-                        {
-                                String s = (String) ZEngineMain.strings.get("TURN_Already_In_State");
-                                System.out.printf(s, n.name, p.name);
-                                return;
-                        }
-                }
+		
+		// Checks to see if the item is in the current location and
+		// is a fixture.
+		n = current_loc.items.getItem(n);
+		if (n != null)
+		{
+			if (n.fixture && !n.state.equals(p.name))
+			{
+				n.setState(p);
+				System.out.println(n.name + " state is " + n.state);
+				return;
+			}
+			else if (n.fixture && n.state.equals(p.name))
+			{
+				String s = (String) ZEngineMain.strings.get("TURN_Already_In_State");
+				System.out.printf(s, n.name, p.name);
+				return;
+			}
+		}
 		else
 		{
-                        if (!n.plural)
-                                System.out.println("You don't have a " + n.name);
+			if (!n.plural)
+				System.out.println("You don't have a " + n.name);
 			else
-                                System.out.println("You don't have " + n.name);
+				System.out.println("You don't have " + n.name);
 		}
 	}
 
@@ -332,8 +332,8 @@ public class State
 			}
 			else
 			{
-	    		System.out.println("You have "+s+".");
-		    	System.out.println(inventory.getItem(s).itemDescription());
+	   		System.out.println("You have "+s+".");
+		   	System.out.println(inventory.getItem(s).itemDescription());
 			}
 		}*/
 		
@@ -418,23 +418,23 @@ public class State
 
 	    public void updateTime(int duration)
     {
-        time += duration;
+	time += duration;
     }
        
     public int getCurrentTime()
     {
-        return time;
+	return time;
     }
 
     public String now()
     {
-        return timer.now(time);
-    } 
-        
-    public String dateAsString()
-    {
-        return timer.dateAsString(time);
-    } 
+	return timer.now(time);
+   } 
+	
+   public String dateAsString()
+   {
+		return timer.dateAsString(time);
+   } 
     
 
 

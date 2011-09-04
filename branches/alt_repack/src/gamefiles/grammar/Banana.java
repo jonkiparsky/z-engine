@@ -12,6 +12,5 @@ public class Banana extends Noun
         {
                 super("BANANA");
                 plural = false;
-                acceptable.add(None.class);
         }
 }
