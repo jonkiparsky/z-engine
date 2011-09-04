@@ -37,8 +37,6 @@ public class ZEngineMain
 		state = new State();
 		parser = new Parser();			
 
- 
-	
 		strings = PropertyLoader.getProperties("strings");
                 
 		//state.look();		

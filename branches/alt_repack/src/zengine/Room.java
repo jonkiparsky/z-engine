@@ -151,11 +151,12 @@ public abstract class Room extends Grammar
 	
 	public String listItems()
 	{
-		StringBuilder sb = new StringBuilder("There is ");
+		StringBuilder sb = new StringBuilder();
 		ArrayList<Noun> toRemove = new ArrayList<Noun>();
 		if (!items.containerEmpty())
 		{
 			ArrayList<Noun> itemList = items.itemList();
+			sb.append("There is ");
 			for (Noun n : itemList)
 			{
 				if (n.plural())

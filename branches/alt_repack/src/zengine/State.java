@@ -104,7 +104,7 @@ public class State
 
 			inventory();
 		}
-                else if (n.fixture)
+                else if (n.fixture())
                         System.out.println(n.name + " is immovable.");
 		else 
 		{
@@ -119,7 +119,7 @@ public class State
 	* which remove items from the player's pack. Note that if items are not
 	* caught by the calling class, they are effectively destroyed in the game.
 	*/
-	public Noun inventory_destroy(Noun item)
+	public Noun inventory_remove(Noun item)
 	{
 		return inventory.removeItem(item);
 	}
@@ -130,7 +130,7 @@ public class State
 	* caught by the calling class, they are effectively destroyed in the game.
 	* Convenience class allowing delete by name as well as by object reference. 
 	*/
-	public Noun inventory_destroy(String itemName)
+	public Noun inventory_remove(String itemName)
 	{
 		return inventory.removeItem(itemName);
 	}
@@ -154,7 +154,7 @@ public class State
 		if (i != null)
 		{
 			String article;
-			Noun n = inventory_destroy(i);
+			Noun n = inventory_remove(i);
 			if (n == null)
 			{
 				if (i.plural())

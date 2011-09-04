@@ -41,7 +41,7 @@ public abstract class Grammar
 		this.frames = new ArrayList<ArrayList<Class>>();
 		this.acceptable = new ArrayList<Class>();
 		this.complements = new HashMap<String, Grammar>();
-                acceptable.add(None.class);
+   //             acceptable.add(None.class);
 		this.name = name;
 	}
        
@@ -60,7 +60,7 @@ public abstract class Grammar
  
         /**
          * Returns true if this Grammar object accepts the specified Grammar
-         * object. This should only be reached for None.
+         * object.
          * @param g
          * @return 
          */
@@ -79,7 +79,7 @@ public abstract class Grammar
 
         /**
          * Default execute() method. Should only be reached as an error, this 
-         * should be overridden in all derived classes.
+         * should be overridden in all derived classes which execute.
          */
 	protected void execute()
 	{
