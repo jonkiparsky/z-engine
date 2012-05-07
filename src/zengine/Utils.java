@@ -1,7 +1,6 @@
 package zengine;
 
 import java.io.File;
-
 /**
 * A collection of useful methods 
 */
@@ -138,8 +137,6 @@ public class Utils
 		
 			if (f.getName().equals("docs")) 
 				continue;
-	//		System.out.println("f.getName(): "+f.getName());
-	//		System.out.println("seekName = " +seekName);
 			if (f.getName().trim().equals(seekName.trim()))
 			{
 				//System.out.println("Found "+seekName);
@@ -147,13 +144,21 @@ public class Utils
 			}
 			if (f.isDirectory())
 			{
-	//			System.out.println("seeking in "+f.getName());
 				File returnFile = seekSource(f, seekName);
 				if (returnFile != null)
 					return(seekSource(f, seekName));
 			}
 		}
-	//	System.out.println ("can't find: "+seekName);
 		return null;
 	}
+		
+	public static void printList(String[] list)
+	{
+		for (String s: list)
+		{
+			System.out.print(s+" ");
+		}			
+		System.out.println();
+	}
+	
 }

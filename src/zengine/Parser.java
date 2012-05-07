@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.lang.Class;
 import java.util.Scanner;
 import java.util.Properties;
+import java.util.ArrayList;
 import gamefiles.grammar.*;
 
 public class Parser
@@ -39,14 +40,6 @@ public class Parser
 		loadProperties();
 	}
 
-	/**
-	*	There are currently three methods for accepting a move. Make the 
-	*	appropriate change in ZEngineMain
-	*	
-	*	This one recognizes good words used wrongly and non-words, and reacts
-	*	correctly to those. It does not what to do with the end of a sentence,
-	*	though.
-	*/
 	public void makeMove()
 	{
 		String input;
@@ -56,99 +49,31 @@ public class Parser
 			System.out.print(">> ");
 			input = in.nextLine();
 		} while (input.length() == 0);
+	
 		
-		inputScanner = new Scanner(input);
-		processMove();
+		
+		doMove(input);
 	}	
 
-
-	private void processMove()
+	public void doMove(String input)
 	{
-		StringBuffer tokens = new StringBuffer();
-		
-		String first = nextWord();	
-				
-		Grammar token = tokenise(first);
-		if (token==null) 
-		{	
-			
-			error ("I don't recognize that word - see parser.makeMove");
-			return;
-		}
-		
-		Sentence sentence = Sentence.getSentence(token);
-		
-		if (sentence == null)
-		{
-			error ("error 1");
-			return;
-		}
 
-			// If one-word command, simply make a one-word sentence and try to
-			// execute it.
-
-		while (inputScanner.hasNext())
+//		String[] inputWords = input.split(" ");	
+		ArrayList<String> inputWords = new ArrayList<String>();
+		for (String s: input.split(" "))
+			inputWords.add(s);
+		Sentence sentence = new Sentence();
+		if (sentence.accept(inputWords) !=null)
 		{
-			String word = inputScanner.next();
-			Grammar g = tokenise(word);
-			if (error) 
-			{
-				error = false;
-				break;
-			}
-			tokens.append(g.toString());
-			tokens.append(", ");
-			if (g == null) 
-			{
-				parseFail(word);
-				break;
-			}		
-	
-			if (!sentence.accept(g))
-			{
-				parseFail(g);
-				break;
-			}
-		}
-				
-		if (error)
-		{
-			error("I don't know what that word means: see parser.makeMove\n"+
-				"Tokens: "+tokens);
-			error= false;
-			return;
-		}
-		
-		if (sentence.accept(tokenise("None")))
-		{
-			System.out.println(tokens.toString());
-			
+			System.out.println("doMove says sentence accepted");
 			sentence.execute();
 		}
 		else
-		{
-			error("premature end of input: " + tokens.toString());
-		}
-	
-	}
 
-	public Grammar nextToken()
-	{
-		return tokenise(nextWord());
-	}
+			System.out.println("doMove says sentence not accepted");
 
-	/**
-	*	Returns the next word in the input.
-	*/
-	private String nextWord()
-	{
-		if (!inputScanner.hasNext()) return null;
-		String word = inputScanner.next();
-		if (macros.get(word) != null)
-			word =(String) macros.get(word);
-	
-		return word;
-	}
+	}	
+
 
 	/**
 	*	Implemented for politeness only. If this is ever needed, please explain
@@ -234,13 +159,7 @@ public class Parser
 	*/	
 	public Grammar tokeniseRoom(String input)
 	{
-		Room r = ZEngineMain.model().getRoom(input.toLowerCase());
-		if (r !=null) 
-			return r;
-		String nextWord = null;
-		if ((nextWord =  nextWord()) !=null)
-			return tokeniseRoom(input + " "+ nextWord);
-		else return null;	
+		return null;	
 	
 	}
 

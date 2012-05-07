@@ -12,8 +12,9 @@ public abstract class Grammar
 {    
 	protected boolean error;
 	protected String name;
-	protected ArrayList<ArrayList<Class>>frames;
-        
+	protected ArrayList<ArrayList<Grammar>>frames;
+	protected HashMap<String, Grammar> complements;
+ 
         /**
          * Acceptable grammar objects.
          */
@@ -22,12 +23,10 @@ public abstract class Grammar
         /**
          * Associated grammar object.
          */
-	protected HashMap<String, Grammar> complements;
-		//complements might not be the right word...
 
 	public Grammar()
 	{
-		this(" ");
+		this("Unnamed Grammar Object");
 	}
 
         /**
@@ -38,19 +37,18 @@ public abstract class Grammar
 	public Grammar(String name)
 	{
 		error = false;	
-		this.frames = new ArrayList<ArrayList<Class>>();
+		this.frames = new ArrayList<ArrayList<Grammar>>();
 		this.acceptable = new ArrayList<Class>();
-		this.complements = new HashMap<String, Grammar>();
-   //             acceptable.add(None.class);
 		this.name = name;
+		this.complements = new HashMap<String, Grammar>();
 	}
        
-	void putFrame(Class... frameItems)
+	void putFrame(Grammar... frameItems)
 	{
-		ArrayList<Class> frame = new ArrayList<Class>();
-		for (Class c: frameItems)
+		ArrayList<Grammar> frame = new ArrayList<Grammar>();
+		for (Grammar g: frameItems)
 		{
-			frame.add(c);
+			frame.add(g);
 		}
 
 		frames.add(frame);
@@ -64,19 +62,9 @@ public abstract class Grammar
          * @param g
          * @return 
          */
-	public  boolean accept(Grammar g)
-	{
-		for (Class c : this.acceptable)
-		{
-			if  (c.isAssignableFrom(g.getClass()))
-			{
-				this.complements.put (c.getName(), g);
-				return true;
-			}			
-		}	
-		return false;		
-	}
+	public abstract  Grammar accept(ArrayList<String> input);
 
+		
         /**
          * Default execute() method. Should only be reached as an error, this 
          * should be overridden in all derived classes which execute.
@@ -86,13 +74,6 @@ public abstract class Grammar
 		System.out.println("Can't execute "+ this.name);
 	}
 
-	/**
-
-	public String toString()
-	{
-		return name;
-	}
-	
 	/**
 	* 	Convenient wrapper class for Utils.debug()
 	*/

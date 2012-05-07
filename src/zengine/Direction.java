@@ -5,9 +5,16 @@ import gamefiles.grammar.Go;
 /**
 * Abstract class representing the grammatical class of directions
 */
-public abstract class Direction extends Grammar
+public class Direction extends Word
 {
 	String name;
+
+	public Direction()
+	{
+		super("Direction");
+		this.name = "Direction object created for parsing";
+	}
+
 
         /**
          * Constructor to be used.
@@ -16,7 +23,7 @@ public abstract class Direction extends Grammar
          */
 	public Direction(String name)
 	{
-//		super(name);
+		super(name);
 		this.name = name;
 		this.acceptable.add(None.class);
 	}
