@@ -9,17 +9,6 @@ public abstract class Preposition extends Grammar
 //		super(name);
 		this.name = name;
 	}
-
-	public boolean accept(Grammar g)
-	{
-                if (super.accept(g))
-                {
-                        if (g instanceof Noun)
-                                noun = (Noun) g;
-                        return true;
-                }
-                return false;
-	}
 	public String toString()
 	{
 		return name;

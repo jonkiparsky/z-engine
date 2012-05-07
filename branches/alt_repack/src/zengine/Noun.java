@@ -4,7 +4,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import gamefiles.grammar.None;
 
-public abstract class Noun extends Grammar
+public class Noun extends Word
+
 {
 	protected String desc;
 	protected String state;
@@ -14,9 +15,14 @@ public abstract class Noun extends Grammar
         
         protected int weight = 1;
 
+	public Noun()
+	{
+		this("Noun");
+	}
+
 	public Noun(String name)
 	{
-//		super(name);
+		super(name);
 		this.name= name;
                 fixture = false;
                 acceptable.add(Preposition.class);

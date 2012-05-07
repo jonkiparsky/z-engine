@@ -3,7 +3,7 @@ package zengine;
 /**
  * Base class for Verbs.
  */
-public abstract class Verb extends Grammar
+public class Verb extends Word
 {
 	/**
      * Noun associated with this verb.
@@ -20,7 +20,8 @@ public abstract class Verb extends Grammar
          */
 	public Verb()
 	{
-		super();
+		super("VERB");
+		
 	}
         
         /**
@@ -31,7 +32,7 @@ public abstract class Verb extends Grammar
          */
 	public Verb(String name)
 	{
-		this.name = name;
+		super(name);	
 	}
 	
         /**
@@ -39,6 +40,7 @@ public abstract class Verb extends Grammar
          */
 	public Verb(Grammar g)
 	{
+		super("Verb");
 	}
 	
         /**

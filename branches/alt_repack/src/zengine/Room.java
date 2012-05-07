@@ -1,8 +1,10 @@
 package zengine;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.lang.Class;
 import zengine.Container;
+
 
 public abstract class Room extends Grammar
 {
@@ -323,4 +325,10 @@ public abstract class Room extends Grammar
 			hiddenObjects.clear();
 		}
 	}
+   public Phrase accept(ArrayList<String> input)
+	{
+		System.out.println("An error has occurred. Called room.accept!");
+		return null;
+	}
 }
+
