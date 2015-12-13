@@ -1,0 +1,1 @@
+z-engine is an experimental project, with the goal of exploring a novel parsing and handling method. The concrete project is a generic text-adventure game engine, suitable for games similar to adventure or zork.
